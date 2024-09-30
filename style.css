@@ -80,7 +80,7 @@ header {
 
 /* Hero Section Styling */
 .hero {
-    background-image: url('assets/1.jpg');
+    background-image: url('assets/3.jpg');
     background-size: cover;
     background-position: center;
     height: 500px;
@@ -92,13 +92,13 @@ header {
 
 .hero-content h2 {
     font-size: 48px;
-    color: #fff;
+    color: #887e59fc;
     margin-bottom: 10px;
 }
 
-.hero-content p {
+.hero-content h4 {
     font-size: 24px;
-    color: #fff;
+    color: #2516162e;
     margin-bottom: 20px;
 }
 
