@@ -116,27 +116,21 @@ header {
     align-items: center;
     justify-content: center;
     text-align: center;
+
 }
 
-.hero-content h2 {
-    font-size: 48px;
-    color: #887e59fc;
-    margin-bottom: 10px;
-}
-
-.hero-content h4 {
-    font-size: 24px;
-    color: #2516162e;
-    margin-bottom: 20px;
-}
 
 .shop-btn {
+    
     background-color: #7d5a50;
     color: #fff;
-    padding: 10px 30px;
-    text-decoration: none;
+    padding: 15px 35px;
+    text-decoration:none;
     border-radius: 5px;
-    font-size: 18px;
+    font-size: 20px;
+    font-style: italic;
+    font-weight:bolder;
+    
 }
 
 .shop-btn:hover {

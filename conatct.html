@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ShoesHub - Shoes that fits your style </style></title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="contact.css">
   </head>
   <body>
     <!-- Navigation Bar -->
@@ -12,9 +13,9 @@
       <div class="top-bar">
         <div class="left-nav">
           <ul>
-            <li><a href="#">Home</a></li>
+            <li><a href="index.html">Home</a></li>
             <li><a href="#">About Us</a></li>
-            <li><a href="conatct.html">Contact Us: 061-587123 </a></li>
+            <li><a href="#">Contact Us: 061-587123 </a></li>
           </ul>
         </div>
         <div class="right-nav">
@@ -30,7 +31,7 @@
       <nav class="main-nav">
         <h1 class="logo">ShoesHub</h1>
         <ul>
-          <li><a href="#">Home</a></li>
+          <li><a href="index.html">Home</a></li>
           <li><a href="#">Men</a></li>
           <li><a href="#">Women</a></li>
           <li><a href="#">Kids</a></li>
@@ -40,16 +41,26 @@
         </ul>
       </nav>
     </header>
-    <!-- Scrolling Sale Banner -->
-<div class="sale-banner">
-  <p> Winter Sale upto 50% Off on all of our Products!!&nbsp;&nbsp;&nbsp;Step Up Your Game!!</p>
-</div>
-    <!-- Hero Section -->
-    <section class="hero">
-      <div class="hero-content">
-    
-        <a href="#" class="shop-btn">Shop Now</a>
-      </div>
-    </section>
-  </body>
+    <div class="container">
+        <h2>We'd Love to Hear from You!</h2>
+        <br>
+        <form action="#" method="post">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="6" required></textarea>
+
+            <button type="submit">Send Message</button>
+        </form>
+
+        <div class="below">You can also&nbsp;
+            <p>Email Us: example@gmail.com</p>
+        </div>
+    </div>
+
+</body>
 </html>
