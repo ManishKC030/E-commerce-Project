@@ -3,37 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
+    <title>login</title>
     <link rel="stylesheet" href="login.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="nav-footer.css">
+    
 </head>
 <body>
+    <header>
+        <div class="top-bar">
+          <div class="left-nav">
+            <ul>
+              <li><a href="#">Home</a></li>
+              <li><a href="#">About Us</a></li>
+              <li><a href="conatct.html">Contact Us: 061-587123 </a></li>
+            </ul>
+          </div>
+          <div class="right-nav">
+            <ul>
+              
+              <li><a href="#">Store Location</a></li>
+              <li><a href="login.html">Login/Register</a></li>
+            </ul>
+          </div>
+        </div>
+  
+        <!-- Main Navigation -->
+        <nav class="main-nav">
+          <h1 class="logo">ShoesHub</h1>
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Men</a></li>
+            <li><a href="#">Women</a></li>
+            <li><a href="#">Kids</a></li>
+            <li><a href="#">Featured</a></li>
+            <li><a href="#">Cart</a></li>
+            <li><a href="#">Wishlist</a></li>
+          </ul>
+        </nav>
+      </header>
 
     <div class="login-container">
-        <h1>Login</h1>
-        
-        <div class="input-group">
-            <span class="material-icons">person</span>
-            <input type="text" placeholder="Username" required>
-        </div>
+        <h2>Login</h2>
+        <form id="loginForm" action="#" >
+            <div class="form-group">
+                <label for="username">Username</label>
 
-        <div class="input-group">
-            <span class="material-icons">key</span>
-            <input type="password" placeholder="Password" required>
-        </div>
-
-        <button class="login-button">Login</button>
-
-        <a href="#" class="forgot-password">Forgot Password?</a>
-
-        <div class="signup-options">
-            <p>Or sign up with:</p>
-            <button class="google-signup">Sign up with Google</button>
-            <button class="facebook-signup">Sign up with Facebook</button>
-        </div>
-
-        <p class="signup-link">Don't have an account? <a href="#">Sign up</a></p>
+                <div class="userArea">
+                    
+                <input type="text" id="username" name="username" required  placeholder="Enter your username or email">
+            </div>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required placeholder="Enter your password">
+            </div>
+            <div class="show-password-container">
+                <input type="checkbox" id="showPassword">
+                <label for="showPassword">Show Password</label>
+            </div><br>
+            <button type="submit" class="btn">Login</button>
+            <p class="signup-link">Don't have an Account? <a href="#">Register</a></p>
+        </form>
     </div>
+    
 
+    <script>
+        // JavaScript to toggle password visibility
+        document.getElementById('showPassword').addEventListener('change', function() {
+            var passwordField = document.getElementById('password');
+            if (this.checked) {
+                passwordField.type = 'text';
+            } else {
+                passwordField.type = 'password';
+            }
+        });
+    </script>
 </body>
 </html>

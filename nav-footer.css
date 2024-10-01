@@ -106,33 +106,3 @@ header {
 }
 
 /* Hero Section Styling */
-.hero {
-    background-image: url('assets/3.jpg');
-    background-size: cover;
-    background-position: center;
-    height: 500px;
-    
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-
-}
-
-
-.shop-btn {
-    
-    background-color: #7d5a50;
-    color: #fff;
-    padding: 15px 35px;
-    text-decoration:none;
-    border-radius: 5px;
-    font-size: 20px;
-    font-style: italic;
-    font-weight:bolder;
-    
-}
-
-.shop-btn:hover {
-    background-color: #3a3a3a;
-}
