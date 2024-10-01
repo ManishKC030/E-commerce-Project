@@ -1,0 +1,24 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-image: url('assets/R.jpg');
+    background-size: cover;
+    background-position: center;
+    font-family: Arial, sans-serif;
+}
+
+/* Center the text in the middle of the page */
+.centered-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: rgb(255, 255, 255);
+    font-size: 48px;
+    text-align: center;
+    font-weight: bolder;
+    
+        text-shadow: 2px 2px 5px rgb(0, 0, 0), 5px 5px 10px rgba(255, 255, 255, 0.2);
+    font-family: 'pacifico','Times New Roman';
+}
