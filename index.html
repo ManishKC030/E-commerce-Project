@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ShoesHub - Shoes that fits your style </style></title>
+    <title>ShoesHub - Shoes that fits your style</title>
     <link rel="stylesheet" href="nav-footer.css" />
     <link rel="stylesheet" href="index.css">
   </head>
@@ -42,16 +42,102 @@
       </nav>
     </header>
     <!-- Scrolling Sale Banner -->
-<div class="sale-banner">
-  <p> Winter Sale upto 50% Off on all of our Products!!&nbsp;&nbsp;&nbsp;Step Up Your Game!!</p>
-</div>
-    <!-- Hero Section -->
-    <section class="hero">
-      <div class="hero-content">
-    
-        <a href="#" class="shop-btn">Shop Now</a>
+    <div class="sale-banner">
+      <p>Festive Offer: Upto 50% Off on all of our Products!</p>
+  </div>
+
+    <!-- slide show container -->
+  <div class="slideshow-container">
+      
+      <!-- Slide 1 -->
+      <div class="slide fade">
+        <img src="assets/Green and Yellow Simple Clean Shoes Sale Banner.png" alt="Image 1">
+        
       </div>
-    </section>
+      
+      <!-- Slide 2 -->
+      <div class="slide fade">
+        <img src="assets/oldskool.jpg" alt="Image 2">
+        
+      </div>
+      
+      <!-- Slide 3 -->
+      <div class="slide fade">
+        <img src="assets/blazer.jpg" alt="Image 3">
+        
+      </div>
+    
+      
+      
+      <!-- Previous and Next Buttons -->
+      <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+      <a class="next" onclick="changeSlide(1)">&#10095;</a>
+      <!-- Dots/Bullets for navigation -->
+        <div style="text-align:center" class="dot-conatiner">
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+        
+        </div>
+      
+  </div>
+
+  <H1>hello world</H1>
+    
+    
+
+   <!-- Hero Section -->
+   <div class="hero">
+    <h1>Enjoy Great Tasting Coffee</h1>
+    <p>From Around The World</p>
+    <a href="#" class="shop-now-btn">Shop Now</a>
+</div>
+  
+  <script>
+    let slideIndex = 0;
+showSlides();
+
+function showSlides() {
+    let i;
+    let slides = document.getElementsByClassName("slide");
+    let dots = document.getElementsByClassName("dot");
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";  
+    }
+    slideIndex++;
+    if (slideIndex > slides.length) {slideIndex = 1}    
+    for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+    }
+    slides[slideIndex-1].style.display = "block";  
+    dots[slideIndex-1].className += " active";
+    setTimeout(showSlides, 5000); // Change slide every 5 seconds
+}
+
+function changeSlide(n) {
+    showManualSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+    showManualSlides(slideIndex = n);
+}
+
+function showManualSlides(n) {
+    let i;
+    let slides = document.getElementsByClassName("slide");
+    let dots = document.getElementsByClassName("dot");
+    if (n > slides.length) {slideIndex = 1}
+    if (n < 1) {slideIndex = slides.length}
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+    for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+    }
+    slides[slideIndex-1].style.display = "block";
+    dots[slideIndex-1].className += " active";
+}
+  </script>
     <!-- Footer Section -->
     <footer>
       <div class="footer-container">
@@ -99,6 +185,7 @@ Pokhara,Gandaki Pradesh,Nepal<br>
       <div class="footer-bottom">
           <p>Copyright &copy; 2024 ShoesHub Co. Ltd. All Rights Reserved.</p>
           <p>Terms & Condition</p>
+          <p>FAQ's</p>
           <div class="social-icons">
               <a href="#"><img src="icons/facebook-brands-solid.svg" alt="Facebook"></a>
               <a href="#"><img src="icons/x-twitter-brands-solid.svg" alt="X-Twitter"></a>

@@ -8,60 +8,146 @@
 body {
     font-family: 'Arial', sans-serif;
 }
-.hero {
-    background-image: url('assets/3.jpg');
-    background-size: cover;
-    background-position: center;
-    height: 500px;
-    
-    display: flex;
-    align-items: center;
-    justify-content: center;
+
+.slideshow-container {
+    position: relative;
+    max-width:fit-content;
+    margin: auto;
+}
+
+.slide {
+    display: none;
+
+}
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+}
+
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.8);
+}
+
+.dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+.dot-container {
+    position: absolute;
+    bottom: 70px;  /* Adjust this value to position the dots higher or lower inside the image */
+    width: 100%;
     text-align: center;
-
+    z-index: 1;
 }
 
 
-.shop-btn {
-    
-    background-color: #7d5a50;
-    color: #fff;
-    padding: 15px 35px;
-    text-decoration:none;
-    border-radius: 5px;
-    font-size: 20px;
-    font-style: italic;
-    font-weight:bolder;
-    
+.active, .dot:hover {
+    background-color: #717171;
 }
 
-.shop-btn:hover {
-    background-color: #3a3a3a;
+.fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
 }
+
+@keyframes fade {
+    from {opacity: .4} 
+    to {opacity: 1}
+}
+
+
 .sale-banner {
-    background-color: #7d5a50;
-    color: #ece0e0;
-    padding: 20px 0;
-    overflow: hidden;
-    white-space: nowrap;
-    position:relative;
+    background-color: #ffffff;
+    color: #202020;
+    padding: 10px 0;
+    overflow: hidden;  /* Hide the overflowing text */
+    white-space: nowrap;  /* Prevent text wrapping */
+    position: relative;
+    display: flex;  /* Use Flexbox to center the text vertically */
+    align-items: center;  /* Vertically center the text */
+    height: 35px;  /* Define the height of the sale banner */
 }
 
 .sale-banner p {
     display: inline-block;
     font-size: 18px;
-
     font-weight: bold;
     position: absolute;
     white-space: nowrap;
-    animation: scroll-left 10s linear infinite;
+    animation: scroll-left 9s linear infinite;
 }
 
 @keyframes scroll-left {
     0% {
-        transform: translateX(100%);
+        transform: translateX(350%);  /* Start from the right edge */
     }
     100% {
-        transform: translateX(-100%);
+        transform: translateX(-100%);  /* Move off the left edge */
     }
+}
+/* Hero Section */
+.hero {
+    background-image: url('assets/nike.jpg'); /* Replace with your image URL */
+    background-size: cover;
+    background-position: center;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    position: relative;
+}
+
+.hero h1 {
+    font-size: 48px;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.shop-now-btn {
+    background-color: #fff;
+    color: #5e4330;
+    padding: 10px 30px;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.shop-now-btn:hover {
+    background-color: #e1c9b7;
 }

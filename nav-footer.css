@@ -10,7 +10,7 @@ body {
 }
 
 header {
-    background-color: #fff;
+    background-color: #000000;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
@@ -19,7 +19,7 @@ header {
     display: flex;
     justify-content: space-between;
     padding: 10px 50px;
-    background-color: #ffffff;
+    background-color: #000000;
 }
 
 .top-bar ul {
@@ -33,18 +33,20 @@ header {
 
 .top-bar ul li a {
     text-decoration: none;
-    color: #555;
+    color: #aaa;
     font-size: 14px;
 }
 
 .right-nav ul li a:hover {
-    color: #02205f;
+    color: #ffffff;
     font-weight: bold;
+    text-decoration: underline;
 
 }
 .left-nav ul li a:hover {
-    color: #02205f;
+    color: #ffffff;
     font-weight: bold;
+    text-decoration: underline;
 }
 /* Main Navigation Styling */
 .main-nav {
@@ -56,7 +58,7 @@ header {
 
 .logo {
     font-size: 24px;
-    color: #7d5a50;
+    color: #ffffff;
 }
 
 .main-nav ul {
@@ -70,12 +72,14 @@ header {
 
 .main-nav ul li a {
     text-decoration: none;
-    color: #7d5a50;
+    color: #ffffff;
     font-size: 16px;
 }
 
 .main-nav ul li a:hover {
-    color: #3a3a3a;
+    color: #ffffff;
+    text-decoration: underline;
+    font-weight: bold;
 }
 
 
