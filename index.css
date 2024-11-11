@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap');
 
 * {
     margin: 0;
@@ -115,42 +116,14 @@ img {
 }
 /* Hero Section */
 .hero {
-    background-image: url('assets/nike.jpg'); /* Replace with your image URL */
-    background-size: cover;
+    background-image: url('assets/puma suede.png'); /* Replace with your image URL */
+    background-size:contain;
     background-position: center;
     height: 600px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    color: white;
     position: relative;
 }
 
-.hero h1 {
-    font-size: 48px;
-    margin-bottom: 10px;
-}
 
-.hero p {
-    font-size: 24px;
-    margin-bottom: 20px;
-}
-
-.shop-now-btn {
-    background-color: #fff;
-    color: #5e4330;
-    padding: 10px 30px;
-    text-decoration: none;
-    font-size: 18px;
-    font-weight: bold;
-    border-radius: 5px;
-}
-
-.shop-now-btn:hover {
-    background-color: #e1c9b7;
-}
 .main-shop-brand{
             
     display: flex;
@@ -166,9 +139,10 @@ img {
 }
 
 .shop-by-brand h2 {
-    font-size: 24px;
+    font-family: 'MyCustomFont', sans-serif;
+    font-size: 32px;
     margin: 20px 0;
-    color: #333;
+    color: #111111;
 }
 
 .brand-list {
@@ -206,7 +180,8 @@ img {
     padding: 10px 20px;
     font-size: 16px;
     color: #fff;
-    background-color: #333;
+    background-color: #171717;
+    font-weight: bold;
     border: none;
     border-radius: 4px;
     text-decoration: none;
@@ -214,5 +189,88 @@ img {
 }
 
 .shop-button:hover {
-    background-color: #555;
+    background-color: #333;
+    
+}
+
+.para{
+    text-align: center;
+}
+.para h1{
+
+        font-size: 45px;
+        color: #013a34;
+        font-family: 'MyHeading';
+    }
+.para p{ 
+     font-size: 23px;
+    font-family: "Kalam", cursive;
+  font-weight: 500;
+  font-weight: bolder;
+  font-style: normal;}
+    
+
+
+
+.container {
+    text-align: center;
+    max-width: 1000px;
+}
+
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 15px;
+}
+
+.card {
+    color: white;
+    padding: 20px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 250px;
+    border-radius: 10px;
+    background-size: cover;
+    background-position: center;
+}
+
+.best-selling {
+   background-image:url(assets/best-selling.jpg);
+}
+
+.new-arrival {
+    background-image: url(assets/new-arrivals.jpg);/* Dark red */
+}
+
+.classics {
+   background-image: url(assets/classics.jpg);
+}
+
+.collabs {
+    background-image: url(assets/collabs.jpg);
+}
+
+.card h2 {
+    font-family:'MyHeading' ;
+   font-size: 22px;
+    font-weight: bold;
+
+}
+
+
+
+@font-face {
+    font-family:"MyHeading";
+    src: url(fonts/acorn.woff) format('woff');
+}
+@font-face {
+    font-family: 'MyCustomFont';
+    src: url('fonts/overcame-bold.woff') format('woff'),
+         url('fonts/overcame-outline.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
 }
