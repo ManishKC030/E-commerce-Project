@@ -2,7 +2,7 @@ body {
     margin: 0;
     padding: 0;
     height: 100vh;
-    background-image: url('assets/R.jpg');
+    background-image: url('../assets/R.jpg');
     background-size: cover;
     background-position: center;
     font-family: Arial, sans-serif;

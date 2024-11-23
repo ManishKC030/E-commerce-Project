@@ -116,7 +116,7 @@ img {
 }
 /* Hero Section */
 .hero {
-    background-image: url('assets/puma suede.png'); /* Replace with your image URL */
+    background-image: url('../assets/puma suede.png'); /* Replace with your image URL */
     background-size:contain;
     background-position: center;
     height: 600px;
@@ -239,19 +239,19 @@ img {
 }
 
 .best-selling {
-   background-image:url(assets/best-selling.jpg);
+   background-image:url(../assets/best-selling.jpg)
 }
 
 .new-arrival {
-    background-image: url(assets/new-arrivals.jpg);/* Dark red */
+    background-image: url(../assets/new-arrivals.jpg);
 }
 
 .classics {
-   background-image: url(assets/classics.jpg);
+   background-image: url(../assets/classics.jpg);
 }
 
 .collabs {
-    background-image: url(assets/collabs.jpg);
+    background-image: url(../assets/collabs.jpg);
 }
 
 .card h2 {
