@@ -117,7 +117,7 @@ img {
 /* Hero Section */
 .hero {
     background-image: url('../assets/puma suede.png'); /* Replace with your image URL */
-    background-size:contain;
+    background-size:cover;
     background-position: center;
     height: 600px;
     position: relative;

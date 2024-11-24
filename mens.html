@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
    
     <link rel="stylesheet" href="stylesheet/nav-footer.css">
-    <link rel="stylesheet" href="stylesheet/kids.css">
+    <link rel="stylesheet" href="stylesheet/mens.css">
 </head>
 <body>
     <!-- Navigation Bar -->
@@ -15,7 +15,7 @@
         <div class="top-bar">
           <div class="left-nav">
             <ul>
-              
+              <li><a href="index.html">Home</a></li>
               <li><a href="#">About Us</a></li>
               <li><a href="conatct.html">Contact Us: 061-587123 </a></li>
             </ul>
@@ -33,7 +33,7 @@
         <nav class="main-nav">
           <a href="index.html" style="text-decoration: none;">  <h1 class="logo">ShoesHub</h1></a>
           <ul>
-            <li><a href="index.html">Home</a></li>
+           
             <li><a href="mens.html">Men</a></li>
             <li><a href="#">Women</a></li>
             <li><a href="kids.html">Kids</a></li>
@@ -46,6 +46,8 @@
 
 
  <section id ="page-header" >
+    
+    
        
 
      
@@ -54,7 +56,7 @@
 
 
     <div class="new-arrivals">
-        <h2>Kids' New Arrivals</h2>
+        <h2>Mens' New Arrivals</h2>
         <div class="product-container">
             <!-- Product 1 -->
             <div class="product">
@@ -129,20 +131,81 @@
 
     <!-- JavaScript to enable scrolling functionality -->
     <script>
-        const scrollContainer = document.querySelector('.product-container');
-        const scrollLeftBtn = document.querySelector('.scroll-btn.left');
-        const scrollRightBtn = document.querySelector('.scroll-btn.right');
+        const scroll_Container = document.querySelector('.product-container');
+        const scroll_LeftBtn = document.querySelector('.scroll-btn.left');
+        const scroll_RightBtn = document.querySelector('.scroll-btn.right');
 
-        scrollLeftBtn.addEventListener('click', () => {
-            scrollContainer.scrollBy({ left: -300, behavior: 'smooth' });
+        scroll_LeftBtn.addEventListener('click', () => {
+            scroll_Container.scrollBy({ left: -300, behavior: 'smooth' });
         });
 
-        scrollRightBtn.addEventListener('click', () => {
-            scrollContainer.scrollBy({ left: 300, behavior: 'smooth' });
+        scroll_RightBtn.addEventListener('click', () => {
+            scroll_Container.scrollBy({ left: 300, behavior: 'smooth' });
         });
     </script>
 
     <hr>
+
+
+    
+    <div class="best-selling">
+        <h2>Kids' best Arrivals</h2>
+        <div class="product-container2">
+            <!-- Product 1 -->
+            <div class="product2">
+                <img src="assets/blazer.jpg" alt="PUMA x LAMELO BALL MB.04">
+                <div class="product-info">
+                    <p class="product-name">PUMA x LAMELO BALL MB.04</p>
+                    <p class="product-description">LaFrancé 1of1</p>
+                    <p class="product-price">$85.00</p>
+                    <p class="product-type">Little Kids' Basketball Shoes</p>
+                </div>
+            </div>
+            
+            <!-- Product 2 -->
+            <div class="product2">
+                <img src="assets/aj1.png" alt="PUMA x LAMELO BALL LaFrancé">
+                <div class="product-info">
+                    <p class="product-name">PUMA x LAMELO BALL LaFrancé 1 of 1</p>
+                    <p class="product-price">$95.00</p>
+                    <p class="product-type">Big Kids' Sneakers</p>
+                </div>
+            </div>
+            
+            <!-- Product 3 -->
+            <div class="product2">
+                <img src="assets/Kids/Campus.jpg" alt="Easy Rider Vintage">
+                <div class="product-info">
+                    <p class="product-name">Easy Rider Vintage</p>
+                    <p class="product-price">$70.00</p>
+                    <p class="product-type">Big Kids' Sneakers</p>
+                </div>
+            </div>
+            
+            <!-- Product 4 -->
+            <div class="product2">
+                <img src="path/to/image4.jpg" alt="Easy Rider Vintage">
+                <div class="product-info">
+                    <p class="product-name">Easy Rider Vintage</p>
+                    <p class="product-price">$65.00</p>
+                    <p class="product-type">Little Kids' Sneakers</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+      
+<br>
+   
+    <hr>
+
+
+
+<br>
+   
+
+
+    </section>
 <br><br>
     <section id="product">
         <h2>Featured Products</h2>
@@ -314,7 +377,7 @@
         </div>
 
 
-
+        
         </div>
          
 
