@@ -22,8 +22,8 @@
             <ul>
               
               <li><a href="store_location.html">Store Location</a></li>
-              <li><a href="store_location.html">My Account</a></li>
-              <li><a href="login.html">Login/Register</a></li>
+              <li><a href="account.php">My Account</a></li>
+              <li><a href="login.php">Login/Register</a></li>
             </ul>
           </div>
         </div>
@@ -32,7 +32,7 @@
         <nav class="main-nav">
           <a href="index.html" style="text-decoration: none;">  <h1 class="logo">ShoesHub</h1></a>
           <ul>
-            <li><a href="index.html">Home</a></li>
+            <li><a href="index.php">Home</a></li>
             <li><a href="mens.html">Men</a></li>
             <li><a href="#">Women</a></li>
             <li><a href="kids.html">Kids</a></li>
