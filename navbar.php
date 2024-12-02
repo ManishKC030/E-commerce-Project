@@ -15,8 +15,10 @@
           <div class="left-nav">
             <ul>
               
+              
+              <li><a href="conatct.php">Contact Us: 061-587123 </a></li>
               <li><a href="#">About Us</a></li>
-              <li><a href="conatct.html">Contact Us: 061-587123 </a></li>
+              <li><a href="#">Become a Seller </a></li>
             </ul>
           </div>
           <div class="right-nav">
@@ -32,7 +34,7 @@
   
         <!-- Main Navigation -->
         <nav class="main-nav">
-          <a href="index.html" style="text-decoration: none;">  <h1 class="logo">ShoesHub</h1></a>
+          <a href="index.php" style="text-decoration: none;">  <h1 class="logo">ShoesHub</h1></a>
           <ul>
             <li><a href="index.php">Home</a></li>
             <li><a href="mens.html">Men</a></li>
