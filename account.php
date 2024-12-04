@@ -34,7 +34,6 @@ $conn->close();
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ShoesHub - My Account</title>
   <link rel="shortcut icon" href="icons/account.svg" type="image/x-icon">
-  <link rel="stylesheet" href="stylesheet/nav-footer.css" />
 
   <style>
     .account {
@@ -55,41 +54,10 @@ $conn->close();
 
 <body>
   <!-- Navigation Bar -->
-  <header>
-    <div class="top-bar">
-      <div class="left-nav">
-        <ul>
+  <?php
+  require 'navbar.php';
+  ?>
 
-          <li><a href="#">About Us</a></li>
-          <li><a href="conatct.html">Contact Us: 061-587123 </a></li>
-        </ul>
-      </div>
-      <div class="right-nav">
-        <ul>
-
-          <li><a href="store_location.html">Store Location</a></li>
-          <li><a href="account.php">My Account</a></li>
-          <li><a href="login.php">Login/Register</a></li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Main Navigation -->
-    <nav class="main-nav">
-      <a href="index.html" style="text-decoration: none;">
-        <h1 class="logo">ShoesHub</h1>
-      </a>
-      <ul>
-        <li><a href="index.php">Home</a></li>
-        <li><a href="mens.html">Men</a></li>
-        <li><a href="#">Women</a></li>
-        <li><a href="kids.html">Kids</a></li>
-
-        <li><a href="#">Cart</a></li>
-        <li><a href="#">Wishlist</a></li>
-      </ul>
-    </nav>
-  </header>
 
 
   <div class="account">
@@ -111,61 +79,10 @@ $conn->close();
 
 
 
-  <footer>
-    <div class="footer-container">
-      <div class="footer-left">
-        <div class="footer-logo">
+  <?php
+  require 'footer.php';
+  ?>
 
-          <h3>ShoesHub</h3>
-
-        </div>
-        <address>
-          Pokhara,Gandaki Pradesh,Nepal<br>
-          <a href=" example@shoeshub.com">example@shoeshub.com</a><br>
-          061-587123
-        </address>
-      </div>
-      <div class="footer-column">
-        <h4>Shopping & Categories</h4>
-        <ul>
-          <li><a href="#">Men's Shopping</a></li>
-          <li><a href="#">Women's Shopping</a></li>
-          <li><a href="#">Kid's Shopping</a></li>
-          <li><a href='#'>Exclusive</a></li>
-        </ul>
-      </div>
-      <div class="footer-column">
-        <h4>Useful Links</h4>
-        <ul>
-          <li><a href="#">Homepage</a></li>
-          <li><a href="#">Store Location</a></li>
-
-          <li><a href="#">Contact Us</a></li>
-          <li><a href="#">About Us</a></li>
-        </ul>
-      </div>
-      <div class="footer-column">
-        <h4>Help & Information</h4>
-        <ul>
-          <li><a href="#">Return Policy</a></li>
-          <li><a href="#">Order Tracking</a></li>
-          <li><a href="#">Shipping Charges</a></li>
-          <li><a href="#">Tracking ID</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>Copyright &copy; 2024 ShoesHub Co. Ltd. All Rights Reserved.</p>
-      <p>Terms & Condition</p>
-      <p>FAQ's</p>
-      <div class="social-icons">
-        <a href="#"><img src="icons/facebook-brands-solid.svg" alt="Facebook"></a>
-        <a href="#"><img src="icons/x-twitter-brands-solid.svg" alt="X-Twitter"></a>
-        <a href="#"><img src="icons/instagram (1).svg" alt="Instagram"></a>
-
-      </div>
-    </div>
-  </footer>
 
 </body>
 
