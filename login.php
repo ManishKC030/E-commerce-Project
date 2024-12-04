@@ -1,5 +1,3 @@
-
-
 <?php
 
 // Start session to store user information
@@ -21,9 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if (empty($email) || empty($password)) {
         $message = "Email and Password are required!";
-    }
-    else
-    {
+    } else {
 
         $sql = "SELECT user_id, password FROM users WHERE email = ?";
         $stmt = $conn->prepare($sql);
@@ -31,60 +27,62 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt->execute();
         $result = $stmt->get_result();
 
-   // Check if user exists
-   if ($result->num_rows > 0) {
-    $user = $result->fetch_assoc();
-    
+        // Check if user exists
+        if ($result->num_rows > 0) {
+            $user = $result->fetch_assoc();
 
-       // Verify password
-       if ($password === $user['password']) {
-        // If password is correct, store user ID in session
-        $_SESSION['user_id'] = $user['user_id'];
-        
-        // Redirect to the account page after successful login
-        header("Location: account.php");
-        exit;
-    } else {
-        $message = "Invalid password.";
+
+            // Verify password
+            if ($password === $user['password']) {
+                // If password is correct, store user ID in session
+                $_SESSION['user_id'] = $user['user_id'];
+
+                // Redirect to the account page after successful login
+                header("Location: account.php");
+                exit;
+            } else {
+                $message = "Invalid password.";
+            }
+        } else {
+            $message = "No account found with that email.";
+        }
+
+
+        $stmt->close();
+        $conn->close();
     }
-} else {
-    $message = "No account found with that email.";
-}
-    
-
-$stmt->close();
-$conn->close();
-}
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="stylesheet/login.css">
-  
-    
+
+
 </head>
+
 <body>
-  
+
     <div class="login-container">
         <h2>Login</h2>
-                <!-- Display error message -->
+        <!-- Display error message -->
         <?php if (!empty($message)): ?>
             <p style="color: red;"><?php echo htmlspecialchars($message); ?></p>
         <?php endif; ?>
 
-        <form id="loginForm" action="login.php" method="post" >
+        <form id="loginForm" action="login.php" method="post">
             <div class="form-group">
                 <label for="email">Email</label>
 
                 <div class="userArea">
-                    
-                <input type="email" id="email" name="email" required  placeholder="Enter your  email">
-            </div>
+
+                    <input type="email" id="email" name="email" required placeholder="Enter your  email">
+                </div>
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
@@ -98,7 +96,7 @@ $conn->close();
             <p class="signup-link">Don't have an Account? <a href="register.php">Register</a></p>
         </form>
     </div>
-    
+
 
     <script>
         // JavaScript to toggle password visibility
@@ -112,4 +110,5 @@ $conn->close();
         });
     </script>
 </body>
+
 </html>

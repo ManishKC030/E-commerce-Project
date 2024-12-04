@@ -1,24 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel="stylesheet" href="stylesheet/nav-footer.css">
+    <link rel="stylesheet" href="stylesheet/nav-footer.css">
 </head>
+
 <body>
 
 
-       <!-- Footer Section -->
-       <footer>
+    <!-- Footer Section -->
+    <footer>
         <div class="footer-container">
             <div class="footer-left">
                 <div class="footer-logo">
-                    
+
                     <h3>ShoesHub</h3>
-                    
+
                 </div>
                 <address>
-  Pokhara,Gandaki Pradesh,Nepal<br>
+                    Pokhara,Gandaki Pradesh,Nepal<br>
                     <a href=" example@shoeshub.com">example@shoeshub.com</a><br>
                     061-587123
                 </address>
@@ -30,15 +32,15 @@
                     <li><a href="#">Women's Shopping</a></li>
                     <li><a href="#">Kid's Shopping</a></li>
                     <li><a href='#'>Exclusive</a></li>
-                  </ul>
+                </ul>
             </div>
             <div class="footer-column">
                 <h4>Useful Links</h4>
                 <ul>
-                    <li><a href="#">Homepage</a></li>
+                    <li><a href="index.php">Homepage</a></li>
                     <li><a href="#">Store Location</a></li>
-                    
-                    <li><a href="#">Contact Us</a></li>
+
+                    <li><a href="contact.php">Contact Us</a></li>
                     <li><a href="#">About Us</a></li>
                 </ul>
             </div>
@@ -60,12 +62,14 @@
                 <a href="#"><img src="icons/facebook-brands-solid.svg" alt="Facebook"></a>
                 <a href="#"><img src="icons/x-twitter-brands-solid.svg" alt="X-Twitter"></a>
                 <a href="#"><img src="icons/instagram (1).svg" alt="Instagram"></a>
-            
+
             </div>
         </div>
     </footer>
-  
+
 </body>
+
 </html>
 </body>
+
 </html>

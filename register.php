@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $password = $_POST['password'];
     $phone = $_POST['phone'];
 
-// Insert data into the database
+    // Insert data into the database
     $sql = "INSERT INTO users (username, email, password, phone) VALUES (?, ?, ?, ?)";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("sssi", $name, $email, $password, $phone);
@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Get the last inserted user ID and store it in the session
         $_SESSION['user_id'] = $conn->insert_id; // Store user ID in session
 
-        
+
         header("Location: account.php");
     } else {
         echo "Error: " . $stmt->error;
@@ -33,14 +33,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
+    <link rel="shortcut icon" href="icons/registered.svg" type="image/x-icon">
     <link rel="stylesheet" href="stylesheet/register.css">
-  
-    
+
+
 </head>
+
 <body>
 
     <div class="login-container">
@@ -48,11 +51,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <form id="loginForm" action="register.php" method="post">
             <div class="form-group">
                 <label for="username">Username</label>
-                <input type="text" id="username" name="username" required  placeholder="Enter your Full Name">
+                <input type="text" id="username" name="username" required placeholder="Enter your Full Name">
             </div>
             <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required placeholder="Enter your email">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required placeholder="Enter your email">
             </div>
             <div class="form-group">
                 <label for="phone">Phone Number</label>
@@ -70,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <p class="signup-link">Already have an Account? <a href="login.php">Login</a></p>
         </form>
     </div>
-    
+
 
     <script>
         // JavaScript to toggle password visibility
@@ -84,4 +87,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         });
     </script>
 </body>
+
 </html>

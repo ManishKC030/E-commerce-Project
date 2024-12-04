@@ -16,14 +16,14 @@
             <ul>
               
               
-              <li><a href="conatct.php">Contact Us: 061-587123 </a></li>
+              <li><a href="contact.php">Contact Us: 061-587123 </a></li>
               <li><a href="#">About Us</a></li>
               <li><a href="#">Become a Seller </a></li>
             </ul>
           </div>
+          
           <div class="right-nav">
-            <ul>
-              
+            <ul>    
               <li><a href="store_location.html">Store Location</a></li>
               <li><a href="account.php">My Account</a></li>
               <li><a href="login.php">Login/Register</a></li>
