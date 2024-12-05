@@ -20,13 +20,13 @@
 
           <li><a href="contact.php">Contact Us: 061-587123 </a></li>
           <li><a href="#">About Us</a></li>
-          <li><a href="admin/ad_login.php">Become a Seller </a></li>
+          <li><a href="admin/ad_register.php">Become a Seller </a></li>
         </ul>
       </div>
 
       <div class="right-nav">
         <ul>
-          <li><a href="store_location.html">Store Location</a></li>
+          <li><a href="store_location.php">Store Location</a></li>
           <li><a href="account.php">My Account</a></li>
           <li><a href="login.php">Login/Register</a></li>
         </ul>

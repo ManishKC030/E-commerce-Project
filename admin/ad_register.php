@@ -100,7 +100,7 @@ $conn->close();
           </label>
           <a href="ad_login.php">Already have an account? &nbsp;Login.</a>
         </div>
-        <button type="submit">LOGIN</button>
+        <button type="submit">Sign UP</button>
       </form>
     </div>
   </div>

@@ -90,6 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           <input
             type="email"
             id="email"
+            name="email"
             placeholder="Enter your Email"
             required />
         </div>
@@ -98,6 +99,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           <input
             type="password"
             id="password"
+            name="password"
             placeholder="••••••••••"
             required />
         </div>

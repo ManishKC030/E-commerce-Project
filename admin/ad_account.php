@@ -1,6 +1,8 @@
 <?php
 session_start();
-include 'connection.php';
+
+
+include '../connection.php';
 
 if (!isset($_SESSION['admin_id'])) {
     header("Location: ad_login.php");
@@ -10,7 +12,7 @@ if (!isset($_SESSION['admin_id'])) {
 $admin_id = $_SESSION['admin_id'];
 $sql = "SELECT ad_name, email, phone, created_at FROM admins WHERE admin_id = ?";
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $user_id);
+$stmt->bind_param("i", $admin_id);
 $stmt->execute();
 $result = $stmt->get_result();
 
@@ -53,6 +55,9 @@ $conn->close();
 </head>
 
 <body>
+<?php
+  require 'ad_nav.php';
+  ?>
 
     <div class="account">
         <br><br><br>
