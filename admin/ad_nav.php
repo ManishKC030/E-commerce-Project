@@ -34,7 +34,7 @@
         <button class="dropbtn">Product</button>
           <div class="dropdown-content">
             <a href="ad_product.php">Add Product</a>
-            <a href="#">View Product</a>
+            <a href="ad_proview.php">View Product</a>
           </div>
         </div>
         <div class="dropdown">

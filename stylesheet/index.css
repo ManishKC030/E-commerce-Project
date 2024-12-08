@@ -107,7 +107,7 @@ img {
 }
 
 @keyframes scroll-left {
-    0% {
+   0% {
         transform: translateX(350%);  /* Start from the right edge */
     }
     100% {

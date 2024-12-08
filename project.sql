@@ -43,6 +43,7 @@ CREATE TABLE products (
     image1 VARCHAR(255),
     image2 VARCHAR(255),
     image3 VARCHAR(255),
+    image4 VARCHAR(255),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE SET NULL
 );
