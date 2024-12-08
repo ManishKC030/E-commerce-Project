@@ -27,17 +27,31 @@
 
       <!-- Navigation Links -->
       <nav class="nav-links">
-        <a href="#dashboard">Dashboard</a>
+        
+        <a href="ad_index.php">Dashboard</a>
         <a href="#orders">Orders</a>
-        <a href="#">Products</a>
-        <a href="#">Notifications</a>
+        <div class="dropdown">
+        <button class="dropbtn">Product</button>
+          <div class="dropdown-content">
+            <a href="ad_product.php">Add Product</a>
+            <a href="#">View Product</a>
+          </div>
+        </div>
+        <div class="dropdown">
+        <button class="dropbtn">Categories</button>
+          <div class="dropdown-content">
+            <a href="ad_categories.php">Add Categories</a>
+            <a href="#">View Categories</a>
+          </div>
+        </div>
+        <a href="#">Messages</a>
         <a href="#settings">Settings</a>
       </nav>
 
       <!-- My Account Dropdown -->
       <div class="account-menu">
         <button class="account-btn">My Account &#x25BC;</button>
-        <div class="dropdown">
+        <div class="account_dropdown">
           <a href="ad_account.php">Profile</a>
           <a href="ad_logout.php">Logout</a>
         </div>
@@ -47,7 +61,7 @@
     <script>
       // Toggle My Account Dropdown
       const accountBtn = document.querySelector(".account-btn");
-      const dropdown = document.querySelector(".dropdown");
+      const dropdown = document.querySelector(".account_dropdown");
 
       accountBtn.addEventListener("click", () => {
         dropdown.style.display =
@@ -65,6 +79,7 @@
       });
     </script>
   </nav>
+  <br><br><br><br>
 </body>
 
 </html>
