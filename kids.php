@@ -1,5 +1,10 @@
 <?php
 require 'connection.php';
+
+session_start();
+
+$_SESSION['last_page'] = $_SERVER['REQUEST_URI'];
+
 ?>
 
 <!DOCTYPE html>
@@ -49,7 +54,7 @@ require 'connection.php';
             if ($result && $result->num_rows > 0) {
                 while ($product = $result->fetch_assoc()) {
                     echo '
-                <div class="product">
+                <div class="product"><a href="product_detail.php?product_id=' . htmlspecialchars($product['product_id']) . '"  class = "proDetail">
                     <img src="uploads/' . htmlspecialchars($product['image1']) . '" alt="' . htmlspecialchars($product['name']) . '">
                     <div class="product-info">
                     <p class="product-brand">' . htmlspecialchars($product['brand']) . '</h3>
@@ -58,7 +63,8 @@ require 'connection.php';
                     <p class="product-price">Rs ' . number_format($product['price'], 2) . '</p>
                     <p>Stock: ' . htmlspecialchars($product['stock']) . '</p>
                     </div>
-                </div>';
+                </div>
+                </a>';
                 }
             } else {
                 echo "<p style= ' margin-left:350px; font-size: 25px; font-weight:bold;  font-family: Sofia, sans-serif;'>No Products Found in Kids New Arrivals</p>";

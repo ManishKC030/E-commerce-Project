@@ -97,7 +97,8 @@ if (isset($_GET['product_id'])) {
 
 <body>
     <div class="product-details">
-        <h1><?php echo htmlspecialchars($product['name']); ?></h1>
+        <h1><?php echo htmlspecialchars($product['brand']); ?></h1>
+        <h2><?php echo htmlspecialchars($product['name']); ?></h2>
         <div class="product-images">
             <img src="../uploads/<?php echo htmlspecialchars($product['image1']); ?>" alt="Image 1">
             <img src="../uploads/<?php echo htmlspecialchars($product['image2']); ?>" alt="Image 2">

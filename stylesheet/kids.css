@@ -45,6 +45,10 @@
   font-weight: 690;
 }
 
+.proDetail {
+  text-decoration: none;
+  color: inherit;
+}
 .product:hover {
   transform: translateY(-5px);
 }
