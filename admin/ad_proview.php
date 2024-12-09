@@ -73,6 +73,11 @@ $result = $conn->query($sql);
             padding: 15px;
         }
 
+        .product-Brand {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+        }
         .product-name {
             font-size: 16px;
             font-weight: bold;
@@ -156,6 +161,7 @@ $result = $conn->query($sql);
                 <div class="product">
                     <img src="../uploads/<?php echo htmlspecialchars($row['image1']); ?>" alt="Product Image">
                     <div class="product-info">
+                    <p class="product-brand"><?php echo htmlspecialchars($row['brand']); ?></p>
                         <p class="product-name"><?php echo htmlspecialchars($row['name']); ?></p>
                         <p class="product-category">Category: <?php echo htmlspecialchars($row['category_name']); ?></p>
                         <p class="product-price">Price: $<?php echo number_format($row['price'], 2); ?></p>

@@ -52,8 +52,9 @@ require 'connection.php';
                 <div class="product">
                     <img src="uploads/' . htmlspecialchars($product['image1']) . '" alt="' . htmlspecialchars($product['name']) . '">
                     <div class="product-info">
+                    <p class="product-brand">' . htmlspecialchars($product['brand']) . '</h3>
                     <p class="product-name">' . htmlspecialchars($product['name']) . '</h3>
-                    <p class="product-description">' . htmlspecialchars($product['description']) . '</p>
+                    <p class="product-description">' . htmlspecialchars($product['short_desc']) . '</p>
                     <p class="product-price">Rs ' . number_format($product['price'], 2) . '</p>
                     <p>Stock: ' . htmlspecialchars($product['stock']) . '</p>
                     </div>

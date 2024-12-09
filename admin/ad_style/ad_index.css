@@ -1,0 +1,97 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+}
+
+.dashboard {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.cards {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.card {
+    flex: 1;
+    padding: 20px;
+    margin: 0 10px;
+    color: white;
+    text-align: center;
+    border-radius: 8px;
+}
+
+.card.blue {
+    background-color: #007bff;
+}
+
+.card.green {
+    background-color: #28a745;
+}
+
+.card.orange {
+    background-color: #fd7e14;
+}
+
+.card.red {
+    background-color: #dc3545;
+}
+
+.card h2 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.card p {
+    margin: 10px 0;
+    font-size: 18px;
+}
+
+.card a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.orders {
+    margin-bottom: 20px;
+}
+
+.orders h2 {
+    margin-bottom: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th, table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+}
+
+.profile {
+    background-color: #f1f1f1;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.profile h2 {
+    margin: 0 0 10px 0;
+}
+
+.profile p {
+    margin: 5px 0;
+}

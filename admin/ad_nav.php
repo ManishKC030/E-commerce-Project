@@ -41,7 +41,7 @@
         <button class="dropbtn">Categories</button>
           <div class="dropdown-content">
             <a href="ad_categories.php">Add Categories</a>
-            <a href="#">View Categories</a>
+            <a href="view_categories.php">View Categories</a>
           </div>
         </div>
         <a href="#">Messages</a>

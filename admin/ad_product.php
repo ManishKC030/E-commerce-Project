@@ -5,7 +5,9 @@ include "ad_nav.php";
 include "auth.php";
 
 // Initialize variables
+$brand = '';
 $name = '';
+$short_desc = '';
 $description = '';
 $price = '';
 $stock = '';
@@ -19,7 +21,9 @@ $success = '';
 
 // Handle form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $brand = trim($_POST['brand']);
     $name = trim($_POST['name']);
+    $short_desc = trim($_POST['short_desc']);
     $description = trim($_POST['description']);
     $price = trim($_POST['price']);
     $stock = trim($_POST['stock']);
@@ -43,13 +47,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
     // Insert into the database
-    $stmt = $conn->prepare("INSERT INTO products (name, description, price, stock, category_id, image1, image2, image3, image4) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("ssdiissss", $name, $description, $price, $stock, $category_id, $image1, $image2, $image3, $image4);
+    $stmt = $conn->prepare("INSERT INTO products ( brand, name, short_desc, description, price, stock, category_id, image1, image2, image3, image4) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("ssssdiissss", $brand, $name, $short_desc, $description, $price, $stock, $category_id, $image1, $image2, $image3, $image4);
 
     if ($stmt->execute()) {
         $success = "Product added successfully!";
         // Clear form inputs
-        $name = $description = $price = $stock = $category_id = '';
+        $brand = $name = $short_desc = $description = $price = $stock = $category_id = '';
     } else {
         $error = "Error: " . $stmt->error;
     }
@@ -148,9 +152,20 @@ $conn->close();
     <?php endif; ?>
 
     <form action="" method="POST" enctype="multipart/form-data">
+
+        <div class="form-group">
+            <label for="brand">Brand Name:</label>
+            <input type="text" name="brand" id="brand" required>
+        </div>
+
         <div class="form-group">
             <label for="name">Product Name:</label>
             <input type="text" name="name" id="name" required>
+        </div>
+
+        <div class="form-group">
+            <label for="short_desc">Short Description:</label>
+            <input type="text" name="short_desc" id="short_desc" required>
         </div>
 
         <div class="form-group">
