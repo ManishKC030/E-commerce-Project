@@ -27,24 +27,24 @@
 
       <!-- Navigation Links -->
       <nav class="nav-links">
-        
+
         <a href="ad_index.php">Dashboard</a>
-        <a href="#orders">Orders</a>
+        <a href="view_orders.php">Orders</a>
         <div class="dropdown">
-        <button class="dropbtn">Product</button>
+          <button class="dropbtn">Product</button>
           <div class="dropdown-content">
             <a href="ad_product.php">Add Product</a>
             <a href="ad_proview.php">View Product</a>
           </div>
         </div>
         <div class="dropdown">
-        <button class="dropbtn">Categories</button>
+          <button class="dropbtn">Categories</button>
           <div class="dropdown-content">
             <a href="ad_categories.php">Add Categories</a>
             <a href="view_categories.php">View Categories</a>
           </div>
         </div>
-        <a href="#">Messages</a>
+        <a href="Message.php">Messages</a>
         <a href="#settings">Settings</a>
       </nav>
 
