@@ -66,6 +66,11 @@ $total_price = 0;
 
 <!DOCTYPE html>
 <html>
+<!-- here is my comment -->
+
+
+<!-- here is my comment --><!-- here is my comment --><!-- here is my comment --><!-- here is my comment --><!-- here is my comment --><!-- here is my comment -->
+<!-- here is my comment --><!-- here is my comment --><!-- here is my comment --><!-- here is my comment --><!-- here is my comment -->
 
 <head>
     <title>Cart</title>
