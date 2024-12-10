@@ -7,6 +7,7 @@ include "auth.php";
 // Initialize variables
 $brand = '';
 $name = '';
+$type = '';
 $short_desc = '';
 $description = '';
 $price = '';
@@ -47,13 +48,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
     // Insert into the database
-    $stmt = $conn->prepare("INSERT INTO products ( brand, name, short_desc, description, price, stock, category_id, image1, image2, image3, image4) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("ssssdiissss", $brand, $name, $short_desc, $description, $price, $stock, $category_id, $image1, $image2, $image3, $image4);
+    $stmt = $conn->prepare("INSERT INTO products ( brand, name, type, short_desc, description, price, stock, category_id, image1, image2, image3, image4) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("sssssdiissss", $brand, $name, $type, $short_desc, $description, $price, $stock, $category_id, $image1, $image2, $image3, $image4);
 
     if ($stmt->execute()) {
         $success = "Product added successfully!";
         // Clear form inputs
-        $brand = $name = $short_desc = $description = $price = $stock = $category_id = '';
+        $brand = $name = $short_desc = $type = $description = $price = $stock = $category_id = '';
     } else {
         $error = "Error: " . $stmt->error;
     }
@@ -161,6 +162,11 @@ $conn->close();
         <div class="form-group">
             <label for="name">Product Name:</label>
             <input type="text" name="name" id="name" required>
+        </div>
+
+        <div class="form-group">
+            <label for="type">Shoes Type:</label>
+            <input type="text" name="type" id="type" required>
         </div>
 
         <div class="form-group">

@@ -41,7 +41,7 @@
       </a>
       <ul>
         <li><a href="index.php">Home</a></li>
-        <li><a href="mens.html">Men</a></li>
+        <li><a href="mens.php">Men</a></li>
         <li><a href="#">Women</a></li>
         <li><a href="kids.php">Kids</a></li>
 
