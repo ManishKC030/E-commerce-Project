@@ -20,7 +20,7 @@
 
   <!-- Scrolling Sale Banner -->
   <div class="sale-banner">
-    <p>Festive Offer: Upto 50% Off on all of our Products!</p>
+    <p>Winter Offer: Upto 50% Off on all of our Products!</p>
   </div>
 
   <!-- slide show container -->
