@@ -69,17 +69,6 @@ CREATE TABLE order_items (
     FOREIGN KEY (product_id) REFERENCES products(product_id) ON DELETE CASCADE
 );
 
--- Table: Reviews (Customer feedback)
--- CREATE TABLE reviews (
---     id INT AUTO_INCREMENT PRIMARY KEY,
---     user_id INT NOT NULL,
---     product_id INT NOT NULL,
---     rating INT CHECK (rating BETWEEN 1 AND 5),
---     comment TEXT,
---     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
---     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
---     FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
--- );
 
 -- Table: Cart (User cart for checkout)
 CREATE TABLE cart (
@@ -114,3 +103,15 @@ CREATE TABLE contacts (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE SET NULL
 );
+
+-- Table: Reviews (Customer feedback)
+-- CREATE TABLE reviews (
+--     id INT AUTO_INCREMENT PRIMARY KEY,
+--     user_id INT NOT NULL,
+--     product_id INT NOT NULL,
+--     rating INT CHECK (rating BETWEEN 1 AND 5),
+--     comment TEXT,
+--     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+--     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+--     FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
+-- );

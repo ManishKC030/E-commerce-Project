@@ -45,7 +45,7 @@
         <li><a href="#">Women</a></li>
         <li><a href="kids.php">Kids</a></li>
 
-        <li><a href="#">Cart</a></li>
+        <li><a href="cart.php">Cart</a></li>
         <li><a href="#">Wishlist</a></li>
       </ul>
     </nav>

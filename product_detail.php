@@ -113,9 +113,11 @@ if (isset($_GET['product_id'])) {
 
           <!-- Action Buttons -->
           <div class="btn-groups">
-            <button type="button" class="add-cart">
-              <i class="fas fa-shopping-cart"></i> Add to cart
-            </button>
+            <a href="cart.php">
+              <button type="button" class="add-cart">
+                <i class="fas fa-shopping-cart"></i> Add to cart
+              </button>
+            </a>
             <button type="button" class="buy-now">
               <i class="fas fa-wallet"></i> Buy Now
             </button>
