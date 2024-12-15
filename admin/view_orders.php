@@ -19,7 +19,87 @@ $result = $conn->query($sql);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Orders</title>
+    <style>
+    body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #343a40;
+        }
 
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            color:rgb(0, 0, 0);
+        }
+
+        table {
+            width: 90%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        table th, table td {
+            border: 1px solid #dee2e6;
+            padding: 10px;
+            text-align: center;
+        }
+
+        table th {
+            background-color: #007bff;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        table tr:hover {
+            background-color: #e9ecef;
+        }
+
+        a {
+            text-decoration: none;
+            color:rgb(255, 0, 0);
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        form {
+            display: inline-block;
+        }
+
+        select {
+            padding: 5px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        p {
+            text-align: center;
+            margin: 20px;
+            color: #6c757d;
+        }
+    </style>
 </head>
 
 <body>
@@ -42,7 +122,7 @@ $result = $conn->query($sql);
                 <?php while ($row = $result->fetch_assoc()): ?>
                     <tr>
                         <td><?php echo $row['order_id']; ?></td>
-                        <td><?php echo htmlspecialchars($row['user_name']); ?></td>
+                        <td><?php echo htmlspecialchars($row['username']); ?></td>
                         <td><?php echo htmlspecialchars($row['email']); ?></td>
                         <td>$<?php echo number_format($row['total_price'], 2); ?></td>
                         <td><?php echo ucfirst($row['status']); ?></td>

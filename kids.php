@@ -99,177 +99,50 @@ session_start();
     <br><br>
     <section id="product">
         <h2>Featured Products</h2>
-        <p>Summer Collection</p>
+        <p>Kids Collection</p>
         <div class="pro-container">
-            <div class="pro">
-                <img src="assets/Kids/vans Knu Skool Disney Scar.jpg" alt="">
-                <div class="des">
-                    <span>adidas</span>
-                    <h5>Vans Shoes</h5>
-                    <div class="star">
+
+            <?php
+            // Fetch Kids' products
+            $query = "
+    SELECT * FROM products
+    WHERE category_id = (
+    SELECT id FROM categories WHERE name = 'KIDS'
+    )
+    ORDER BY created_at DESC 
+    ";
+            $result = $conn->query($query);
+            if ($result && $result->num_rows > 0) {
+                while ($product = $result->fetch_assoc()) {
+
+                    echo '<div class="pro">
+                    <a href="product_detail.php?product_id=' . htmlspecialchars($product['product_id']) . '" class = "proDetail">
+                    <img src="uploads/' . htmlspecialchars($product['image1']) . '" alt="' . htmlspecialchars($product['name']) . '">
+                        <div class="des">
+                        <span>' . htmlspecialchars($product['brand']) . '</span>
+                    <h5>' . htmlspecialchars($product['name']) . '</h5>
+                        <div class="star">
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
                     </div>
-                    <h4>$78</h4>
-                </div>
-                <div class="cart"> <a href="#"><i class="fa fa-shopping-cart "></i></a></div>
-
-            </div>
-            <div class="pro">
-                <img src="assets/Kids/vans Knu Skool Disney Scar.jpg" alt="">
-                <div class="des">
-                    <span>adidas</span>
-                    <h5>Vans Shoes</h5>
-                    <div class="star">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
+                    <h4>$  ' . number_format($product['price'], 2) . '</h4>
                     </div>
-                    <h4>$78</h4>
-                </div>
-                <div class="cart"> <a href="#"><i class="fa fa-shopping-cart "></i></a></div>
+                     <a href="cart.php?add_to_cart=1&product_id=' . htmlspecialchars($product['product_id']) . '&quantity=1">
+                    <div class="cart"><i class="fa fa-shopping-cart "></i></div>
+                </a>
 
             </div>
-
-            <div class="pro">
-                <img src="assets/Kids/vans Knu Skool Disney Scar.jpg" alt="">
-                <div class="des">
-                    <span>adidas</span>
-                    <h5>Vans Shoes</h5>
-                    <div class="star">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                    </div>
-                    <h4>$78</h4>
-                </div>
-                <div class="cart"> <a href="#"><i class="fa fa-shopping-cart "></i></a></div>
-
             </div>
+        </a> ';
+                }
+            } else {
+                echo "<p style= 'margin-left:350px; font-size: 25px; font-weight:bold; font-family: Sofia, sans-serif;'>No Products Found in Kids Section</p>";
+            };
 
-            <div class="pro">
-                <img src="assets/Kids/vans Knu Skool Disney Scar.jpg" alt="">
-                <div class="des">
-                    <span>adidas</span>
-                    <h5>Vans Shoes</h5>
-                    <div class="star">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                    </div>
-                    <h4>$78</h4>
-                </div>
-                <div class="cart"> <a href="#"><i class="fa fa-shopping-cart "></i></a></div>
-
-            </div>
-
-            <div class="pro">
-                <img src="assets/Kids/vans Knu Skool Disney Scar.jpg" alt="">
-                <div class="des">
-                    <span>adidas</span>
-                    <h5>Vans Shoes</h5>
-                    <div class="star">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                    </div>
-                    <h4>$78</h4>
-                </div>
-                <div class="cart"> <a href="#"><i class="fa fa-shopping-cart "></i></a></div>
-
-            </div>
-
-
-            <div class="pro">
-                <img src="assets/Kids/vans Knu Skool Disney Scar.jpg" alt="">
-                <div class="des">
-                    <span>adidas</span>
-                    <h5>Vans Shoes</h5>
-                    <div class="star">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                    </div>
-                    <h4>$78</h4>
-                </div>
-                <div class="cart"> <a href="#"><i class="fa fa-shopping-cart "></i></a></div>
-
-            </div>
-
-
-            <div class="pro">
-                <img src="assets/Kids/vans Knu Skool Disney Scar.jpg" alt="">
-                <div class="des">
-                    <span>adidas</span>
-                    <h5>Vans Shoes</h5>
-                    <div class="star">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                    </div>
-                    <h4>$78</h4>
-                </div>
-                <div class="cart"> <a href="#"><i class="fa fa-shopping-cart "></i></a></div>
-
-            </div>
-
-
-            <div class="pro">
-                <img src="assets/Kids/vans Knu Skool Disney Scar.jpg" alt="">
-                <div class="des">
-                    <span>adidas</span>
-                    <h5>Vans Shoes</h5>
-                    <div class="star">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                    </div>
-                    <h4>$78</h4>
-                </div>
-                <div class="cart"> <a href="#"><i class="fa fa-shopping-cart "></i></a></div>
-
-            </div>
-
-
-            <div class="pro">
-                <img src="assets/Kids/vans Knu Skool Disney Scar.jpg" alt="">
-                <div class="des">
-                    <span>adidas</span>
-                    <h5>Vans Shoes</h5>
-                    <div class="star">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                    </div>
-                    <h4>$78</h4>
-                </div>
-                <div class="cart"> <a href="#"><i class="fa fa-shopping-cart "></i></a></div>
-
-            </div>
-
-
-
-        </div>
-
+            ?>
 
     </section>
 

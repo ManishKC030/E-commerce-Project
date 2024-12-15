@@ -84,11 +84,15 @@ CREATE TABLE cart (
 CREATE TABLE payment (
     id INT AUTO_INCREMENT PRIMARY KEY,
     order_id INT NOT NULL,
-    payment_method ENUM('cash_on_delivery', 'esewa', 'khalti', 'card'),
-    status ENUM('pending', 'completed', 'failed') DEFAULT 'pending',
+    payment_method ENUM('cash_on_delivery', 'esewa', 'khalti') NOT NULL,
+    status ENUM('cod', 'pending', 'completed', 'failed') NOT NULL DEFAULT 'pending',
     transaction_id VARCHAR(100),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (order_id) REFERENCES orders(order_id) ON DELETE CASCADE
+    FOREIGN KEY (order_id) REFERENCES orders(order_id) ON DELETE CASCADE,
+    CONSTRAINT chk_status_method CHECK (
+        (payment_method = 'cash_on_delivery' AND status = 'cod') OR
+        (payment_method IN ('esewa', 'khalti', 'card') AND status IN ('pending', 'completed', 'failed'))
+    )
 );
 
 -- Table: Contacts (User messages to admin)

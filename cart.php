@@ -12,15 +12,27 @@ if (!isset($_SESSION['user_id'])) {
 if (isset($_GET['add_to_cart']) && isset($_GET['product_id']) && isset($_GET['quantity'])) {
     $product_id = intval($_GET['product_id']);
     $quantity = intval($_GET['quantity']);
+    $user_id = $_SESSION['user_id'];
 
-    if (!isset($_SESSION['cart'])) {
-        $_SESSION['cart'] = [];
-    }
+    // Check if the product is already in the cart
+    $sql = "SELECT * FROM cart WHERE user_id = ? AND product_id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param('ii', $user_id, $product_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-    if (isset($_SESSION['cart'][$product_id])) {
-        $_SESSION['cart'][$product_id] += $quantity;
+    if ($result->num_rows > 0) {
+        // Update quantity if product already in cart
+        $sql = "UPDATE cart SET quantity = quantity + ? WHERE user_id = ? AND product_id = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param('iii', $quantity, $user_id, $product_id);
+        $stmt->execute();
     } else {
-        $_SESSION['cart'][$product_id] = $quantity;
+        // Insert new product into cart
+        $sql = "INSERT INTO cart (user_id, product_id, quantity) VALUES (?, ?, ?)";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param('iii', $user_id, $product_id, $quantity);
+        $stmt->execute();
     }
 
     header('Location: cart.php');
@@ -30,50 +42,83 @@ if (isset($_GET['add_to_cart']) && isset($_GET['product_id']) && isset($_GET['qu
 // Remove product from cart
 if (isset($_GET['remove'])) {
     $product_id = intval($_GET['remove']);
-    if (isset($_SESSION['cart'][$product_id])) {
-        unset($_SESSION['cart'][$product_id]);
-    }
+    $user_id = $_SESSION['user_id'];
+
+    // Delete product from cart
+    $sql = "DELETE FROM cart WHERE user_id = ? AND product_id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param('ii', $user_id, $product_id);
+    $stmt->execute();
+
     header('Location: cart.php');
     exit;
 }
 
-// Increase product quantity
-if (isset($_GET['increase'])) {
-    $product_id = intval($_GET['increase']);
-    if (isset($_SESSION['cart'][$product_id])) {
-        $_SESSION['cart'][$product_id] += 1;
+// Increase or Decrease product quantity
+if (isset($_GET['increase']) || isset($_GET['decrease'])) {
+    $product_id = isset($_GET['increase']) ? intval($_GET['increase']) : intval($_GET['decrease']);
+    $user_id = $_SESSION['user_id'];
+
+    // Fetch current quantity
+    $sql = "SELECT quantity FROM cart WHERE user_id = ? AND product_id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param('ii', $user_id, $product_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $new_quantity = $row['quantity'] + (isset($_GET['increase']) ? 1 : -1);
+
+        // Ensure quantity does not go below 1
+        if ($new_quantity < 1) {
+            $new_quantity = 1;
+        }
+
+        // Update quantity in database
+        $sql = "UPDATE cart SET quantity = ? WHERE user_id = ? AND product_id = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param('iii', $new_quantity, $user_id, $product_id);
+        $stmt->execute();
     }
+
     header('Location: cart.php');
     exit;
 }
 
-// Decrease product quantity
-if (isset($_GET['decrease'])) {
-    $product_id = intval($_GET['decrease']);
-    if (isset($_SESSION['cart'][$product_id]) && $_SESSION['cart'][$product_id] > 1) {
-        $_SESSION['cart'][$product_id] -= 1;
-    } elseif (isset($_SESSION['cart'][$product_id]) && $_SESSION['cart'][$product_id] <= 1) {
-        unset($_SESSION['cart'][$product_id]);
-    }
+// Remove all products from cart
+if (isset($_GET['remove_all'])) {
+    $user_id = $_SESSION['user_id'];
+
+    // Delete all products for the user
+    $sql = "DELETE FROM cart WHERE user_id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param('i', $user_id);
+    $stmt->execute();
+
     header('Location: cart.php');
     exit;
 }
 
 // Display cart
-$cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
+$user_id = $_SESSION['user_id'];
+$sql = "SELECT cart.product_id, cart.quantity, products.name, products.price, products.image1 
+        FROM cart 
+        JOIN products ON cart.product_id = products.product_id 
+        WHERE cart.user_id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param('i', $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
+
 $total_price = 0;
 ?>
 
 <!DOCTYPE html>
 <html>
-<!-- here is my comment -->
-
-
-<!-- here is my comment --><!-- here is my comment --><!-- here is my comment --><!-- here is my comment --><!-- here is my comment --><!-- here is my comment -->
-<!-- here is my comment --><!-- here is my comment --><!-- here is my comment --><!-- here is my comment --><!-- here is my comment -->
 
 <head>
-    <title>Cart</title>
+    <title>Shopping Cart</title>
 </head>
 <style>
     table {
@@ -98,11 +143,27 @@ $total_price = 0;
     }
 
     tr:nth-child(even) {
-        background-color: #f9f9f9;
+        background-color: rgb(250, 250, 250);
     }
 
     tr:hover {
         background-color: #f1f1f1;
+    }
+
+    .product-image {
+        width: 100px;
+        height: 100px;
+        overflow: hidden;
+        display: inline-block;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        background-color: #f9f9f9;
+    }
+
+    .product-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
 
     button {
@@ -123,55 +184,57 @@ $total_price = 0;
     <h1 style="text-align:center;">Shopping Cart</h1>
     <table border="1">
         <tr>
+            <th>Product Image</th>
             <th>Product</th>
             <th>Price</th>
             <th>Quantity</th>
             <th>Subtotal</th>
             <th>Actions</th>
         </tr>
-        <?php if (!$cart || count($cart) === 0): ?>
-            <tr>
-                <td colspan="5">Your cart is empty.</td>
-            </tr>
-        <?php else: ?>
-            <?php foreach ($cart as $product_id => $quantity):
-                $product_id = intval($product_id);
-                $sql = $conn->prepare("SELECT * FROM products WHERE product_id = ?");
-                $sql->bind_param('i', $product_id);
-                $sql->execute();
-                $result = $sql->get_result();
-
-                if ($result && $result->num_rows > 0) {
-                    $product = $result->fetch_assoc();
-                    $subtotal = $product['price'] * $quantity;
-                    $total_price += $subtotal;
+        <?php if ($result && $result->num_rows > 0): ?>
+            <?php while ($product = $result->fetch_assoc()):
+                $subtotal = $product['price'] * $product['quantity'];
+                $total_price += $subtotal;
             ?>
-                    <tr>
-                        <td><?= htmlspecialchars($product['name']) ?></td>
-                        <td><?= htmlspecialchars($product['price']) ?></td>
-                        <td>
-                            <form action="cart.php" method="get" style="display:inline;">
-                                <button type="submit" name="decrease" value="<?= $product_id ?>">-</button>
-                            </form>
-                            <?= htmlspecialchars($quantity) ?>
-                            <form action="cart.php" method="get" style="display:inline;">
-                                <button type="submit" name="increase" value="<?= $product_id ?>">+</button>
-                            </form>
-                        </td>
-                        <td><?= htmlspecialchars($subtotal) ?></td>
-                        <td>
-                            <a href="cart.php?remove=<?= $product_id ?>">Remove</a>
-                        </td>
-                    </tr>
-            <?php }
-            endforeach; ?>
+                <tr>
+                    <td>
+                        <div class="product-image">
+                            <img src="uploads/<?php echo htmlspecialchars($product['image1']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>" />
+                        </div>
+                    </td>
+                    <td><?= htmlspecialchars($product['name']) ?></td>
+                    <td>$<?= number_format($product['price'], 2) ?></td>
+                    <td>
+                        <form action="" method="get" style="display:inline;">
+                            <button type="submit" name="decrease" value="<?= $product['product_id'] ?>">-</button>
+                        </form>
+                        <?= htmlspecialchars($product['quantity']) ?>
+                        <form action="" method="get" style="display:inline;">
+                            <button type="submit" name="increase" value="<?= $product['product_id'] ?>">+</button>
+                        </form>
+                    </td>
+                    <td>$<?= number_format($subtotal, 2) ?></td>
+                    <td>
+                        <a href="cart.php?remove=<?= $product['product_id'] ?>">Remove</a>
+                    </td>
+                </tr>
+            <?php endwhile; ?>
+        <?php else: ?>
+            <tr>
+                <td colspan="6">Your cart is empty.</td>
+            </tr>
         <?php endif; ?>
+
         <tr>
             <td colspan="3"><strong>Total</strong></td>
-            <td colspan="2"><strong>$<?= number_format($total_price, 2) ?></strong></td>
+            <td colspan="3"><strong>$<?= number_format($total_price, 2) ?></strong></td>
         </tr>
     </table>
+    <form action="cart.php" method="get" style="display:inline;">
+        <button type="submit" name="remove_all" style="background-color:#dc3545; color:white;">Remove All Products</button>
+    </form>
     <a href="checkout.php">Proceed to Checkout</a>
+    <br><br><br><br><br><br><br><br><br><br><br><br>
     <?php include 'footer.php'; ?>
 </body>
 

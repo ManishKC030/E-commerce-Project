@@ -46,7 +46,7 @@
         <li><a href="kids.php">Kids</a></li>
 
         <li><a href="cart.php">Cart</a></li>
-        <li><a href="#">Wishlist</a></li>
+        <!--<li><a href="#">Wishlist</a></li> -->
       </ul>
     </nav>
   </header>

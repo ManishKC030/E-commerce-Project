@@ -45,7 +45,9 @@
           </div>
         </div>
         <a href="Message.php">Messages</a>
-        <a href="#settings">Settings</a>
+        <a href="payment.php">Payment Status
+
+        </a>
       </nav>
 
       <!-- My Account Dropdown -->

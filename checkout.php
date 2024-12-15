@@ -1,62 +1,135 @@
 <?php
+include("connection.php");
 session_start();
 
-include 'connection.php';
+$user_id = $_SESSION['user_id'];
 
-// Handle checkout
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $user_id = 1; // Replace with actual logged-in user ID
-    $total_price = $_POST['total_price'];
-    $payment_method = $_POST['payment_method'];
+$sql = "SELECT cart.id, products.name, products.image1, cart.quantity, products.price, (cart.quantity * products.price) AS total_price 
+        FROM cart
+        INNER JOIN products ON cart.product_id = products.product_id
+        WHERE cart.user_id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
 
-    // Create order
-    $stmt = $conn->prepare("INSERT INTO orders (user_id, total_price, status) VALUES (?, ?, 'pending')");
-    $stmt->bind_param("id", $user_id, $total_price);
-    $stmt->execute();
-    $order_id = $conn->insert_id;
-
-    // Add items to order_items
-    foreach ($_SESSION['cart'] as $product_id => $quantity) {
-        $sql = "SELECT price FROM products WHERE product_id = $product_id";
-        $result = $conn->query($sql);
-        $product = $result->fetch_assoc();
-        $price = $product['price'];
-
-        $stmt = $conn->prepare("INSERT INTO order_items (order_id, product_id, quantity, price) VALUES (?, ?, ?, ?)");
-        $stmt->bind_param("iiid", $order_id, $product_id, $quantity, $price);
-        $stmt->execute();
-    }
-
-    // Clear the cart
-    unset($_SESSION['cart']);
-
-    echo "Order placed successfully! Your order ID is: " . $order_id;
-    exit;
+$total_amount = 0;
+$cart_items = [];
+while ($row = $result->fetch_assoc()) {
+    $cart_items[] = $row;
+    $total_amount += $row['total_price'];
 }
-?>
 
+$stmt->close();
+
+?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <title>Checkout</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid #ddd;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        .product-image {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+        }
+
+        .total {
+            font-weight: bold;
+        }
+
+        .checkout-form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+    </style>
 </head>
 
 <body>
+    <?php
+    include('navbar.php');
+    ?>
+
     <h1>Checkout</h1>
-    <form method="post">
-        <input type="hidden" name="total_price" value="<?= $_SESSION['total_price'] 
-        ?>
-        ">
-        <label for="payment_method">Payment Method:</label>
-        <select name="payment_method" id="payment_method">
-            <option value="cash_on_delivery">Cash on Delivery</option>
-            <option value="esewa">eSewa</option>
-            <option value="khalti">Khalti</option>
-            <option value="card">Card</option>
-        </select>
-        <button type="submit">Place Order</button>
-    </form>
+
+    <?php if (count($cart_items) > 0): ?>
+        <table>
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($cart_items as $item): ?>
+                    <tr>
+                        <td><img src="uploads/<?php echo htmlspecialchars($item['image1']); ?>" class="product-image"> </td>
+                        <td><?php echo htmlspecialchars($item['name']); ?></td>
+                        <td><?php echo htmlspecialchars($item['quantity']); ?></td>
+                        <td>$ <?php echo number_format($item['price'], 2); ?></td>
+                        <td>$ <?php echo number_format($item['total_price'], 2); ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3" class="total">Total Amount</td>
+                    <td class="total">$ <?php echo number_format($total_amount, 2); ?></td>
+                </tr>
+            </tfoot>
+        </table>
+
+        <form action="process_checkout.php" method="POST" class="checkout-form">
+            <h2>Payment Method</h2>
+            <label>
+                <input type="radio" name="payment_method" value="cash_on_delivery" required> Cash on Delivery
+            </label><br>
+            <label>
+                <input type="radio" name="payment_method" value="esewa" required> eSewa
+            </label><br>
+            <label>
+                <input type="radio" name="payment_method" value="khalti" required> Khalti
+            </label><br>
+
+
+            <button type="submit">Confirm Order</button>
+        </form>
+    <?php else: ?>
+        <p>Your cart is empty.</p>
+    <?php endif; ?>
+
 </body>
 
 </html>
+
+<?php
+$conn->close();
+?>

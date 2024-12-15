@@ -113,7 +113,8 @@ if (isset($_GET['product_id'])) {
 
           <!-- Action Buttons -->
           <div class="btn-groups">
-            <a href="cart.php">
+            <a href="cart.php?add_to_cart=1&product_id=<?= htmlspecialchars($product['product_id']) ?>&quantity=1">
+
               <button type="button" class="add-cart">
                 <i class="fas fa-shopping-cart"></i> Add to cart
               </button>
