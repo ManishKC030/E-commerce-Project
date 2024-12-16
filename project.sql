@@ -35,7 +35,10 @@ CREATE TABLE categories (
 -- Table: Products (Footwear details)
 CREATE TABLE products (
     product_id INT AUTO_INCREMENT PRIMARY KEY,
+    brand VARCHAR(70) NOT NULL,
     name VARCHAR(255) NOT NULL,
+    type varchar(200) NOT NULL,
+    short_desc varchar(250),
     description TEXT,
     price DECIMAL(10, 2) NOT NULL,
     stock INT NOT NULL,
