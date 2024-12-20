@@ -62,40 +62,47 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="stylesheet/login.css">
-
-
+    <link rel="stylesheet" href="stylesheet/login-register.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+        rel="stylesheet" />
 </head>
 
 <body>
+    <div class="container">
+        <!-- Left Section -->
+        <div class="left">
+            <h1>Welcome Back!</h1>
+            <p>Step Into Style with Our Latest Footwear Collection</p>
+            <img src="assets/login.png" alt="Shop Illustration" />
+        </div>
 
-    <div class="login-container">
-        <h2>Login</h2>
-        <!-- Display error message -->
-        <?php if (!empty($message)): ?>
-            <p style="color: red;"><?php echo htmlspecialchars($message); ?></p>
-        <?php endif; ?>
+        <!-- Right Section -->
+        <div class="right">
+            <h1>LogIn</h1>
+            <!-- Display error message -->
+            <?php if (!empty($message)): ?>
+                <p style="color: red;"><?php echo htmlspecialchars($message); ?></p>
+            <?php endif; ?>
 
-        <form id="loginForm" action="login.php" method="post">
-            <div class="form-group">
-                <label for="email">Email</label>
-
-                <div class="userArea">
-
+            <form action="" method="post">
+                <div class="form-group">
+                    <label for="email">Email</label>
                     <input type="email" id="email" name="email" required placeholder="Enter your  email">
                 </div>
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required placeholder="Enter your password">
-            </div>
-            <div class="show-password-container">
-                <input type="checkbox" id="showPassword">
-                <label for="showPassword">Show Password</label>
-            </div><br>
-            <button type="submit" class="btn">Login</button>
-            <p class="signup-link">Don't have an Account? <a href="register.php">Register</a></p>
-        </form>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required placeholder="Enter your password">
+                </div>
+                <div class="options">
+                    <label>
+                        <input type="checkbox" id="viewPassword" /> Show Password
+                    </label>
+                    <a href="register.php">Dont' have an account? &nbsp;Register Here.</a>
+                </div>
+                <button type="submit">LOGIN</button>
+            </form>
+        </div>
     </div>
 
 

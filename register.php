@@ -51,9 +51,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div class="container">
         <!-- Left Section -->
         <div class="left">
-            <h1>Become a Seller!</h1>
-            <p>Manage your shop efficiently on ShoesHub Seller Centre.</p>
-            <img src="assets/register.jpg" alt="Shop Illustration" />
+            <h1>Welcome to ShoesHub!</h1>
+            <p>Step Into Style with Our Latest Footwear Collection</p>
+            <img src="assets/register.png" alt="Shop Illustration" />
         </div>
 
         <!-- Right Section -->
@@ -81,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <label>
                         <input type="checkbox" id="viewPassword" /> Show Password
                     </label>
-                    <a href="ad_login.php">Already have an account? &nbsp;Login.</a>
+                    <a href="login.php">Already have an account? &nbsp;Login.</a>
                 </div>
                 <button type="submit">Sign UP</button>
             </form>
