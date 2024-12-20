@@ -28,9 +28,9 @@
             <div class="footer-column">
                 <h4>Shopping & Categories</h4>
                 <ul>
-                    <li><a href="#">Men's Shopping</a></li>
-                    <li><a href="#">Women's Shopping</a></li>
-                    <li><a href="#">Kid's Shopping</a></li>
+                    <li><a href="mens.php">Men's Shopping</a></li>
+                    <li><a href="women.php">Women's Shopping</a></li>
+                    <li><a href="kids.php">Kid's Shopping</a></li>
                     <li><a href='#'>Exclusive</a></li>
                 </ul>
             </div>

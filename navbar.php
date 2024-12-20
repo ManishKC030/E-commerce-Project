@@ -27,19 +27,8 @@
       <div class="right-nav">
         <ul>
           <li><a href="store_location.php">Store Location</a></li>
-          <?php
-          session_start();
-          include("connection.php");
-          if (isset($_SESSION["user_id"])) {
-            echo '<li><a href="account.php">Welcome, ' . htmlspecialchars($_SESSION['username']) . '</a></li>';
-            echo '<li><a href="logout.php">Logout</a></li>';
-          } else {
-            echo '<li><a href="account.php">My Account</a></li>';
-            echo '<li><a href="login.php">Login/Register</a></li>';
-          }
-          ?>
-
-
+          <li><a href="account.php">My Account</a></li>
+          <li><a href="login.php">Login/Register</a></li>
         </ul>
       </div>
     </div>

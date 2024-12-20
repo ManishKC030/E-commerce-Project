@@ -39,39 +39,53 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
     <link rel="shortcut icon" href="icons/registered.svg" type="image/x-icon">
-    <link rel="stylesheet" href="stylesheet/register.css">
-
+    <link rel="stylesheet" href="stylesheet/login-register.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+        rel="stylesheet" />
 
 </head>
 
 <body>
 
-    <div class="login-container">
-        <h2>Sign Up</h2>
-        <form id="loginForm" action="register.php" method="post">
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" required placeholder="Enter your Full Name">
-            </div>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" required placeholder="Enter your email">
-            </div>
-            <div class="form-group">
-                <label for="phone">Phone Number</label>
-                <input type="text" id="phone" name="phone" required placeholder="Enter your phone number">
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required placeholder="Set Up your password">
-            </div>
-            <div class="show-password-container">
-                <input type="checkbox" id="showPassword">
-                <label for="showPassword">Show Password</label>
-            </div><br>
-            <button type="submit" class="btn">Register</button>
-            <p class="signup-link">Already have an Account? <a href="login.php">Login</a></p>
-        </form>
+    <div class="container">
+        <!-- Left Section -->
+        <div class="left">
+            <h1>Become a Seller!</h1>
+            <p>Manage your shop efficiently on ShoesHub Seller Centre.</p>
+            <img src="assets/register.jpg" alt="Shop Illustration" />
+        </div>
+
+        <!-- Right Section -->
+        <div class="right">
+            <h1 style="margin-top: 10px">Sign Up</h1>
+
+            <form action="" method="post">
+                <div class="form-group" style="margin-bottom: 15px">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required placeholder="Enter your Full Name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="text" id="phone" name="phone" required placeholder="Enter your phone number">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required placeholder="Set Up your password">
+                </div>
+                <div class="options">
+                    <label>
+                        <input type="checkbox" id="viewPassword" /> Show Password
+                    </label>
+                    <a href="ad_login.php">Already have an account? &nbsp;Login.</a>
+                </div>
+                <button type="submit">Sign UP</button>
+            </form>
+        </div>
     </div>
 
 
