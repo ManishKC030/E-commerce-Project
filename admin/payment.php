@@ -44,8 +44,6 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - Payment Status</title>
     <style>
-       
-
         h1 {
             text-align: center;
             color: #333;
@@ -94,7 +92,7 @@ try {
 </head>
 
 <body>
-    <h1>Admin - Payment Status</h1>
+    <h1>Payment Status</h1>
     <table>
         <thead>
             <tr>

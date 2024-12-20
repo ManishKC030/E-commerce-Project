@@ -24,6 +24,7 @@ $success = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $brand = trim($_POST['brand']);
     $name = trim($_POST['name']);
+    $type = trim($_POST['type']);
     $short_desc = trim($_POST['short_desc']);
     $description = trim($_POST['description']);
     $price = trim($_POST['price']);
