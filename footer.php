@@ -38,7 +38,7 @@
                 <h4>Useful Links</h4>
                 <ul>
                     <li><a href="index.php">Homepage</a></li>
-                    <li><a href="#">Store Location</a></li>
+                    <li><a href="store_location.php">Store Location</a></li>
 
                     <li><a href="contact.php">Contact Us</a></li>
                     <li><a href="#">About Us</a></li>
@@ -47,7 +47,7 @@
             <div class="footer-column">
                 <h4>Help & Information</h4>
                 <ul>
-                    <li><a href="#">Return Policy</a></li>
+                    <li><a href="ReturnPolicy.html">Return Policy</a></li>
                     <li><a href="#">Order Tracking</a></li>
                     <li><a href="#">Shipping Charges</a></li>
                     <li><a href="#">Tracking ID</a></li>
