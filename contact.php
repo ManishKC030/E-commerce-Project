@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ShoesHub - Contact Us </style>
+  <title>ShoesHub - Contact Us 
   </title>
   <link rel="stylesheet" href="stylesheet/contact.css">
   <link rel="shortcut icon" href="icons/contact.svg" type="image/x-icon">
@@ -57,8 +57,8 @@
       $stmt = $conn->prepare("INSERT INTO contacts (user_id, name, email, message, created_at) VALUES (?, ?, ?, ?, NOW())");
       $stmt->bind_param("isss", $user_id, $name, $email, $message);
       if ($stmt->execute()) {
-        $successMessage = "Your message has been sent successfully!";
-        $message = ''; // Clear the message field after successful submission
+        header("Location: message_sent.php");
+        exit();
       } else {
         $errorMessage = "Error: Could not send your message. Please try again later.";
       }
