@@ -41,7 +41,7 @@
                     <li><a href="store_location.php">Store Location</a></li>
 
                     <li><a href="contact.php">Contact Us</a></li>
-                    <li><a href="#">About Us</a></li>
+                    <li><a href="404-not-found.php">About Us</a></li>
                 </ul>
             </div>
             <div class="footer-column">

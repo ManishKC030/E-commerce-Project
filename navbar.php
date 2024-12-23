@@ -19,7 +19,7 @@
 
 
           <li><a href="contact.php">Contact Us: 061-587123 </a></li>
-          <li><a href="#">About Us</a></li>
+          <li><a href="404-not-found.php">About Us</a></li>
           <li><a href="admin/ad_register.php">Become a Seller </a></li>
         </ul>
       </div>
