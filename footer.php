@@ -49,7 +49,7 @@
                 <ul>
                     <li><a href="ReturnPolicy.php">Return Policy</a></li>
                     <li><a href="#">Order Tracking</a></li>
-                    <li><a href="#">Shipping Charges</a></li>
+                    <li><a href="shipping.php">Shipping Charges</a></li>
                     <li><a href="#">Tracking ID</a></li>
                 </ul>
             </div>
