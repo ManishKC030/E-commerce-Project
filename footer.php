@@ -47,7 +47,7 @@
             <div class="footer-column">
                 <h4>Help & Information</h4>
                 <ul>
-                    <li><a href="ReturnPolicy.html">Return Policy</a></li>
+                    <li><a href="ReturnPolicy.php">Return Policy</a></li>
                     <li><a href="#">Order Tracking</a></li>
                     <li><a href="#">Shipping Charges</a></li>
                     <li><a href="#">Tracking ID</a></li>
