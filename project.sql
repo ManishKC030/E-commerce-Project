@@ -18,6 +18,7 @@ CREATE TABLE users (
 CREATE TABLE admins (
    admin_id INT AUTO_INCREMENT PRIMARY KEY,
     ad_name VARCHAR(100) NOT NULL,
+
     email VARCHAR(100) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
     phone VARCHAR(15),
@@ -111,6 +112,13 @@ CREATE TABLE contacts (
     FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE SET NULL
 );
 
+
+ALTER TABLE `admins` ADD `Shop_Name` VARCHAR(26) NOT NULL AFTER `phone`, 
+ADD `Shop_Logo` VARCHAR(255) NOT NULL AFTER `Shop_Name`, 
+ADD `Shop_Address` VARCHAR(200) NOT NULL AFTER `Shop_Logo`;
+
+
+ALTER TABLE `admins` ADD `About_shop` VARCHAR(300) NULL DEFAULT NULL AFTER `Shop_Address`;
 -- Table: Reviews (Customer feedback)
 -- CREATE TABLE reviews (
 --     id INT AUTO_INCREMENT PRIMARY KEY,
