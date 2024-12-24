@@ -7,7 +7,7 @@
   <title>Shipping Charges</title>
   <style>
     .container {
-      max-width: 800px;
+      max-width: 890px;
       margin: 50px auto;
       padding: 20px;
       background: #fff;
