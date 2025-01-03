@@ -22,7 +22,7 @@ main {
 }
 
 h1 {
-  color: #333;
+  color: #ebe6e6;
 }
 
 form {
@@ -69,12 +69,6 @@ button:hover {
   display: block;
 }
 
-#shop-preview {
-  margin-top: 2em;
-  padding: 1em;
-  border: 1px dashed #ccc;
-  background-color: #fafafa;
-}
 
 .shop-card {
   border: 1px solid #ccc;
