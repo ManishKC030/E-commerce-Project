@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $_SESSION['admin_id'] = $admin['admin_id'];
 
         // Redirect to the account page after successful login
-        header("Location: ad_index.php");
+        header("Location: admin_shop.php");
         exit;
       } else {
         $message = "Invalid password.";

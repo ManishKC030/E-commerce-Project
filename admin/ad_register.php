@@ -6,28 +6,28 @@ session_start();
 include '../connection.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-$name = $_POST['ad_name'];
-$email = $_POST['email'];
-$password = $_POST['password'];
-$phone = $_POST['phone'];
+  $name = $_POST['ad_name'];
+  $email = $_POST['email'];
+  $password = $_POST['password'];
+  $phone = $_POST['phone'];
 
-// Insert data into the database
-$sql = "INSERT INTO admins (ad_name, email, password, phone) VALUES (?, ?, ?, ?)";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("sssi", $name, $email, $password, $phone);
+  // Insert data into the database
+  $sql = "INSERT INTO admins (ad_name, email, password, phone) VALUES (?, ?, ?, ?)";
+  $stmt = $conn->prepare($sql);
+  $stmt->bind_param("sssi", $name, $email, $password, $phone);
 
-if ($stmt->execute()) {
-// Get the last inserted user ID and store it in the session
-$_SESSION['admin_id'] = $conn->insert_id; // Store user ID in session
+  if ($stmt->execute()) {
+    // Get the last inserted user ID and store it in the session
+    $_SESSION['admin_id'] = $conn->insert_id; // Store user ID in session
 
 
-header("Location: ad_account.php");
-} else {
-echo "Error: " . $stmt->error;
-}
+    header("Location: admin_shop.php");
+  } else {
+    echo "Error: " . $stmt->error;
+  }
 
-$stmt->close();
-$conn->close();
+  $stmt->close();
+  $conn->close();
 }
 
 ?>
