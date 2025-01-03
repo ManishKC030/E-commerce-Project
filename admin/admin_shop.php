@@ -1,6 +1,34 @@
 <?php
 include '../connection.php';
 include 'auth.php';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  $shopName = $_POST['shop_name'];
+  $shopAddress = $_POST['shop_address'];
+  $aboutShop = $_POST['shop_about'];
+
+  $shopLogo = '';
+  if (!empty($_FILES['shop_image']['tmp_name'])) {
+    $uploadDir = '../uploads/';
+    $shopLogo = uniqid() . '-' . $_FILES['shop_image']['name'];
+    $uploadFile = $uploadDir . $shopLogo;
+
+    if (!move_uploaded_file($_FILES['shop_image']['tmp_name'], $uploadFile)) {
+      echo "<script>alert('Error uploading image.');</script>";
+      $shopLogo = '';
+    }
+  }
+
+  if ($shopLogo) {
+    $sql = "INSERT INTO admins (Shop_Name, Shop_Logo, Shop_Address, About_shop) VALUES ('$shopName', '$shopLogo', '$shopAddress', '$aboutShop')";
+
+    if (mysqli_query($conn, $sql)) {
+      echo "<script>alert('Shop created successfully!'); window.location.href = 'admin_dashboard.php';</script>";
+    } else {
+      echo "<script>alert('Database error: " . mysqli_error($conn) . "');</script>";
+    }
+  }
+}
 ?>
 
 <!DOCTYPE html>
@@ -19,14 +47,13 @@ include 'auth.php';
   </header>
   <main>
     <h2>Create a New Shop</h2>
-    <form id="shop-form">
+    <form id="shop-form" action="" enctype="multipart/form-data">
       <img id="image-preview" src="" alt="" />
-
       <label for="shop-image">Upload Picture:</label>
       <input
         type="file"
         id="shop-image"
-        accept="image/*"
+        accept="image/jpeg, image/png"
         onchange="previewImage(event)"
         required />
 
