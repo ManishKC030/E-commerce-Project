@@ -125,8 +125,8 @@ ADD `About_shop` VARCHAR(300) NULL DEFAULT NULL AFTER `Shop_Address`;
 ALTER TABLE products ADD admin_id INT NOT NULL;
 
 -- Add the foreign key constraint linking products.shop_id to admins.shop_id
-ALTER TABLE products 
-ADD CONSTRAINT fk_admin_id FOREIGN KEY (admin_id) REFERENCES admins(admin_id) ON DELETE CASCADE;
+
+ALTER TABLE `products` ADD CONSTRAINT `fk_admin_id` FOREIGN KEY (`admin_id`) REFERENCES `admins`(`admin_id`) ON DELETE CASCADE;
 
 
 
