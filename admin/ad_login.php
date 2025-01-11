@@ -6,12 +6,9 @@ session_start();
 // Include the database connection
 include '../connection.php';
 
-
 // Enable error reporting for debugging
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
-
-
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $email = $_POST['email'];
@@ -20,8 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   if (empty($email) || empty($password)) {
     $message = "Email and Password are required!";
   } else {
-
-    $sql = "SELECT admin_id, password FROM admins WHERE email = ?";
+    $sql = "SELECT admin_id, password, Shop_Name FROM admins WHERE email = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $email);
     $stmt->execute();
@@ -31,7 +27,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($result->num_rows > 0) {
       $admin = $result->fetch_assoc();
 
-
       // Verify password
       if ($password === $admin['password']) {
         // If password is correct, store user ID in session
@@ -40,13 +35,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Check if the shop is already created
         if (!empty($admin['Shop_Name'])) {
           // Shop already created, redirect to dashboard
-          header("Location: dashboard.php");
+          header("Location: ad_index.php");
           exit;
-        }
-        // Shop not created, redirect to shop creation page
-        else {
-
-          // Redirect to the account page after successful login
+        } else {
+          // Shop not created, redirect to admin_shop.php to create the shop
           header("Location: admin_shop.php");
           exit;
         }
@@ -56,7 +48,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else {
       $message = "No account found with that email.";
     }
-
 
     $stmt->close();
     $conn->close();
@@ -72,9 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Become a Seller - Login</title>
   <link rel="stylesheet" href="ad_style/ad-login-register.css" />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
-    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
 </head>
 
 <body>
@@ -97,27 +86,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       <form action="" method="post">
         <div class="form-group">
           <label for="email">Email ID</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="Enter your Email"
-            required />
+          <input type="email" id="email" name="email" placeholder="Enter your Email" required />
         </div>
         <div class="form-group">
           <label for="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            placeholder="••••••••••"
-            required />
+          <input type="password" id="password" name="password" placeholder="••••••••••" required />
         </div>
         <div class="options">
           <label>
             <input type="checkbox" id="viewPassword" /> Show Password
           </label>
-          <a href="ad_register.php">Dont' have an account? &nbsp;Register Here.</a>
+          <a href="ad_register.php">Don't have an account? &nbsp;Register Here.</a>
         </div>
         <button type="submit">LOGIN</button>
       </form>
