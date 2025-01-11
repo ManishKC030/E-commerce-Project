@@ -77,8 +77,8 @@ $conn->close();
 
         .profile-image {
 
-            width: 150px;
-            height: 150px;
+            width: 200px;
+            height: 200px;
             border-radius: 50%;
             margin-right: 20px;
         }
@@ -118,7 +118,7 @@ $conn->close();
     </header>
 
     <main>
-        <h2>Profile Details</h2>
+        <h2 style="text-align: center;">Profile Details</h2>
 
         <!-- Display Admin Profile Info -->
         <div class="profile-details">
