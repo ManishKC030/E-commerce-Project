@@ -37,9 +37,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // If password is correct, store user ID in session
         $_SESSION['admin_id'] = $admin['admin_id'];
 
-        // Redirect to the account page after successful login
-        header("Location: admin_shop.php");
-        exit;
+        // Check if the shop is already created
+        if (!empty($admin['Shop_Name'])) {
+          // Shop already created, redirect to dashboard
+          header("Location: dashboard.php");
+          exit;
+        }
+        // Shop not created, redirect to shop creation page
+        else {
+
+          // Redirect to the account page after successful login
+          header("Location: admin_shop.php");
+          exit;
+        }
       } else {
         $message = "Invalid password.";
       }
