@@ -14,7 +14,7 @@ CREATE TABLE users (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Table: Admins (Admin-specific details)
+-- Table: Admins (Admin-specific details) // Admin_Id also means Shop ID
 CREATE TABLE admins (
    admin_id INT AUTO_INCREMENT PRIMARY KEY,
     ad_name VARCHAR(100) NOT NULL,
@@ -117,6 +117,17 @@ ALTER TABLE `admins` ADD `Shop_Name` VARCHAR(26) NOT NULL AFTER `phone`,
 ADD `Shop_Logo` VARCHAR(255) NOT NULL AFTER `Shop_Name`, 
 ADD `Shop_Address` VARCHAR(200) NOT NULL AFTER `Shop_Logo`;
 ADD `About_shop` VARCHAR(300) NULL DEFAULT NULL AFTER `Shop_Address`;
+
+
+
+
+-- Add the shop_id column to the products table
+ALTER TABLE products ADD admin_id INT NOT NULL;
+
+-- Add the foreign key constraint linking products.shop_id to admins.shop_id
+ALTER TABLE products 
+ADD CONSTRAINT fk_admin_id FOREIGN KEY (admin_id) REFERENCES admins(admin_id) ON DELETE CASCADE;
+
 
 
 -- Table: Reviews (Customer feedback)
