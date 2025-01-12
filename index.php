@@ -149,42 +149,42 @@
       <h2>Shop by Brand</h2>
       <div class="brand-list">
         <div class="brand-item">
-          <a href="#">
+          <a href="Shop_Brands.php?brand=PUMA">
             <img src="assets/brands/Puma-Logo.png" alt="Puma">
           </a>
         </div>
         <div class="brand-item">
-          <a href="#">
+          <a href="Shop_Brands.php?brand=NEW BALANCE">
             <img src="assets/brands/New-Balance-Emblem.png" alt="New Balance">
           </a>
         </div>
         <div class="brand-item">
-          <a href="#">
+          <a href="Shop_Brands.php?brand=ADIDAS">
             <img src="assets/brands/adidas.png" alt="Adidas">
           </a>
         </div>
         <div class="brand-item">
-          <a href="#">
+          <a href="Shop_Brands.php?brand=AIR JORDAN">
             <img src="assets/brands/Air-Jordan-Logo.png" alt="Air Jordan">
           </a>
         </div>
         <div class="brand-item">
-          <a href="#">
+          <a href="NIKE">
             <img src="assets/brands/nike.png" alt="Nike">
           </a>
         </div>
         <div class="brand-item">
-          <a href="#">
+          <a href="Shop_Brands.php?brand=YEEZY">
             <img src="assets/brands/Yeezy-Logo.png" alt="Yeezy">
           </a>
         </div>
         <div class="brand-item">
-          <a href="#">
+          <a href="Shop_Brands.php?brand=VANS">
             <img src="assets/brands/vans.png" alt="Vans">
           </a>
         </div>
         <div class="brand-item">
-          <a href="#">
+          <a href="Shop_Brands.php?brand=CONVERSE">
             <img src="assets/brands/Converse_logo.svg.png" alt="Converse">
           </a>
         </div>

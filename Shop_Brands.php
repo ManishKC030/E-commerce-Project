@@ -87,10 +87,10 @@
             while ($row = $result->fetch_assoc()) {
                 echo "
             <div class='product-card'>
-            <img src='" . htmlspecialchars($row['image1']) . "' alt='" . htmlspecialchars($row['name']) . "'>
+            <img src='uploads/" . htmlspecialchars($row['image1']) . "' alt='" . htmlspecialchars($row['name']) . "'>
             <h2>" . htmlspecialchars($row['name']) . "</h2>
             <p>Price: $" . htmlspecialchars($row['price']) . "</p>
-            <a href='product_details.php?id=" . $row['product_id'] . "'>View Details</a>
+            <a href='product_detail.php?product_id=" . $row['product_id'] . "'>View Details</a>
             </div>";
             }
             echo "</div>";
