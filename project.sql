@@ -129,6 +129,13 @@ ALTER TABLE products ADD admin_id INT NOT NULL;
 ALTER TABLE `products` ADD CONSTRAINT `fk_admin_id` FOREIGN KEY (`admin_id`) REFERENCES `admins`(`admin_id`) ON DELETE CASCADE;
 
 
+-- Add admin_id to the orders table
+ALTER TABLE orders ADD admin_id INT NOT NULL;
+
+-- Add the foreign key constraint linking orders.admin_id to admins.admin_id
+ALTER TABLE orders
+ADD CONSTRAINT fk_orders_admin_id
+FOREIGN KEY (admin_id) REFERENCES admins(admin_id) ON DELETE CASCADE;
 
 -- Table: Reviews (Customer feedback)
 -- CREATE TABLE reviews (
