@@ -67,13 +67,16 @@
 
 
 
+
     <?php
+
     require 'connection.php'; // Ensure this file contains your database connection setup
+    include "navbar.php";
 
     // Get the selected brand from the URL
     $brand = isset($_GET['brand']) ? $_GET['brand'] : '';
 
-    // Fetch products for the selected brand
+    // Fetch prodcts for the selected brand
     if ($brand) {
         $stmt = $conn->prepare("SELECT * FROM products WHERE brand = ?");
         $stmt->bind_param("s", $brand);
