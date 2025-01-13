@@ -169,7 +169,7 @@
           </a>
         </div>
         <div class="brand-item">
-          <a href="NIKE">
+          <a href="Shop_Brands.php?brand=NIKE">
             <img src="assets/brands/nike.png" alt="Nike">
           </a>
         </div>

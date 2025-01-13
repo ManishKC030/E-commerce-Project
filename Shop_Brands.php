@@ -120,7 +120,7 @@
         echo "<h1>Products for Brand: " . htmlspecialchars($brand) . "</h1>";
 
         if ($result->num_rows > 0) {
-            echo "<div class='products-grid'>";
+            echo "<div class='product-container'>";
             while ($row = $result->fetch_assoc()) {
     ?>
 
