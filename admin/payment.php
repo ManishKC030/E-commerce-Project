@@ -9,7 +9,7 @@ try {
     $query = "
         SELECT 
             p.id AS payment_id,
-            o.order_id AS order_id, -- Updated to match your schema
+            o.order_id AS order_id, 
             p.payment_method,
             p.status,
             p.transaction_id,
@@ -17,7 +17,7 @@ try {
         FROM 
             payment p
         JOIN 
-            orders o ON p.order_id = o.order_id -- Updated to match your schema
+            orders o ON p.order_id = o.order_id 
         ORDER BY 
             p.created_at DESC
     ";
