@@ -9,7 +9,7 @@ $admin_id = $_SESSION['admin_id'] ?? 0; // Replace with your actual session vari
 // Fetch data specific to the logged-in admin
 $productCount = $conn->query("SELECT COUNT(*) AS count FROM products WHERE admin_id = $admin_id")->fetch_assoc()['count'];
 $customerCount = $conn->query("SELECT COUNT(*) AS count FROM users")->fetch_assoc()['count'];
-$categoryCount = $conn->query("SELECT COUNT(*) AS count FROM categories WHERE admin_id = $admin_id")->fetch_assoc()['count'];
+$categoryCount = $conn->query("SELECT COUNT(*) AS count FROM categories")->fetch_assoc()['count'];
 $orderCount = $conn->query("SELECT COUNT(*) AS count FROM orders WHERE admin_id = $admin_id")->fetch_assoc()['count'];
 $newOrders = $conn->query("SELECT * FROM orders WHERE admin_id = $admin_id ORDER BY created_at DESC LIMIT 5");
 ?>

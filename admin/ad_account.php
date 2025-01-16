@@ -113,7 +113,7 @@ $conn->close();
         <h1>Welcome, <?php echo htmlspecialchars($admin['ad_name']); ?>!</h1>
         <nav>
             <a href="ad_index.php">Dashboard</a>
-            <a href="logout.php">Logout</a>
+            <a href="ad_logout.php">Logout</a>
         </nav>
     </header>
 
