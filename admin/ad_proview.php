@@ -4,14 +4,22 @@ require '../connection.php';
 include 'ad_nav.php';
 require 'auth.php';
 
+// Ensure the admin is logged in and get the admin ID
+$admin_id = $_SESSION['admin_id'] ?? null;
+
+if (!$admin_id) {
+    echo "<script>alert('Unauthorized access! Please log in.'); window.location.href = 'login.php';</script>";
+    exit;
+}
+
 // Handle deletion if the delete request is sent
 if (isset($_GET['delete_id'])) {
     $delete_id = intval($_GET['delete_id']); // Sanitize the input
 
-    // Delete the product
-    $delete_sql = "DELETE FROM products WHERE product_id = ?";
+    // Delete the product only if it belongs to the logged-in admin
+    $delete_sql = "DELETE FROM products WHERE product_id = ? AND admin_id = ?";
     $stmt = $conn->prepare($delete_sql);
-    $stmt->bind_param("i", $delete_id);
+    $stmt->bind_param("ii", $delete_id, $admin_id);
 
     if ($stmt->execute()) {
         echo "<script>alert('Product deleted successfully!'); window.location.href = 'ad_proview.php';</script>";
@@ -21,13 +29,17 @@ if (isset($_GET['delete_id'])) {
     $stmt->close();
 }
 
-// Fetch all products from the database
+// Fetch all products for the logged-in admin
 $sql = "SELECT p.*, c.name AS category_name 
         FROM products p
         LEFT JOIN categories c ON p.category_id = c.id
+        WHERE p.admin_id = ?
         ORDER BY p.created_at DESC";
 
-$result = $conn->query($sql);
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $admin_id);
+$stmt->execute();
+$result = $stmt->get_result();
 ?>
 
 <!DOCTYPE html>
@@ -78,6 +90,7 @@ $result = $conn->query($sql);
             font-weight: bold;
             color: #333;
         }
+
         .product-name {
             font-size: 16px;
             font-weight: bold;
@@ -161,7 +174,7 @@ $result = $conn->query($sql);
                 <div class="product">
                     <img src="../uploads/<?php echo htmlspecialchars($row['image1']); ?>" alt="Product Image">
                     <div class="product-info">
-                    <p class="product-brand"><?php echo htmlspecialchars($row['brand']); ?></p>
+                        <p class="product-brand"><?php echo htmlspecialchars($row['brand']); ?></p>
                         <p class="product-name"><?php echo htmlspecialchars($row['name']); ?></p>
                         <p class="product-category">Category: <?php echo htmlspecialchars($row['category_name']); ?></p>
                         <p class="product-price">Price: $<?php echo number_format($row['price'], 2); ?></p>
