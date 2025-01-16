@@ -1,10 +1,12 @@
 <?php
+
 // Database connection
 include "../connection.php";
 include "ad_nav.php";
 include "auth.php";
 
 // Initialize variables
+$admin_id = $_SESSION['admin_id'] ?? 0; // Get current admin ID from the session
 $brand = '';
 $name = '';
 $type = '';
@@ -49,8 +51,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
     // Insert into the database
-    $stmt = $conn->prepare("INSERT INTO products ( brand, name, type, short_desc, description, price, stock, category_id, image1, image2, image3, image4) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("sssssdiissss", $brand, $name, $type, $short_desc, $description, $price, $stock, $category_id, $image1, $image2, $image3, $image4);
+    $stmt = $conn->prepare("INSERT INTO products ( brand, name, type, short_desc, description, price, stock, category_id, image1, image2, image3, image4, admin_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("sssssdiissssi", $brand, $name, $type, $short_desc, $description, $price, $stock, $category_id, $image1, $image2, $image3, $image4, $admin_id);
 
     if ($stmt->execute()) {
         $success = "Product added successfully!";
