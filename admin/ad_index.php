@@ -3,13 +3,15 @@ require 'ad_nav.php';
 include '../connection.php';
 include 'auth.php';
 
+// Get the current admin ID from session or authentication
+$admin_id = $_SESSION['admin_id'] ?? 0; // Replace with your actual session variable
 
-// Fetch data
-$productCount = $conn->query("SELECT COUNT(*) AS count FROM products")->fetch_assoc()['count'];
+// Fetch data specific to the logged-in admin
+$productCount = $conn->query("SELECT COUNT(*) AS count FROM products WHERE admin_id = $admin_id")->fetch_assoc()['count'];
 $customerCount = $conn->query("SELECT COUNT(*) AS count FROM users")->fetch_assoc()['count'];
-$categoryCount = $conn->query("SELECT COUNT(*) AS count FROM categories")->fetch_assoc()['count'];
-$orderCount = $conn->query("SELECT COUNT(*) AS count FROM orders")->fetch_assoc()['count'];
-$newOrders = $conn->query("SELECT * FROM orders ORDER BY created_at DESC LIMIT 5");
+$categoryCount = $conn->query("SELECT COUNT(*) AS count FROM categories WHERE admin_id = $admin_id")->fetch_assoc()['count'];
+$orderCount = $conn->query("SELECT COUNT(*) AS count FROM orders WHERE admin_id = $admin_id")->fetch_assoc()['count'];
+$newOrders = $conn->query("SELECT * FROM orders WHERE admin_id = $admin_id ORDER BY created_at DESC LIMIT 5");
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +20,7 @@ $newOrders = $conn->query("SELECT * FROM orders ORDER BY created_at DESC LIMIT 5
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard</title>
+  <title>Admin Dashboard</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -105,6 +107,7 @@ $newOrders = $conn->query("SELECT * FROM orders ORDER BY created_at DESC LIMIT 5
       text-align: left;
     }
   </style>
+
 </head>
 
 <body>
@@ -161,7 +164,6 @@ $newOrders = $conn->query("SELECT * FROM orders ORDER BY created_at DESC LIMIT 5
             </tr>
           <?php endif; ?>
         </tbody>
-
       </table>
     </div>
   </div>
