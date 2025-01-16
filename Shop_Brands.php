@@ -117,13 +117,12 @@
         $stmt->execute();
         $result = $stmt->get_result();
 
-        echo "<h1>Products for Brand: " . htmlspecialchars($brand) . "</h1>";
-
+        echo "<h1 style = 'text-align:center'>Products for Brand: <br> " . htmlspecialchars($brand) . "</h1>";
         if ($result->num_rows > 0) {
             echo "<div class='product-container'>";
             while ($row = $result->fetch_assoc()) {
     ?>
-
+                <br>
                 <div class="product">
                     <img src="uploads/<?php echo htmlspecialchars($row['image1']); ?>" alt="Product Image">
                     <div class="product-info">
