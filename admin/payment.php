@@ -4,6 +4,7 @@ include '../connection.php';
 require 'ad_nav.php';
 include 'auth.php';
 
+$admin_id = $_SESSION['admin_id'];
 // Fetch payment data
 try {
     $query = "
@@ -16,13 +17,23 @@ try {
             p.created_at
         FROM 
             payment p
+       JOIN 
+            orders o ON p.order_id = o.order_id
         JOIN 
-            orders o ON p.order_id = o.order_id 
+            order_items oi ON o.order_id = oi.order_id
+        JOIN 
+            products prod ON oi.product_id = prod.product_id
+        WHERE 
+            prod.admin_id = ? -- Filter by admin_id
         ORDER BY 
             p.created_at DESC
     ";
 
-    $result = $conn->query($query);
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("i", $admin_id); // Bind the admin_id parameter
+    $stmt->execute();
+    $result = $stmt->get_result();
+
 
     // Check if there are results
     $payments = [];
