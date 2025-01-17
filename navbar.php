@@ -46,8 +46,14 @@
         <li><a href="kids.php">Kids</a></li>
 
         <li><a href="cart.php">Cart</a></li>
-        <!--<li><a href="#">Wishlist</a></li> -->
       </ul>
+      <!--<li><a href="#">Wishlist</a></li> -->
+
+      <!-- Search Bar -->
+      <div class="search-bar">
+        <input type="text" placeholder="Search for products..." class="search-input">
+        <button class="search-button">Search</button>
+      </div>
     </nav>
   </header>
   </nav>
