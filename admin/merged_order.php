@@ -3,6 +3,8 @@ include("../connection.php");
 include("ad_nav.php");
 require("auth.php");
 
+$admin_id = $_SESSION['admin_id'];
+
 // Fetch all orders along with user and their order items
 $sql = "SELECT 
             o.order_id, 
@@ -20,9 +22,13 @@ $sql = "SELECT
         INNER JOIN users u ON o.user_id = u.user_id
         INNER JOIN order_items oi ON o.order_id = oi.order_id
         INNER JOIN products p ON oi.product_id = p.product_id
+         WHERE p.admin_id = ? 
         ORDER BY o.created_at DESC";
 
-$result = $conn->query($sql);
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $admin_id); // Bind the admin_id to the query
+$stmt->execute();
+$result = $stmt->get_result();
 ?>
 
 <!DOCTYPE html>
