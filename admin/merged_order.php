@@ -3,28 +3,26 @@ include("../connection.php");
 include("ad_nav.php");
 require("auth.php");
 
-// Fetch all orders along with user and status information
-$sql_orders = "SELECT o.*, u.username AS username, u.email 
-               FROM orders o 
-               INNER JOIN users u ON o.user_id = u.user_id 
-               ORDER BY o.created_at DESC";
-$result_orders = $conn->query($sql_orders);
+// Fetch all orders along with user and their order items
+$sql = "SELECT 
+            o.order_id, 
+            o.total_price, 
+            o.status, 
+            o.created_at, 
+            u.username AS username, 
+            u.email, 
+            oi.product_id, 
+            oi.quantity, 
+            oi.price, 
+            p.name AS product_name, 
+            p.image1 
+        FROM orders o
+        INNER JOIN users u ON o.user_id = u.user_id
+        INNER JOIN order_items oi ON o.order_id = oi.order_id
+        INNER JOIN products p ON oi.product_id = p.product_id
+        ORDER BY o.created_at DESC";
 
-// Handle order items display
-$order_items = [];
-if (isset($_GET['order_id'])) {
-    $order_id = intval($_GET['order_id']);
-
-    // Fetch the order items
-    $sql_items = "SELECT oi.*, p.name AS product_name, p.image1
-                  FROM order_items oi
-                  INNER JOIN products p ON oi.product_id = p.product_id
-                  WHERE oi.order_id = ?";
-    $stmt = $conn->prepare($sql_items);
-    $stmt->bind_param("i", $order_id);
-    $stmt->execute();
-    $order_items = $stmt->get_result();
-}
+$result = $conn->query($sql);
 ?>
 
 <!DOCTYPE html>
@@ -45,7 +43,7 @@ if (isset($_GET['order_id'])) {
 
         h1 {
             text-align: center;
-            margin-top: 20px;
+            margin: 20px 0;
         }
 
         table {
@@ -56,7 +54,8 @@ if (isset($_GET['order_id'])) {
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        table th, table td {
+        table th,
+        table td {
             border: 1px solid #dee2e6;
             padding: 10px;
             text-align: center;
@@ -76,29 +75,15 @@ if (isset($_GET['order_id'])) {
             background-color: #e9ecef;
         }
 
-        a {
-            text-decoration: none;
-            color: rgb(0, 0, 255);
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
         img {
-            width: 250px;
-            height: 130px;
-            overflow: hidden;
-            border-radius: 8px;
-            border: 1px solid #ddd;
+            width: 80px;
+            height: 80px;
+            border-radius: 4px;
             object-fit: cover;
         }
 
-        form {
-            display: inline-block;
-        }
-
-        select, button {
+        select,
+        button {
             padding: 5px;
             border: 1px solid #ced4da;
             border-radius: 4px;
@@ -123,15 +108,19 @@ if (isset($_GET['order_id'])) {
 </head>
 
 <body>
-    <h1>Orders Management</h1>
+    <h1>Manage Orders</h1>
 
-    <?php if ($result_orders->num_rows > 0): ?>
+    <?php if ($result->num_rows > 0): ?>
         <table>
             <thead>
                 <tr>
                     <th>Order ID</th>
                     <th>User</th>
                     <th>Email</th>
+                    <th>Product Image</th>
+                    <th>Product Name</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
                     <th>Total Price</th>
                     <th>Status</th>
                     <th>Order Date</th>
@@ -139,62 +128,63 @@ if (isset($_GET['order_id'])) {
                 </tr>
             </thead>
             <tbody>
-                <?php while ($row = $result_orders->fetch_assoc()): ?>
+                <?php
+                $current_order_id = null;
+                while ($row = $result->fetch_assoc()):
+                ?>
                     <tr>
-                        <td><?php echo $row['order_id']; ?></td>
-                        <td><?php echo htmlspecialchars($row['username']); ?></td>
-                        <td><?php echo htmlspecialchars($row['email']); ?></td>
-                        <td>$<?php echo number_format($row['total_price'], 2); ?></td>
-                        <td><?php echo ucfirst($row['status']); ?></td>
-                        <td><?php echo $row['created_at']; ?></td>
-                        <td>
-                            <a href="manage_orders.php?order_id=<?php echo $row['order_id']; ?>">View Items</a>
-                            <form action="update_order_status.php" method="POST" style="display:inline;">
-                                <input type="hidden" name="order_id" value="<?php echo $row['order_id']; ?>">
-                                <select name="status" required>
-                                    <option value="pending" <?php echo $row['status'] === 'pending' ? 'selected' : ''; ?>>Pending</option>
-                                    <option value="confirmed" <?php echo $row['status'] === 'confirmed' ? 'selected' : ''; ?>>Confirmed</option>
-                                    <option value="shipped" <?php echo $row['status'] === 'shipped' ? 'selected' : ''; ?>>Shipped</option>
-                                    <option value="delivered" <?php echo $row['status'] === 'delivered' ? 'selected' : ''; ?>>Delivered</option>
-                                    <option value="cancelled" <?php echo $row['status'] === 'cancelled' ? 'selected' : ''; ?>>Cancelled</option>
-                                </select>
-                                <button type="submit">Update</button>
-                            </form>
-                        </td>
+                        <!-- Display order details only once per order -->
+                        <?php if ($current_order_id !== $row['order_id']): ?>
+                            <td rowspan="<?php echo $row['order_id'] === $current_order_id ? 0 : ''; ?>">
+                                <?php echo $row['order_id']; ?>
+                            </td>
+                            <td rowspan="<?php echo $row['order_id'] === $current_order_id ? 0 : ''; ?>">
+                                <?php echo htmlspecialchars($row['username']); ?>
+                            </td>
+                            <td rowspan="<?php echo $row['order_id'] === $current_order_id ? 0 : ''; ?>">
+                                <?php echo htmlspecialchars($row['email']); ?>
+                            </td>
+                        <?php endif; ?>
+
+                        <!-- Display product-specific details -->
+                        <td><a href="order_productDetail.php?product_id=<?php echo $row['product_id']; ?>"><img src="../uploads/<?php echo htmlspecialchars($row['image1']); ?>" alt="Product"></a></td>
+                        <td><?php echo htmlspecialchars($row['product_name']); ?></td>
+                        <td><?php echo $row['quantity']; ?></td>
+                        <td>$<?php echo number_format($row['price'], 2); ?></td>
+
+                        <?php if ($current_order_id !== $row['order_id']): ?>
+                            <td rowspan="<?php echo $row['order_id'] === $current_order_id ? 0 : ''; ?>">
+                                $<?php echo number_format($row['total_price'], 2); ?>
+                            </td>
+                            <td rowspan="<?php echo $row['order_id'] === $current_order_id ? 0 : ''; ?>">
+                                <?php echo ucfirst($row['status']); ?>
+                            </td>
+                            <td rowspan="<?php echo $row['order_id'] === $current_order_id ? 0 : ''; ?>">
+                                <?php echo $row['created_at']; ?>
+                            </td>
+                            <td rowspan="<?php echo $row['order_id'] === $current_order_id ? 0 : ''; ?>">
+                                <form action="update_order_status.php" method="POST" style="display:inline;">
+                                    <input type="hidden" name="order_id" value="<?php echo $row['order_id']; ?>">
+                                    <select name="status" required>
+                                        <option value="pending" <?php echo $row['status'] === 'pending' ? 'selected' : ''; ?>>Pending</option>
+                                        <option value="confirmed" <?php echo $row['status'] === 'confirmed' ? 'selected' : ''; ?>>Confirmed</option>
+                                        <option value="shipped" <?php echo $row['status'] === 'shipped' ? 'selected' : ''; ?>>Shipped</option>
+                                        <option value="delivered" <?php echo $row['status'] === 'delivered' ? 'selected' : ''; ?>>Delivered</option>
+                                        <option value="cancelled" <?php echo $row['status'] === 'cancelled' ? 'selected' : ''; ?>>Cancelled</option>
+                                    </select>
+                                    <button type="submit">Update</button>
+                                </form>
+                            </td>
+                        <?php endif; ?>
+
+                        <!-- Update current_order_id to handle rowspan -->
+                        <?php $current_order_id = $row['order_id']; ?>
                     </tr>
                 <?php endwhile; ?>
             </tbody>
         </table>
     <?php else: ?>
         <p>No orders found.</p>
-    <?php endif; ?>
-
-    <?php if (!empty($order_items) && $order_items->num_rows > 0): ?>
-        <h2 style="text-align: center;">Order Items</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Image</th>
-                    <th>Product Name</th>
-                    <th>Quantity</th>
-                    <th>Price</th>
-                    <th>Total</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php while ($item = $order_items->fetch_assoc()): ?>
-                    <tr>
-                        <td><img src="../uploads/<?php echo htmlspecialchars($item['image1']); ?>" alt="Product Image"></td>
-                        <td><?php echo htmlspecialchars($item['product_name']); ?></td>
-                        <td><?php echo $item['quantity']; ?></td>
-                        <td>$<?php echo number_format($item['price'], 2); ?></td>
-                        <td>$<?php echo number_format($item['price'] * $item['quantity'], 2); ?></td>
-                    </tr>
-                <?php endwhile; ?>
-            </tbody>
-        </table>
-    <?php elseif (isset($_GET['order_id'])): ?>
-        <p>No items found for this order.</p>
     <?php endif; ?>
 
     <?php $conn->close(); ?>
