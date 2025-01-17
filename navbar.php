@@ -39,13 +39,16 @@
       <a href="index.php" style="text-decoration: none;">
         <h1 class="logo">ShoesHub</h1>
       </a>
-      <ul>
-        <li><a href="index.php">Home</a></li>
-        <li><a href="mens.php">Men</a></li>
-        <li><a href="#">Women</a></li>
-        <li><a href="kids.php">Kids</a></li>
+      <?php
+      $current_page = basename($_SERVER['PHP_SELF']);
+      ?>
 
-        <li><a href="cart.php">Cart</a></li>
+      <ul>
+        <li><a href="index.php" >Home</a></li>
+        <li><a href="mens.php" class="<?= $current_page == 'mens.php' ? 'active' : '' ?>">Men</a></li>
+        <li><a href="womens.php" class="<?= $current_page == 'womens.php' ? 'active' : '' ?>">Women</a></li>
+        <li><a href="kids.php" class="<?= $current_page == 'kids.php' ? 'active' : '' ?>">Kids</a></li>
+        <li><a href="cart.php" class="<?= $current_page == 'cart.php' ? 'active' : '' ?>">Cart</a></li>
       </ul>
       <!--<li><a href="#">Wishlist</a></li> -->
 
