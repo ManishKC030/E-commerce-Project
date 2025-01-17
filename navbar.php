@@ -44,7 +44,7 @@
       ?>
 
       <ul>
-        <li><a href="index.php" >Home</a></li>
+        <li><a href="index.php">Home</a></li>
         <li><a href="mens.php" class="<?= $current_page == 'mens.php' ? 'active' : '' ?>">Men</a></li>
         <li><a href="womens.php" class="<?= $current_page == 'womens.php' ? 'active' : '' ?>">Women</a></li>
         <li><a href="kids.php" class="<?= $current_page == 'kids.php' ? 'active' : '' ?>">Kids</a></li>
@@ -54,8 +54,10 @@
 
       <!-- Search Bar -->
       <div class="search-bar">
-        <input type="text" placeholder="Search for products..." class="search-input">
-        <button class="search-button">Search</button>
+        <form action="search.php" method="GET">
+          <input type="text" name="query" placeholder="Search for products..." class="search-input" required>
+          <button class="search-button">Search</button>
+        </form>
       </div>
     </nav>
   </header>
