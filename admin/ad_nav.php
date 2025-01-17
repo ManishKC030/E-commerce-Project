@@ -29,7 +29,7 @@
       <nav class="nav-links">
 
         <a href="ad_index.php">Dashboard</a>
-        <a href="view_orders.php">Orders</a>
+        <a href="merged_order.php">Orders</a>
         <div class="dropdown">
           <button class="dropbtn">Product</button>
           <div class="dropdown-content">
