@@ -76,26 +76,27 @@ $result = $conn->query($sql);
         }
 
         img {
-            width: 80px;
-            height: 80px;
-            border-radius: 4px;
+            width: 250px;
+            height: 130px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
             object-fit: cover;
         }
 
         select,
-        button {
+        .btn {
             padding: 5px;
             border: 1px solid #ced4da;
             border-radius: 4px;
         }
 
-        button {
+        .btn {
             background-color: #007bff;
             color: #fff;
             cursor: pointer;
         }
 
-        button:hover {
+        .btn:hover {
             background-color: #0056b3;
         }
 
@@ -172,7 +173,7 @@ $result = $conn->query($sql);
                                         <option value="delivered" <?php echo $row['status'] === 'delivered' ? 'selected' : ''; ?>>Delivered</option>
                                         <option value="cancelled" <?php echo $row['status'] === 'cancelled' ? 'selected' : ''; ?>>Cancelled</option>
                                     </select>
-                                    <button type="submit">Update</button>
+                                    <button type="submit" class="btn">Update</button>
                                 </form>
                             </td>
                         <?php endif; ?>
