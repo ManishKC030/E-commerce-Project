@@ -14,6 +14,8 @@
      <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
 
      <style>
+         @import url("https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap");
+
          .search {
              width: 90%;
 
@@ -101,6 +103,12 @@
              flex-direction: column;
              justify-content: center;
              /* Center align the text vertically */
+         }
+
+         .product-brand {
+             font-family: "Sour Gummy", serif;
+             font-size: 22px;
+             font-weight: 690;
          }
 
          .product2-name {
