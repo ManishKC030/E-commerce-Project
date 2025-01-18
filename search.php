@@ -11,7 +11,7 @@
      <meta charset="UTF-8">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <title>Search Result</title>
-     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
 
      <style>
          .search {
@@ -73,7 +73,7 @@
              cursor: pointer;
              opacity: 0;
              transition: opacity 0.3s ease;
-             /* Smooth transition for hover effect */
+             text-decoration: none;
          }
 
          .product2:hover .cart-button {
@@ -82,8 +82,8 @@
          }
 
          .cart-button:hover {
-             background-color: rgb(0, 0, 0);
-             /* Darker green on hover */
+             background-color: rgb(31, 30, 30);
+         
          }
 
          .search_img {
@@ -204,9 +204,10 @@
                     <p class="product2-description">' . htmlspecialchars($product['short_desc']) . '</p>
                     <p class="product2-price">$ ' . number_format($product['price'], 2) . '</p>
                     <p>Stock: ' . htmlspecialchars($product['stock']) . '</p>
-                </div></a><button class="cart-button" onclick="addToCart(' . htmlspecialchars($product['product_id']) . ')">
-        <i class="fas fa-shopping-cart"></i>
-    </button>
+                </div></a>
+                <a href="cart.php?product_id=' . htmlspecialchars($product['product_id']) . '" class="cart-button">
+                     <i class="fa-solid fa-cart-shopping"></i>
+                     </a>
             </div>';
                 }
             } else {
