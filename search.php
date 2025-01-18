@@ -7,10 +7,10 @@ $query = isset($_GET['query']) ? trim($_GET['query']) : '';
 
 if (!empty($query)) {
     // Prevent SQL injection by using prepared statements
-    $sql = "SELECT p.product_id, p.name, p.description, p.price, p.image1, c.name AS category_name
+    $sql = "SELECT p.*, c.name AS category_name
           FROM products p
           JOIN categories c ON p.category_id = c.id
-          WHERE p.name LIKE ? OR p.description LIKE ?";
+          WHERE p.name LIKE ? OR p.type LIKE ?";
 
     $stmt = $conn->prepare($sql);
     $searchTerm = "%" . $query . "%";
