@@ -65,6 +65,9 @@ session_start();
                 <p>Stock: ' . htmlspecialchars($product['stock']) . '</p>
                 </div>
                 </a>
+                <a href="cart.php?product_id=' . htmlspecialchars($product['product_id']) . '" class="new-cart" >
+                     <i class="fa-solid fa-cart-shopping"></i>
+                     </a>
                 </div>
                 ';
                 }
