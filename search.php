@@ -7,7 +7,7 @@ $query = isset($_GET['query']) ? trim($_GET['query']) : '';
 
 if (!empty($query)) {
     // Prevent SQL injection by using prepared statements
-    $sql = "SELECT p.id, p.name, p.description, p.price, p.image, c.name AS category_name
+    $sql = "SELECT p.product_id, p.name, p.description, p.price, p.image1, c.name AS category_name
           FROM products p
           JOIN categories c ON p.category_id = c.id
           WHERE p.name LIKE ? OR p.description LIKE ?";
@@ -24,8 +24,8 @@ if (!empty($query)) {
         echo "<ul>";
         while ($row = $result->fetch_assoc()) {
             echo "<li>
-              <a href='product.php?id=" . $row['id'] . "'>
-                <img src='images/" . htmlspecialchars($row['image']) . "' alt='" . htmlspecialchars($row['name']) . "' style='width:50px; height:50px;'>
+              <a href='product_detail.php?product_id=" . $row['product_id'] . "'>
+                <img src='uploads/" . htmlspecialchars($row['image1']) . "' alt='" . htmlspecialchars($row['name']) . "' style='width:50px; height:50px;'>
                 <strong>" . htmlspecialchars($row['name']) . "</strong> (" . htmlspecialchars($row['category_name']) . ")<br>
                 Price: NPR " . number_format($row['price'], 2) . "
               </a>

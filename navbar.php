@@ -55,10 +55,16 @@
       <!-- Search Bar -->
       <div class="search-bar">
         <form action="search.php" method="GET">
-          <input type="text" name="query" placeholder="Search for products..." class="search-input" required>
+          <input
+            type="text"
+            name="query"
+            placeholder="Search for products..."
+            class="search-input"
+            required>
           <button class="search-button">Search</button>
         </form>
       </div>
+
     </nav>
   </header>
   </nav>
