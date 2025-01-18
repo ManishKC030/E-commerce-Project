@@ -64,8 +64,9 @@ session_start();
                 <p class="product-price">Rs ' . number_format($product['price'], 2) . '</p>
                 <p>Stock: ' . htmlspecialchars($product['stock']) . '</p>
                 </div>
+                </a>
                 </div>
-                </a>';
+                ';
                 }
             } else {
                 echo "<p style= ' margin-left:350px; font-size: 25px; font-weight:bold; font-family: Sofia, sans-serif;'>No Products Found in Mens New Arrivals</p>";
@@ -135,8 +136,10 @@ session_start();
                     <p class="product2-description">' . htmlspecialchars($product['short_desc']) . '</p>
                     <p class="product2-price">$ ' . number_format($product['price'], 2) . '</p>
                     <p>Stock: ' . htmlspecialchars($product['stock']) . '</p>
-                </div>
-            </div></a>';
+                </div></a>
+            <a href="cart.php?product_id=' . htmlspecialchars($product['product_id']) . '" class="cart-button">
+                     <i class="fa-solid fa-cart-shopping"></i>
+                     </a></div>';
                 }
             } else {
                 echo "<p style= 'margin-left:350px; font-size: 25px; font-weight:bold; font-family: Sofia, sans-serif;'>No Products Found in Mens Best Selling</p>";
