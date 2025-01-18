@@ -11,6 +11,8 @@
      <meta charset="UTF-8">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <title>Search Result</title>
+     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
      <style>
          .search {
              width: 90%;
@@ -46,10 +48,42 @@
              box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
              transition: transform 0.3s ease;
              margin-bottom: 15px;
+             position: relative;
          }
 
          .product2:hover {
              transform: translateY(-5px);
+         }
+
+         .cart-button {
+             position: absolute;
+             bottom: 17px;
+             right: 10px;
+             background-color: rgb(91, 92, 92);
+             /* Green background */
+             color: #fff;
+             border: none;
+             border-radius: 50%;
+             width: 40px;
+             height: 40px;
+             display: flex;
+             justify-content: center;
+             align-items: center;
+             font-size: 18px;
+             cursor: pointer;
+             opacity: 0;
+             transition: opacity 0.3s ease;
+             /* Smooth transition for hover effect */
+         }
+
+         .product2:hover .cart-button {
+             opacity: 1;
+             /* Make the button visible on hover */
+         }
+
+         .cart-button:hover {
+             background-color: rgb(0, 0, 0);
+             /* Darker green on hover */
          }
 
          .search_img {
@@ -170,8 +204,10 @@
                     <p class="product2-description">' . htmlspecialchars($product['short_desc']) . '</p>
                     <p class="product2-price">$ ' . number_format($product['price'], 2) . '</p>
                     <p>Stock: ' . htmlspecialchars($product['stock']) . '</p>
-                </div>
-            </div></a>';
+                </div></a><button class="cart-button" onclick="addToCart(' . htmlspecialchars($product['product_id']) . ')">
+        <i class="fas fa-shopping-cart"></i>
+    </button>
+            </div>';
                 }
             } else {
                 echo "<p class='no-results'>No results found for '" . htmlspecialchars($query) . "'.</p>";
@@ -185,6 +221,7 @@
         ?>
      </div>
      </div>
+
 
 
  </body>
