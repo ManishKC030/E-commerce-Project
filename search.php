@@ -83,7 +83,7 @@
 
          .cart-button:hover {
              background-color: rgb(31, 30, 30);
-         
+
          }
 
          .search_img {
