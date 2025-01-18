@@ -14,6 +14,7 @@ session_start();
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
     <link rel="stylesheet" href="stylesheet/nav-footer.css">
     <link rel="stylesheet" href="stylesheet/kids.css">
+    
 </head>
 
 <body>
@@ -58,9 +59,13 @@ session_start();
                     <p class="product-description">' . htmlspecialchars($product['short_desc']) . '</p>
                     <p class="product-price">Rs ' . number_format($product['price'], 2) . '</p>
                     <p>Stock: ' . htmlspecialchars($product['stock']) . '</p>
-                    </div>
+                    </div></a>
+                    <a href="cart.php?product_id=' . htmlspecialchars($product['product_id']) . '" class="new-cart" >
+                     <i class="fa-solid fa-cart-shopping"></i>
+                     </a>
+                
                 </div>
-                </a>';
+                ';
                 }
             } else {
                 echo "<p style= ' margin-left:350px; font-size: 25px; font-weight:bold;  font-family: Sofia, sans-serif;'>No Products Found in Kids New Arrivals</p>";

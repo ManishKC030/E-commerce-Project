@@ -328,8 +328,8 @@
   color: #fff;
   border: none;
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -347,5 +347,5 @@
 
 .cart-button:hover {
   background-color: rgb(31, 30, 30);
-
 }
+
