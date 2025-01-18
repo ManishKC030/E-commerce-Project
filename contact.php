@@ -87,7 +87,7 @@
     <?php endif; ?>
 
 
-    <form action="" method="post">
+    <form id="contactform" action="" method="post">
       <label for="name">Name</label>
       <input type="text" id="name" name="name" value="<?php echo $name; ?>" <?php echo isset($_SESSION['user_id']) ? 'readonly' : ''; ?> required>
 

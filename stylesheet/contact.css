@@ -1,73 +1,71 @@
-@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap");
 
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f8f9fa;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f8f9fa;
 }
 
 .container {
-    max-width: 800px;
-    margin: 2em auto;
-    padding: 0 1em;
+  max-width: 800px;
+  margin: 2em auto;
+  padding: 0 1em;
 }
 
 .contact-info h1 {
-    font-size: 2.5em;
-    margin-bottom: 10px;
+  font-size: 2.5em;
+  margin-bottom: 10px;
 }
 .contact-info p {
-    margin-bottom: 20px;
-    font-size: 20px;
-    font-family: "Kalam", cursive;
+  margin-bottom: 20px;
+  font-size: 20px;
+  font-family: "Kalam", cursive;
   font-weight: 500;
   font-style: normal;
 }
 
-
-form {
-    background-color: white;
-    padding: 2em;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+#contactform {
+  background-color: white;
+  padding: 2em;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 label {
-    display: block;
-    margin-bottom: 0.5em;
-    color: #495057;
+  display: block;
+  margin-bottom: 0.5em;
+  color: #495057;
 }
-input, textarea {
-    width: 100%;
-    padding: 0.75em;
-    margin-bottom: 1em;
-    border: 1px solid #dee2e6;
-    border-radius: 5px;
+input,
+textarea {
+  width: 100%;
+  padding: 0.75em;
+  margin-bottom: 1em;
+  border: 1px solid #dee2e6;
+  border-radius: 5px;
 }
 button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 0.75em 1.5em;
-    cursor: pointer;
-    border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 0.75em 1.5em;
+  cursor: pointer;
+  border-radius: 5px;
 }
 button:hover {
-    background-color: #0056b3;
+  background-color: #0056b3;
 }
 .below {
-    display: flex;
-    justify-content: center;
-    font-weight: bold;
-    margin-top: 1em;
+  display: flex;
+  justify-content: center;
+  font-weight: bold;
+  margin-top: 1em;
 }
 .below p {
-    color:black;
-    font-weight: bold;
-    text-decoration: none;
-    
+  color: black;
+  font-weight: bold;
+  text-decoration: none;
 }
 .below p:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
