@@ -201,17 +201,31 @@ $sort = isset($_GET['sort']) ? $_GET['sort'] : '';         // Ensure $sort is de
             cursor: pointer;
             transition: all 0.3s ease;
             font-family: "Sour Gummy", serif;
+            position: relative;
         }
 
         select:hover {
             border-color: #888;
             background-color: #fff;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         select:focus {
             outline: none;
             border-color: #333;
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Dropdown hover effect */
+        select option {
+            padding: 10px;
+            background-color: #fff;
+            color: #333;
+        }
+
+        select option:hover {
+            background-color: #f0f0f0;
+            color: #000;
         }
 
         /* Add some space between the label and dropdown */
