@@ -174,6 +174,73 @@ $sort = isset($_GET['sort']) ? $_GET['sort'] : '';         // Ensure $sort is de
                 padding: 10px;
             }
         }
+
+        /* Styling for the filter dropdown */
+        form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px 0;
+        }
+
+        label {
+            font-size: 16px;
+            font-weight: bold;
+            margin-right: 10px;
+            color: #333;
+            font-family: "Sour Gummy", serif;
+        }
+
+        select {
+            font-size: 16px;
+            padding: 10px 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            color: #333;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: "Sour Gummy", serif;
+        }
+
+        select:hover {
+            border-color: #888;
+            background-color: #fff;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: #333;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Add some space between the label and dropdown */
+        form label {
+            margin-right: 10px;
+        }
+
+        /* Center the entire search result section */
+        .search {
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 768px) {
+            select {
+                width: 100%;
+                font-size: 14px;
+            }
+
+            form {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            form label {
+                margin-bottom: 5px;
+            }
+        }
     </style>
 </head>
 
