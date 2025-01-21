@@ -328,7 +328,7 @@ $sort = isset($_GET['sort']) ? $_GET['sort'] : '';         // Ensure $sort is de
                                     <p>Stock: ' . htmlspecialchars($product['stock']) . '</p>
                                 </div>
                             </a>
-                            <a href="cart.php?product_id=' . htmlspecialchars($product['product_id']) . '" class="cart-button">
+                            <a href="cart.php?add_to_cart=1&product_id=' . htmlspecialchars($product['product_id']) . '&quantity=1" class="cart-button">
                                 <i class="fa-solid fa-cart-shopping"></i>
                             </a>
                         </div>';

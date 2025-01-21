@@ -113,11 +113,9 @@ $stmt->close();
                 <input type="radio" name="payment_method" value="cash_on_delivery" required> Cash on Delivery
             </label><br>
             <label>
-                <input type="radio" name="payment_method" value="esewa" required> eSewa
+                <input type="radio" name="payment_method" value="stripe" required> Stripe
             </label><br>
-            <label>
-                <input type="radio" name="payment_method" value="khalti" required> Khalti
-            </label><br>
+       
 
 
             <button type="submit">Confirm Order</button>
