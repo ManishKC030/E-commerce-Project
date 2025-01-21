@@ -1,17 +1,6 @@
 <?php
 // Database connection
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "shoes_hub";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
+include "connection.php";
 // Define categories mapping
 $categories_map = [
     'best_selling' => 1, // Replace 1 with the actual ID of "Best Selling" in your `categories` table
