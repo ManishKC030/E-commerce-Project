@@ -100,9 +100,6 @@ CREATE TABLE payment (
 );
 
 
-ALTER TABLE `payment` CHANGE `payment_method` `payment_method` ENUM('cash_on_delivery','stripe') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL;
-
-
 
 -- Table: Contacts (User messages to admin)
 CREATE TABLE contacts (
