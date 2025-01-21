@@ -67,22 +67,27 @@
   </DIV>
   <br>
   <div class="grid">
-    <div class="card best-selling">
+    <div class="card best-selling" onclick="showCategory('best_selling')">
       <h2>Best Selling</h2>
-
     </div>
-    <div class="card new-arrival">
+    <div class="card new-arrival" onclick="showCategory('new_arrival')">
       <h2>New Arrival</h2>
-
     </div>
-    <div class="card classics">
+    <div class="card classics" onclick="showCategory('classics')">
       <h2>Classics</h2>
-
     </div>
-    <div class="card collabs">
-      <h2>Collbas</h2>
+    <div class="card collabs" onclick="showCategory('collabs')">
+      <h2>Collabs</h2>
     </div>
   </div>
+
+  <script>
+    function showCategory(category) {
+      window.location.href = `?category=${category}`;
+    }
+  </script>
+
+
   <br>
   <hr><br>
   <!-- Hero Section -->
