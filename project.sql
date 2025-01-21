@@ -88,7 +88,7 @@ CREATE TABLE cart (
 CREATE TABLE payment (
     id INT AUTO_INCREMENT PRIMARY KEY,
     order_id INT NOT NULL,
-    payment_method ENUM('cash_on_delivery', 'esewa', 'khalti') NOT NULL,
+    payment_method ENUM('cash_on_delivery', 'stripe') NOT NULL,
     status ENUM('cod', 'pending', 'completed', 'failed') NOT NULL DEFAULT 'pending',
     transaction_id VARCHAR(100),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -98,6 +98,11 @@ CREATE TABLE payment (
         (payment_method IN ('esewa', 'khalti', 'card') AND status IN ('pending', 'completed', 'failed'))
     )
 );
+
+
+ALTER TABLE `payment` CHANGE `payment_method` `payment_method` ENUM('cash_on_delivery','stripe') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL;
+
+
 
 -- Table: Contacts (User messages to admin)
 CREATE TABLE contacts (
