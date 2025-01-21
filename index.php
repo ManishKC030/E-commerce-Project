@@ -83,7 +83,7 @@
 
   <script>
     function showCategory(category) {
-      window.location.href = `?category=${category}`;
+      window.location.href = `index_cards.php?category=${category}`;
     }
   </script>
 
