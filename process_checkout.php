@@ -4,7 +4,7 @@ include("connection.php");
 session_start();
 
 // Set Stripe API key
-\Stripe\Stripe::setApiKey('your_secret_key'); // Replace with your Stripe secret key
+\Stripe\Stripe::setApiKey('Secret key'); // Replace with your Stripe secret key
 header('Content-Type: application/json');
 
 
@@ -47,8 +47,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             'line_items' => $line_items,
             'mode' => 'payment',
-            'success_url' => 'http://yourdomain.com/success.php', // Replace with your success URL
-            'cancel_url' => 'http://yourdomain.com/cancel.php',  // Replace with your cancel URL
+            'success_url' => 'http://localhost/project_final/success.php?session_id={CHECKOUT_SESSION_ID}', // Use full URL
+            'cancel_url' => 'http://localhost/project_final/cancel.html',  // Use full URL
         ]);
 
         // Redirect to Stripe Checkout
@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } elseif ($payment_method === 'cash_on_delivery') {
         // Handle cash on delivery logic
         // For example, redirect to a confirmation page
-        header('Location: cash_on_delivery.php');
+        header('Location: COD.php');
         exit();
     } else {
         echo "Invalid payment method selected.";

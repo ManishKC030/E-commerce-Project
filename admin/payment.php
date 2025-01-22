@@ -7,24 +7,23 @@ include 'auth.php';
 $admin_id = $_SESSION['admin_id'];
 // Fetch payment data
 try {
+
     $query = "
         SELECT 
             p.id AS payment_id,
             o.order_id AS order_id, 
             p.payment_method,
             p.status,
-            p.transaction_id,
+       
             p.created_at
         FROM 
             payment p
-       JOIN 
+        JOIN 
             orders o ON p.order_id = o.order_id
         JOIN 
-            order_items oi ON o.order_id = oi.order_id
-        JOIN 
-            products prod ON oi.product_id = prod.product_id
+            products prod ON o.product_id = prod.product_id
         WHERE 
-            prod.admin_id = ? -- Filter by admin_id
+            prod.admin_id = ? 
         ORDER BY 
             p.created_at DESC
     ";
@@ -111,7 +110,7 @@ try {
                 <th>Order ID</th>
                 <th>Payment Method</th>
                 <th>Status</th>
-                <th>Transaction ID</th>
+             
                 <th>Created At</th>
             </tr>
         </thead>
@@ -127,7 +126,7 @@ try {
                                 <?php echo htmlspecialchars($payment['status']); ?>
                             </span>
                         </td>
-                        <td><?php echo htmlspecialchars($payment['transaction_id'] ?? 'N/A'); ?></td>
+
                         <td><?php echo htmlspecialchars($payment['created_at']); ?></td>
                     </tr>
                 <?php endforeach; ?>

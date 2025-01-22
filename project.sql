@@ -58,18 +58,11 @@ CREATE TABLE orders (
     user_id INT NOT NULL,
     total_price DECIMAL(10, 2) NOT NULL,
     status ENUM('pending', 'confirmed', 'shipped', 'delivered', 'cancelled') DEFAULT 'pending',
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
-);
-
--- Table: Order Items (Products in orders)
-CREATE TABLE order_items (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    order_id INT NOT NULL,
     product_id INT NOT NULL,
     quantity INT NOT NULL,
     price DECIMAL(10, 2) NOT NULL,
-    FOREIGN KEY (order_id) REFERENCES orders(order_id) ON DELETE CASCADE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
     FOREIGN KEY (product_id) REFERENCES products(product_id) ON DELETE CASCADE
 );
 
@@ -90,12 +83,12 @@ CREATE TABLE payment (
     order_id INT NOT NULL,
     payment_method ENUM('cash_on_delivery', 'stripe') NOT NULL,
     status ENUM('cod', 'pending', 'completed', 'failed') NOT NULL DEFAULT 'pending',
-    transaction_id VARCHAR(100),
+   
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (order_id) REFERENCES orders(order_id) ON DELETE CASCADE,
     CONSTRAINT chk_status_method CHECK (
         (payment_method = 'cash_on_delivery' AND status = 'cod') OR
-        (payment_method IN ('esewa', 'khalti', 'card') AND status IN ('pending', 'completed', 'failed'))
+        (payment_method IN ('stripe') AND status IN ('pending', 'completed', 'failed'))
     )
 );
 
