@@ -2,6 +2,10 @@
 include("connection.php");
 session_start();
 
+require 'vendor/autoload.php';
+
+\Stripe\Stripe::setApiKey('your_secret_key'); // Replace with your Stripe secret key
+
 $user_id = $_SESSION['user_id'];
 
 $sql = "SELECT cart.id, products.name, products.image1, cart.quantity, products.price, (cart.quantity * products.price) AS total_price 
@@ -30,6 +34,7 @@ $stmt->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout Page</title>
+    <script src="https://js.stripe.com/v3/"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -91,7 +96,7 @@ $stmt->close();
             <tbody>
                 <?php foreach ($cart_items as $item): ?>
                     <tr>
-                        <td><img src="uploads/<?php echo htmlspecialchars($item['image1']); ?>" class="product-image"> </td>
+                        <td><img src="uploads/<?php echo htmlspecialchars($item['image1']); ?>" class="product-image"></td>
                         <td><?php echo htmlspecialchars($item['name']); ?></td>
                         <td><?php echo htmlspecialchars($item['quantity']); ?></td>
                         <td>$ <?php echo number_format($item['price'], 2); ?></td>
@@ -107,7 +112,7 @@ $stmt->close();
             </tfoot>
         </table>
 
-        <form action="process_checkout.php" method="POST" class="checkout-form">
+        <form action="process_checkout.php" method="POST" class="checkout-form" id="payment-form">
             <h2>Payment Method</h2>
             <label>
                 <input type="radio" name="payment_method" value="cash_on_delivery" required> Cash on Delivery
@@ -115,11 +120,44 @@ $stmt->close();
             <label>
                 <input type="radio" name="payment_method" value="stripe" required> Stripe
             </label><br>
-       
-
-
-            <button type="submit">Confirm Order</button>
+            <div id="card-element" style="display: none;">
+                <!-- Stripe Card Element will load here -->
+            </div>
+            <button type="submit" id="submit-button">Confirm Order</button>
         </form>
+
+        <script>
+            const stripe = Stripe('your_publishable_key'); // Replace with your Stripe publishable key
+            const elements = stripe.elements();
+            const card = elements.create('card');
+            const paymentForm = document.getElementById('payment-form');
+            const submitButton = document.getElementById('submit-button');
+
+            paymentForm.addEventListener('change', (e) => {
+                if (e.target.name === 'payment_method' && e.target.value === 'stripe') {
+                    document.getElementById('card-element').style.display = 'block';
+                    card.mount('#card-element');
+                } else {
+                    document.getElementById('card-element').style.display = 'none';
+                    card.unmount();
+                }
+            });
+
+            paymentForm.addEventListener('submit', async (e) => {
+                if (document.querySelector('input[name="payment_method"]:checked').value === 'stripe') {
+                    e.preventDefault();
+                    const { paymentIntent, error } = await stripe.createPaymentIntent({
+                        amount: <?php echo $total_amount * 100; ?>,
+                        currency: 'usd',
+                    });
+                    if (error) {
+                        alert(error.message);
+                    } else {
+                        paymentForm.submit();
+                    }
+                }
+            });
+        </script>
     <?php else: ?>
         <p>Your cart is empty.</p>
     <?php endif; ?>

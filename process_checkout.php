@@ -1,12 +1,14 @@
 <?php
 include("connection.php");
+require 'vendor/autoload.php'; // Include Composer autoloader
+
+\Stripe\Stripe::setApiKey('your_secret_key'); // Replace with your Stripe secret key
+
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $user_id = $_SESSION['user_id'];
     $payment_method = $_POST['payment_method'];
-
-    $status = ($payment_method === 'cash_on_delivery') ? 'cod' : 'pending';
 
     $conn->begin_transaction();
 
@@ -48,10 +50,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt_order_items->close();
         $stmt_cart->close();
 
+        // Handle Stripe payment if selected
+        if ($payment_method === 'stripe') {
+            $payment_intent_id = $_POST['payment_intent_id']; // Get Payment Intent ID from the frontend
+
+            try {
+                // Verify the payment intent with Stripe
+                $paymentIntent = \Stripe\PaymentIntent::retrieve($payment_intent_id);
+
+                if ($paymentIntent->status !== 'succeeded') {
+                    throw new Exception('Stripe payment not completed.');
+                }
+
+                $status = 'completed'; // Update status if payment is successful
+            } catch (Exception $e) {
+                $conn->rollback();
+                echo "Error: " . $e->getMessage();
+                exit;
+            }
+        } else {
+            $status = 'cod'; // Cash on delivery
+        }
+
         // Update the total price in the orders table
-        $sql_update_order = "UPDATE orders SET total_price = ? WHERE order_id = ?";
+        $sql_update_order = "UPDATE orders SET total_price = ?, status = ? WHERE order_id = ?";
         $stmt_update_order = $conn->prepare($sql_update_order);
-        $stmt_update_order->bind_param("di", $total_price, $order_id);
+        $stmt_update_order->bind_param("dsi", $total_price, $status, $order_id);
         $stmt_update_order->execute();
         $stmt_update_order->close();
 
@@ -74,7 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         echo "<h1>Order Successful!</h1>";
         echo "<p>Your order has been placed successfully. Your Order ID is: <strong>$order_id</strong></p>";
-        echo "<a href='index.php'> Go BAck </a>";
+        echo "<a href='index.php'>Go Back</a>";
     } catch (Exception $e) {
         $conn->rollback();
         echo "Error: " . $e->getMessage();
@@ -82,3 +106,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 $conn->close();
+?>
