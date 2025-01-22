@@ -48,7 +48,7 @@
                 <h4>Help & Information</h4>
                 <ul>
                     <li><a href="ReturnPolicy.php">Return Policy</a></li>
-                    <li><a href="#">Order Tracking</a></li>
+                    <li><a href="order_status.php">Order Status</a></li>
                     <li><a href="shipping.php">Shipping Charges</a></li>
                     <li><a href="#">Tracking ID</a></li>
                 </ul>
