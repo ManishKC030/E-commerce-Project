@@ -51,7 +51,8 @@ $stmt->close();
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
-        h1, h2 {
+        h1,
+        h2 {
             text-align: center;
             color: #333;
         }
@@ -62,11 +63,14 @@ $stmt->close();
             margin-bottom: 20px;
         }
 
-        table, th, td {
+        table,
+        th,
+        td {
             border: 1px solid #ddd;
         }
 
-        th, td {
+        th,
+        td {
             padding: 10px;
             text-align: left;
         }
@@ -124,6 +128,7 @@ $stmt->close();
             font-size: 14px;
         }
     </style>
+    <script src="https://js.stripe.com/v3/"></script>
 </head>
 
 <body>
@@ -172,62 +177,11 @@ $stmt->close();
                     <input type="radio" name="payment_method" value="stripe" required>
                     Stripe
                 </label>
-                <div id="card-element" class="hidden"></div>
-                <div id="card-errors" class="error-message"></div>
+
                 <button type="submit" id="submit-button" class="btn">Confirm Order</button>
             </form>
 
-            <script>
-                const stripe = Stripe('your_publishable_key'); // Replace with your Stripe publishable key
-                const elements = stripe.elements();
-                const card = elements.create('card', {
-                    style: {
-                        base: {
-                            color: '#32325d',
-                            fontFamily: 'Arial, sans-serif',
-                            fontSize: '16px',
-                            '::placeholder': {
-                                color: '#888',
-                            },
-                        },
-                    },
-                });
 
-                const paymentForm = document.getElementById('payment-form');
-                const cardElement = document.getElementById('card-element');
-                const cardErrors = document.getElementById('card-errors');
-
-                paymentForm.addEventListener('change', (e) => {
-                    if (e.target.name === 'payment_method' && e.target.value === 'stripe') {
-                        cardElement.classList.remove('hidden');
-                        card.mount('#card-element');
-                    } else {
-                        cardElement.classList.add('hidden');
-                        card.unmount();
-                    }
-                });
-
-                paymentForm.addEventListener('submit', async (e) => {
-                    if (document.querySelector('input[name="payment_method"]:checked').value === 'stripe') {
-                        e.preventDefault();
-                        const { error, paymentMethod } = await stripe.createPaymentMethod({
-                            type: 'card',
-                            card: card,
-                        });
-
-                        if (error) {
-                            cardErrors.textContent = error.message;
-                        } else {
-                            const input = document.createElement('input');
-                            input.type = 'hidden';
-                            input.name = 'stripe_payment_method_id';
-                            input.value = paymentMethod.id;
-                            paymentForm.appendChild(input);
-                            paymentForm.submit();
-                        }
-                    }
-                });
-            </script>
         <?php else: ?>
             <p>Your cart is empty.</p>
         <?php endif; ?>

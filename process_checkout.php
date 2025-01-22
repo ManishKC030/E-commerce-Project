@@ -5,6 +5,9 @@ session_start();
 
 // Set Stripe API key
 \Stripe\Stripe::setApiKey('your_secret_key'); // Replace with your Stripe secret key
+header('Content-Type: application/json');
+
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $payment_method = $_POST['payment_method'];
@@ -41,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($payment_method === 'stripe') {
         // Create Stripe Checkout Session
         $checkout_session = \Stripe\Checkout\Session::create([
-            'payment_method_types' => ['card'],
+
             'line_items' => $line_items,
             'mode' => 'payment',
             'success_url' => 'http://yourdomain.com/success.php', // Replace with your success URL
@@ -60,4 +63,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo "Invalid payment method selected.";
     }
 }
-?>
