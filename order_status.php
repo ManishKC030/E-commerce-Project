@@ -75,3 +75,25 @@
         }
     </style>
 </head>
+<body>
+    <div class="container">
+        <h1>Your Orders</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Product Name</th>
+                    <th>Brand</th>
+                    <th>Quantity</th>
+                    <th>Total Price</th>
+                    <th>Status</th>
+                    <th>Order Date</th>
+                </tr>
+            </thead>
+            <tbody id="order-table-body">
+                <!-- Orders will be populated here by PHP -->
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
