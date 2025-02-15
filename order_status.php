@@ -1,6 +1,7 @@
 <?php
 // Include the database connection file
 include 'connection.php';
+
 session_start();
 
 // Check if the user is logged in
@@ -32,7 +33,7 @@ $sql = "SELECT
         WHERE 
             o.user_id = ?
         ORDER BY 
-            o.created_at ASC";
+            o.created_at DESC";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $user_id); // Bind the admin_id to the query
 $stmt->execute();
@@ -144,6 +145,9 @@ $result = $stmt->get_result();
 </head>
 
 <body>
+    <?php
+    include 'navbar.php';
+    ?>
     <div class="container">
         <h1>Your Orders</h1>
         <table>
