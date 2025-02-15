@@ -84,6 +84,7 @@ $conn->close();
         }
 
         .profile-info {
+            text-align: left;
             margin-bottom: 15px;
             font-size: 16px;
             color: #555;
