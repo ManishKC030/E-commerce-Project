@@ -4,7 +4,7 @@ include("connection.php");
 session_start();
 
 // Set Stripe API key
-\Stripe\Stripe::setApiKey('StripeAPiKEY'); // Replace with your Stripe secret key
+\Stripe\Stripe::setApiKey('sk_test_51Qk34BKyP8b492kmIYdPErjH5KlfzX51Q1ug2iebrvoVzSnV18tWp2pFpZTjmHy0nYuevNmwvaGWxR7gKpKMj53D00epvNPJMs'); // Replace with your Stripe secret key
 
 // Retrieve the session ID from the URL
 $session_id = $_GET['session_id'];
@@ -74,7 +74,7 @@ if ($session->payment_status === 'paid') {
 
     echo "<script>
     alert('Your order has been placed successfully!');
-    window.location.href = 'index.php';
+    window.location.href = 'order_status.php';
   </script>";
 } else {
     // Payment failed
