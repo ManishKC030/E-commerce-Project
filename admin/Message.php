@@ -10,7 +10,7 @@ require("auth.php");
 $sql = "SELECT c.id, c.name, c.email, c.message, c.status, c.created_at, u.username AS user_name 
         FROM contacts c
         LEFT JOIN users u ON c.user_id = u.user_id
-        ORDER BY c.created_at ASC";
+        ORDER BY c.created_at DESC";
 $result = $conn->query($sql);
 
 // Check if any messages exist
