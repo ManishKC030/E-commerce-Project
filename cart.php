@@ -177,6 +177,45 @@ $total_price = 0;
     button:hover {
         background-color: #0056b3;
     }
+
+    .cart-actions {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .remove-all-btn {
+        background-color: #dc3545;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background 0.3s ease;
+    }
+
+    .remove-all-btn:hover {
+        background-color: #c82333;
+    }
+
+    .checkout-btn {
+        background-color: #28a745;
+        color: white;
+        padding: 12px 24px;
+        font-size: 18px;
+        font-weight: bold;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        text-decoration: none;
+        display: inline-block;
+        margin-left: 10px;
+        transition: background 0.3s ease;
+    }
+
+    .checkout-btn:hover {
+        background-color: #218838;
+    }
 </style>
 
 <body>
@@ -230,10 +269,12 @@ $total_price = 0;
             <td colspan="3"><strong>$<?= number_format($total_price, 2) ?></strong></td>
         </tr>
     </table>
-    <form action="cart.php" method="get" style="display:inline;">
-        <button type="submit" name="remove_all" style="background-color:#dc3545; color:white;">Remove All Products</button>
-    </form>
-    <a href="checkout.php">Proceed to Checkout</a>
+    <div class="cart-actions">
+        <form action="cart.php" method="get" style="display:inline;">
+            <button type="submit" name="remove_all" class="remove-all-btn">Remove All Products</button>
+        </form>
+        <a href="checkout.php" class="checkout-btn">Proceed to Checkout</a>
+    </div>
     <br><br><br><br><br><br><br><br><br><br><br><br>
     <?php include 'footer.php'; ?>
 </body>

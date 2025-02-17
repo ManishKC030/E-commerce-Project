@@ -119,7 +119,7 @@ if (isset($_GET['product_id'])) {
                 <i class="fas fa-shopping-cart"></i> Add to cart
               </button>
             </a>
-            <button type="button" class="buy-now">
+            <button type="button" class="buy-now" onclick="window.location.href='checkout.php?product_id=<?= $product['product_id'] ?>&quantity=1'">
               <i class="fas fa-wallet"></i> Buy Now
             </button>
           </div>

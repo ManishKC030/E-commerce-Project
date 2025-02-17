@@ -8,24 +8,57 @@ require 'vendor/autoload.php';
 
 $user_id = $_SESSION['user_id'];
 
-$sql = "SELECT cart.id, products.name, products.image1, cart.quantity, products.price, (cart.quantity * products.price) AS total_price 
-        FROM cart
-        INNER JOIN products ON cart.product_id = products.product_id
-        WHERE cart.user_id = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $user_id);
-$stmt->execute();
-$result = $stmt->get_result();
-
-$total_amount = 0;
+// Default to empty cart items
 $cart_items = [];
-while ($row = $result->fetch_assoc()) {
-    $cart_items[] = $row;
-    $total_amount += $row['total_price'];
+$total_amount = 0;
+
+// Check if the page was accessed via "Buy Now" or via cart
+if (isset($_GET['product_id']) && isset($_GET['quantity'])) {
+    // Fetch the product details for "Buy Now"
+    $product_id = intval($_GET['product_id']);
+    $quantity = intval($_GET['quantity']);
+
+    $sql = "SELECT * FROM products WHERE product_id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $product_id);
+    $stmt->execute();
+    $product = $stmt->get_result()->fetch_assoc();
+
+    if ($product) {
+        $total_price = $product['price'] * $quantity;
+        $cart_items[] = [
+            'id' => $product['product_id'],
+            'name' => $product['name'],
+            'image1' => $product['image1'],
+            'quantity' => $quantity,
+            'price' => $product['price'],
+            'total_price' => $total_price
+        ];
+        $total_amount = $total_price;
+    }
+
+    $stmt->close();
+} else {
+    // If no product_id in URL, fetch items from the cart
+    $sql = "SELECT cart.id, products.name, products.image1, cart.quantity, products.price, (cart.quantity * products.price) AS total_price 
+            FROM cart
+            INNER JOIN products ON cart.product_id = products.product_id
+            WHERE cart.user_id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    while ($row = $result->fetch_assoc()) {
+        $cart_items[] = $row;
+        $total_amount += $row['total_price'];
+    }
+
+    $stmt->close();
 }
 
-$stmt->close();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
