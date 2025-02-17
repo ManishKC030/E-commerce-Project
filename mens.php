@@ -109,7 +109,7 @@ session_start();
 
 
     <div class="best-selling">
-        <h2>Mens' best Arrivals</h2>
+        <h2>Mens' Best Selling</h2>
         <div class="product-container2">
 
             <?php

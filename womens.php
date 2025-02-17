@@ -35,7 +35,7 @@ session_start();
 
 
     <div class="new-arrivals">
-        <h2>Mens' New Arrivals</h2>
+        <h2>Womens' New Arrivals</h2>
         <div class="product-container">
 
             <?php
@@ -70,7 +70,7 @@ session_start();
                 ';
                 }
             } else {
-                echo "<p style= ' margin-left:350px; font-size: 25px; font-weight:bold; font-family: Sofia, sans-serif;'>No Products Found in Mens New Arrivals</p>";
+                echo "<p style= ' margin-left:350px; font-size: 25px; font-weight:bold; font-family: Sofia, sans-serif;'>No Products Found in Womens New Arrivals</p>";
             }
 
             ?>
@@ -109,11 +109,11 @@ session_start();
 
 
     <div class="best-selling">
-        <h2>Mens' best Arrivals</h2>
+        <h2>Womens' best Arrivals</h2>
         <div class="product-container2">
 
             <?php
-            // Fetch Mens' Best Selling products
+            // Fetch Womens' Best Selling products
             $query = "
     SELECT * FROM products
     WHERE category_id = (
@@ -143,7 +143,7 @@ session_start();
                      </a></div>';
                 }
             } else {
-                echo "<p style= 'margin-left:350px; font-size: 25px; font-weight:bold; font-family: Sofia, sans-serif;'>No Products Found in Mens Best Selling</p>";
+                echo "<p style= 'margin-left:350px; font-size: 25px; font-weight:bold; font-family: Sofia, sans-serif;'>No Products Found in Womens Best Selling</p>";
             }
             ?>
         </div>
@@ -164,10 +164,10 @@ session_start();
     <br><br>
     <section id="product">
         <h2>Featured Products</h2>
-        <p>Mens Collection</p>
+        <p>Womens Collection</p>
         <div class="pro-container">
             <?php
-            // Fetch Mens' products
+            // Fetch Womens' products
             $query = "
     SELECT * FROM products
     WHERE category_id = (
@@ -206,7 +206,7 @@ session_start();
         </a>';
                 }
             } else {
-                echo "<p style= 'margin-left:350px; font-size: 25px; font-weight:bold; font-family: Sofia, sans-serif;'>No Products Found in Mens Section</p>";
+                echo "<p style= 'margin-left:350px; font-size: 25px; font-weight:bold; font-family: Sofia, sans-serif;'>No Products Found in Womens Section</p>";
             }
             ?>
 
