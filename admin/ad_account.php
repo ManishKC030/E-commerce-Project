@@ -129,7 +129,7 @@ $conn->close();
                 <p><strong>Shop Name:</strong> <?php echo htmlspecialchars($admin['Shop_Name']); ?></p>
                 <p><strong>Shop Location:</strong> <?php echo htmlspecialchars($admin['Shop_Address']); ?></p>
                 <p><strong>About Shop:</strong> <?php echo htmlspecialchars($admin['About_shop']); ?></p>
-                <p><strong>Name:</strong> <?php echo htmlspecialchars($admin['ad_name']); ?></p>
+                <p><strong>Owner Name:</strong> <?php echo htmlspecialchars($admin['ad_name']); ?></p>
                 <p><strong>Email:</strong> <?php echo htmlspecialchars($admin['email']); ?></p>
                 <p><strong>Phone:</strong> <?php echo htmlspecialchars($admin['phone']); ?></p>
                 <p><strong>Joined On:</strong> <?php echo htmlspecialchars($admin['created_at']); ?></p>
