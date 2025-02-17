@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Execute query and check if successful
     if ($stmt->execute()) {
-        header("Location: ad_index.php"); // Redirection after success
+        header("Location: ad_account.php"); // Redirection after success
         exit();
     } else {
         $error = "Error: " . $stmt->error;
