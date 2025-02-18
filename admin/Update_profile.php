@@ -54,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if ($stmt->execute()) {
-        echo "<script>alert('Profile updated successfully'); window.location.href='admin_profile.php';</script>";
+        echo "<script>alert('Profile updated successfully'); window.location.href='ad_account.php';</script>";
     } else {
         echo "<script>alert('Error updating profile');</script>";
     }
@@ -125,7 +125,8 @@ $conn->close();
             margin-bottom: 5px;
         }
 
-        input, textarea {
+        input,
+        textarea {
             width: 100%;
             padding: 8px;
             border: 1px solid #ccc;
