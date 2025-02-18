@@ -106,6 +106,23 @@ $conn->close();
             font-size: 16px;
             color: #555;
         }
+
+        .update-btn {
+            display: block;
+            width: 200px;
+            margin: 20px auto;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+
+        .update-btn:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 
@@ -134,8 +151,8 @@ $conn->close();
                 <p><strong>Phone:</strong> <?php echo htmlspecialchars($admin['phone']); ?></p>
                 <p><strong>Joined On:</strong> <?php echo htmlspecialchars($admin['created_at']); ?></p>
             </div>
-             <!-- Update Profile Button -->
-             <a href="update_profile.php" class="update-btn">Update Profile</a>
+            <!-- Update Profile Button -->
+            <a href="update_profile.php" class="update-btn">Update Profile</a>
         </div>
 
     </main>
