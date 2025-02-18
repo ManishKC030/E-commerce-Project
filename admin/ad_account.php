@@ -134,6 +134,8 @@ $conn->close();
                 <p><strong>Phone:</strong> <?php echo htmlspecialchars($admin['phone']); ?></p>
                 <p><strong>Joined On:</strong> <?php echo htmlspecialchars($admin['created_at']); ?></p>
             </div>
+             <!-- Update Profile Button -->
+             <a href="update_profile.php" class="update-btn">Update Profile</a>
         </div>
 
     </main>
