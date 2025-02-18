@@ -12,9 +12,8 @@ $user_id = $_SESSION['user_id'];
 $cart_items = [];
 $total_amount = 0;
 
-// Check if the page was accessed via "Buy Now" or via cart
+// Check if accessed via "Buy Now" or cart
 if (isset($_GET['product_id']) && isset($_GET['quantity'])) {
-    // Fetch the product details for "Buy Now"
     $product_id = intval($_GET['product_id']);
     $quantity = intval($_GET['quantity']);
 
@@ -39,7 +38,7 @@ if (isset($_GET['product_id']) && isset($_GET['quantity'])) {
 
     $stmt->close();
 } else {
-    // Fetch items from the cart
+    // Fetch cart items
     $sql = "SELECT cart.id, products.name, products.image1, cart.quantity, products.price, (cart.quantity * products.price) AS total_price 
             FROM cart
             INNER JOIN products ON cart.product_id = products.product_id
@@ -56,7 +55,6 @@ if (isset($_GET['product_id']) && isset($_GET['quantity'])) {
 
     $stmt->close();
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -76,53 +74,28 @@ if (isset($_GET['product_id']) && isset($_GET['quantity'])) {
         }
 
         .container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 20px auto;
             background: #fff;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .billing-section, .order-summary {
+            flex: 1;
+            min-width: 300px;
+            padding: 20px;
+            background: #f5f5f5;
+            border-radius: 10px;
         }
 
         h1, h2 {
             text-align: center;
             color: #333;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-        }
-
-        table, th, td {
-            border: 1px solid #ddd;
-        }
-
-        th, td {
-            padding: 10px;
-            text-align: left;
-        }
-
-        .product-image {
-            width: 80px;
-            height: 80px;
-            object-fit: cover;
-        }
-
-        .total {
-            font-weight: bold;
-            text-align: right;
-        }
-
-        .checkout-form {
-            margin-top: 20px;
-        }
-
-        .checkout-form label {
-            font-size: 16px;
-            margin-bottom: 10px;
-            display: block;
         }
 
         .input-group {
@@ -132,6 +105,7 @@ if (isset($_GET['product_id']) && isset($_GET['quantity'])) {
         .input-group label {
             font-weight: bold;
             display: block;
+            margin-bottom: 5px;
         }
 
         .input-group input {
@@ -161,25 +135,37 @@ if (isset($_GET['product_id']) && isset($_GET['quantity'])) {
             background-color: #0056b3;
         }
 
-        .hidden {
-            display: none;
-        }
-
-        .error-message {
-            color: #e74c3c;
+        table {
+            width: 100%;
+            border-collapse: collapse;
             margin-top: 10px;
-            font-size: 14px;
         }
 
-        .form-section {
-            background: #f5f5f5;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
+        table, th, td {
+            border: 1px solid #ddd;
         }
 
-        .form-section h2 {
-            margin-top: 0;
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        .product-image {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .total {
+            font-weight: bold;
+            text-align: right;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
@@ -188,79 +174,78 @@ if (isset($_GET['product_id']) && isset($_GET['quantity'])) {
     <?php include('navbar.php'); ?>
 
     <div class="container">
-        <h1>Checkout</h1>
+        <!-- Billing Address Section -->
+        <div class="billing-section">
+            <h2>Billing Address</h2>
+            <form action="process_checkout.php" method="POST" id="payment-form">
+                <div class="input-group">
+                    <label for="billing_name">Full Name</label>
+                    <input type="text" name="billing_name" id="billing_name" required>
+                </div>
+                <div class="input-group">
+                    <label for="billing_phone">Phone</label>
+                    <input type="text" name="billing_phone" id="billing_phone" required>
+                </div>
+                <div class="input-group">
+                    <label for="billing_email">Email</label>
+                    <input type="email" name="billing_email" id="billing_email" required>
+                </div>
+                <div class="input-group">
+                    <label for="billing_address">Address</label>
+                    <input type="text" name="billing_address" id="billing_address" required>
+                </div>
+                <div class="input-group">
+                    <label for="billing_zip">ZIP Code</label>
+                    <input type="text" name="billing_zip" id="billing_zip" required>
+                </div>
 
-        <?php if (count($cart_items) > 0): ?>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Image</th>
-                        <th>Product</th>
-                        <th>Quantity</th>
-                        <th>Price</th>
-                        <th>Total</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($cart_items as $item): ?>
+                <h2>Payment Method</h2>
+                <label>
+                    <input type="radio" name="payment_method" value="cash_on_delivery" required> Cash on Delivery
+                </label>
+                <label>
+                    <input type="radio" name="payment_method" value="stripe" required> Stripe
+                </label>
+
+                <button type="submit" id="submit-button" class="btn">Confirm Order</button>
+            </form>
+        </div>
+
+        <!-- Order Summary Section -->
+        <div class="order-summary">
+            <h2>Order Summary</h2>
+
+            <?php if (count($cart_items) > 0): ?>
+                <table>
+                    <thead>
                         <tr>
-                            <td><img src="uploads/<?php echo htmlspecialchars($item['image1']); ?>" class="product-image"></td>
-                            <td><?php echo htmlspecialchars($item['name']); ?></td>
-                            <td><?php echo htmlspecialchars($item['quantity']); ?></td>
-                            <td>$<?php echo number_format($item['price'], 2); ?></td>
-                            <td>$<?php echo number_format($item['total_price'], 2); ?></td>
+                            <th>Image</th>
+                            <th>Product</th>
+                            <th>Qty</th>
+                            <th>Price</th>
                         </tr>
-                    <?php endforeach; ?>
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <td colspan="4" class="total">Total Amount</td>
-                        <td class="total">$<?php echo number_format($total_amount, 2); ?></td>
-                    </tr>
-                </tfoot>
-            </table>
-
-            <!-- Billing Address Form -->
-            <div class="form-section">
-                <h2>Billing Address</h2>
-                <form action="process_checkout.php" method="POST" class="checkout-form" id="payment-form">
-                    <div class="input-group">
-                        <label for="billing_name">Full Name</label>
-                        <input type="text" name="billing_name" id="billing_name" required>
-                    </div>
-                    <div class="input-group">
-                        <label for="billing_phone">Phone</label>
-                        <input type="text" name="billing_phone" id="billing_phone" required>
-                    </div>
-                    <div class="input-group">
-                        <label for="billing_email">Email</label>
-                        <input type="email" name="billing_email" id="billing_email" required>
-                    </div>
-                    <div class="input-group">
-                        <label for="billing_address">Address</label>
-                        <input type="text" name="billing_address" id="billing_address" required>
-                    </div>
-                    <div class="input-group">
-                        <label for="billing_zip">ZIP Code</label>
-                        <input type="text" name="billing_zip" id="billing_zip" required>
-                    </div>
-
-                    <!-- Payment Method Selection -->
-                    <h2>Payment Method</h2>
-                    <label>
-                        <input type="radio" name="payment_method" value="cash_on_delivery" required> Cash on Delivery
-                    </label>
-                    <label>
-                        <input type="radio" name="payment_method" value="stripe" required> Stripe
-                    </label>
-
-                    <button type="submit" id="submit-button" class="btn">Confirm Order</button>
-                </form>
-            </div>
-
-        <?php else: ?>
-            <p>Your cart is empty.</p>
-        <?php endif; ?>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($cart_items as $item): ?>
+                            <tr>
+                                <td><img src="uploads/<?php echo htmlspecialchars($item['image1']); ?>" class="product-image"></td>
+                                <td><?php echo htmlspecialchars($item['name']); ?></td>
+                                <td><?php echo htmlspecialchars($item['quantity']); ?></td>
+                                <td>$<?php echo number_format($item['total_price'], 2); ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="3" class="total">Total</td>
+                            <td class="total">$<?php echo number_format($total_amount, 2); ?></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            <?php else: ?>
+                <p>Your cart is empty.</p>
+            <?php endif; ?>
+        </div>
     </div>
 </body>
 
