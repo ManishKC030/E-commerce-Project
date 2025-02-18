@@ -67,6 +67,17 @@ CREATE TABLE orders (
 );
 
 
+-- adding billing address---
+ALTER TABLE orders 
+ADD billing_name VARCHAR(100) NOT NULL AFTER user_id,
+ADD billing_phone VARCHAR(15) NOT NULL AFTER billing_name,
+ADD billing_email VARCHAR(100) NOT NULL AFTER billing_phone,
+ADD billing_country VARCHAR(100) NOT NULL AFTER billing_phone;
+ADD billing_city VARCHAR(100) NOT NULL AFTER billing_country,
+ADD billing_state VARCHAR(100) NOT NULL AFTER billing_city,
+ADD billing_zip VARCHAR(20) NOT NULL AFTER billing_state,
+
+
 -- Table: Cart (User cart for checkout)
 CREATE TABLE cart (
     id INT AUTO_INCREMENT PRIMARY KEY,
