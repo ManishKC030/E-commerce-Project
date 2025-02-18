@@ -164,9 +164,9 @@ $conn->close();
 
 <body>
     <header>
-        <h1>Update Profile</h1>
+        <h1>Update Profile of <?php echo htmlspecialchars($admin['ad_name']); ?></h1>
         <nav>
-            <a href="admin_profile.php">Back to Profile</a>
+            <a href="ad_account.php">Back to Profile</a>
             <a href="ad_logout.php">Logout</a>
         </nav>
     </header>
@@ -217,6 +217,8 @@ $conn->close();
             <button type="submit">Update Profile</button>
         </form>
     </main>
+   
+
 </body>
 
 </html>
