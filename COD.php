@@ -104,5 +104,5 @@ $stmt_clear_cart->close();
 // Confirmation message
 echo "<script>
 alert('Your order has been placed successfully!');
-window.location.href = 'index.php';
+window.location.href = 'order_status.php';
 </script>";

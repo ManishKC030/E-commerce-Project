@@ -68,53 +68,66 @@ if (isset($_GET['product_id']) && isset($_GET['quantity'])) {
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
+            background-color: #f4f7fc;
             margin: 0;
             padding: 0;
         }
 
         .container {
-            max-width: 900px;
-            margin: 20px auto;
+            max-width: 1200px;
+            /* Increased width */
+            margin: 40px auto;
             background: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             display: flex;
+            gap: 40px;
             flex-wrap: wrap;
-            gap: 20px;
         }
 
-        .billing-section, .order-summary {
+        .billing-section,
+        .order-summary {
             flex: 1;
-            min-width: 300px;
-            padding: 20px;
-            background: #f5f5f5;
-            border-radius: 10px;
+            min-width: 480px;
+            padding: 30px;
+            background: #f9f9f9;
+            border-radius: 8px;
         }
 
-        h1, h2 {
-            text-align: center;
+        h1,
+        h2 {
             color: #333;
+            text-align: center;
         }
 
         .input-group {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         .input-group label {
             font-weight: bold;
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
         }
 
         .input-group input {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             border: 1px solid #ddd;
-            border-radius: 5px;
+            border-radius: 6px;
             background: #fafafa;
-            font-size: 14px;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .radio-group label {
+            font-size: 16px;
+            margin-right: 20px;
+        }
+
+        .radio-group input {
+            margin-right: 5px;
         }
 
         .btn {
@@ -122,10 +135,10 @@ if (isset($_GET['product_id']) && isset($_GET['quantity'])) {
             width: 100%;
             background-color: #007bff;
             color: white;
-            padding: 12px;
-            font-size: 16px;
+            padding: 14px;
+            font-size: 18px;
             border: none;
-            border-radius: 5px;
+            border-radius: 6px;
             cursor: pointer;
             text-align: center;
             margin-top: 20px;
@@ -141,18 +154,21 @@ if (isset($_GET['product_id']) && isset($_GET['quantity'])) {
             margin-top: 10px;
         }
 
-        table, th, td {
+        table,
+        th,
+        td {
             border: 1px solid #ddd;
         }
 
-        th, td {
-            padding: 10px;
+        th,
+        td {
+            padding: 15px;
             text-align: left;
         }
 
         .product-image {
-            width: 60px;
-            height: 60px;
+            width: 120px;
+            height: 120px;
             object-fit: cover;
             border-radius: 5px;
         }
@@ -162,9 +178,21 @@ if (isset($_GET['product_id']) && isset($_GET['quantity'])) {
             text-align: right;
         }
 
-        @media (max-width: 768px) {
+
+
+
+
+
+        @media (max-width: 992px) {
             .container {
                 flex-direction: column;
+                padding: 20px;
+            }
+
+            .billing-section,
+            .order-summary {
+                min-width: 100%;
+                margin-bottom: 20px;
             }
         }
     </style>
@@ -191,8 +219,17 @@ if (isset($_GET['product_id']) && isset($_GET['quantity'])) {
                     <input type="email" name="billing_email" id="billing_email" required>
                 </div>
                 <div class="input-group">
-                    <label for="billing_address">Address</label>
-                    <input type="text" name="billing_address" id="billing_address" required>
+                    <label for="billing_country">Country</label>
+                    <input type="text" name="billing_country" id="billing_country" value="Nepal" readonly>
+
+                </div>
+                <div class="input-group">
+                    <label for="billing_city">City</label>
+                    <input type="text" name="billing_city" id="billing_city" required>
+                </div>
+                <div class="input-group">
+                    <label for="billing_state">State</label>
+                    <input type="text" name="billing_state" id="billing_state" required>
                 </div>
                 <div class="input-group">
                     <label for="billing_zip">ZIP Code</label>
@@ -200,12 +237,14 @@ if (isset($_GET['product_id']) && isset($_GET['quantity'])) {
                 </div>
 
                 <h2>Payment Method</h2>
-                <label>
-                    <input type="radio" name="payment_method" value="cash_on_delivery" required> Cash on Delivery
-                </label>
-                <label>
-                    <input type="radio" name="payment_method" value="stripe" required> Stripe
-                </label>
+                <br>
+                <div class="radio-group">
+                    <input type="radio" name="payment_method" value="cash_on_delivery" id="cash_on_delivery" required>
+                    <label for="cash_on_delivery">Cash on Delivery</label>
+
+                    <input type="radio" name="payment_method" value="stripe" id="stripe" required>
+                    <label for="stripe">Stripe</label>
+                </div>
 
                 <button type="submit" id="submit-button" class="btn">Confirm Order</button>
             </form>
