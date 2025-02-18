@@ -138,7 +138,7 @@ session_start();
                     <p class="product2-price">$ ' . number_format($product['price'], 2) . '</p>
                     <p>Stock: ' . htmlspecialchars($product['stock']) . '</p>
                 </div></a>
-            <a href="cart.php?product_id=' . htmlspecialchars($product['product_id']) . '" class="cart-button">
+            <a href="cart.php?add_to_cart=1&product_id=' . htmlspecialchars($product['product_id']) . '&quantity=1" class="cart-button">
                      <i class="fa-solid fa-cart-shopping"></i>
                      </a></div>';
                 }
