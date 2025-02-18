@@ -217,8 +217,6 @@ $conn->close();
             <button type="submit">Update Profile</button>
         </form>
     </main>
-   
-
 </body>
 
 </html>
