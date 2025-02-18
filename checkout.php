@@ -39,7 +39,7 @@ if (isset($_GET['product_id']) && isset($_GET['quantity'])) {
 
     $stmt->close();
 } else {
-    // If no product_id in URL, fetch items from the cart
+    // Fetch items from the cart
     $sql = "SELECT cart.id, products.name, products.image1, cart.quantity, products.price, (cart.quantity * products.price) AS total_price 
             FROM cart
             INNER JOIN products ON cart.product_id = products.product_id
@@ -84,8 +84,7 @@ if (isset($_GET['product_id']) && isset($_GET['quantity'])) {
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
-        h1,
-        h2 {
+        h1, h2 {
             text-align: center;
             color: #333;
         }
@@ -96,14 +95,11 @@ if (isset($_GET['product_id']) && isset($_GET['quantity'])) {
             margin-bottom: 20px;
         }
 
-        table,
-        th,
-        td {
+        table, th, td {
             border: 1px solid #ddd;
         }
 
-        th,
-        td {
+        th, td {
             padding: 10px;
             text-align: left;
         }
@@ -119,18 +115,32 @@ if (isset($_GET['product_id']) && isset($_GET['quantity'])) {
             text-align: right;
         }
 
+        .checkout-form {
+            margin-top: 20px;
+        }
+
         .checkout-form label {
             font-size: 16px;
             margin-bottom: 10px;
             display: block;
         }
 
-        #card-element {
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            font-weight: bold;
+            display: block;
+        }
+
+        .input-group input {
+            width: 100%;
             padding: 10px;
             border: 1px solid #ddd;
             border-radius: 5px;
-            margin-top: 10px;
             background: #fafafa;
+            font-size: 14px;
         }
 
         .btn {
@@ -138,7 +148,7 @@ if (isset($_GET['product_id']) && isset($_GET['quantity'])) {
             width: 100%;
             background-color: #007bff;
             color: white;
-            padding: 10px;
+            padding: 12px;
             font-size: 16px;
             border: none;
             border-radius: 5px;
@@ -160,8 +170,18 @@ if (isset($_GET['product_id']) && isset($_GET['quantity'])) {
             margin-top: 10px;
             font-size: 14px;
         }
+
+        .form-section {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .form-section h2 {
+            margin-top: 0;
+        }
     </style>
-    <script src="https://js.stripe.com/v3/"></script>
 </head>
 
 <body>
@@ -200,20 +220,43 @@ if (isset($_GET['product_id']) && isset($_GET['quantity'])) {
                 </tfoot>
             </table>
 
-            <form action="process_checkout.php" method="POST" class="checkout-form" id="payment-form">
-                <h2>Payment Method</h2>
-                <label>
-                    <input type="radio" name="payment_method" value="cash_on_delivery" required>
-                    Cash on Delivery
-                </label>
-                <label>
-                    <input type="radio" name="payment_method" value="stripe" required>
-                    Stripe
-                </label>
+            <!-- Billing Address Form -->
+            <div class="form-section">
+                <h2>Billing Address</h2>
+                <form action="process_checkout.php" method="POST" class="checkout-form" id="payment-form">
+                    <div class="input-group">
+                        <label for="billing_name">Full Name</label>
+                        <input type="text" name="billing_name" id="billing_name" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="billing_phone">Phone</label>
+                        <input type="text" name="billing_phone" id="billing_phone" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="billing_email">Email</label>
+                        <input type="email" name="billing_email" id="billing_email" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="billing_address">Address</label>
+                        <input type="text" name="billing_address" id="billing_address" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="billing_zip">ZIP Code</label>
+                        <input type="text" name="billing_zip" id="billing_zip" required>
+                    </div>
 
-                <button type="submit" id="submit-button" class="btn">Confirm Order</button>
-            </form>
+                    <!-- Payment Method Selection -->
+                    <h2>Payment Method</h2>
+                    <label>
+                        <input type="radio" name="payment_method" value="cash_on_delivery" required> Cash on Delivery
+                    </label>
+                    <label>
+                        <input type="radio" name="payment_method" value="stripe" required> Stripe
+                    </label>
 
+                    <button type="submit" id="submit-button" class="btn">Confirm Order</button>
+                </form>
+            </div>
 
         <?php else: ?>
             <p>Your cart is empty.</p>
