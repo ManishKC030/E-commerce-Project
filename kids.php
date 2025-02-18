@@ -60,7 +60,7 @@ session_start();
                     <p class="product-price">Rs ' . number_format($product['price'], 2) . '</p>
                     <p>Stock: ' . htmlspecialchars($product['stock']) . '</p>
                     </div></a>
-                    <a href="cart.php?product_id=' . htmlspecialchars($product['product_id']) . '" class="new-cart" >
+                  <a href="cart.php?add_to_cart=1&product_id=' . htmlspecialchars($product['product_id']) . '&quantity=1" class="new-cart" >
                      <i class="fa-solid fa-cart-shopping"></i>
                      </a>
                 
