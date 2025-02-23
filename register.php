@@ -80,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
                 <div class="options">
                     <label>
-                        <input type="checkbox" id="viewPassword" /> Show Password
+                        <input type="checkbox" id="showPassword" /> Show Password
                     </label>
                     <a href="login.php">Already have an account? &nbsp;Login.</a>
                 </div>

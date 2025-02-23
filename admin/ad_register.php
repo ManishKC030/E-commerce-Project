@@ -11,7 +11,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $email = $_POST['email'];
   $password = $_POST['password'];
   $phone = $_POST['phone'];
-
   // Insert data into the database
   $sql = "INSERT INTO admins (ad_name, email, password, phone) VALUES (?, ?, ?, ?)";
   $stmt = $conn->prepare($sql);
