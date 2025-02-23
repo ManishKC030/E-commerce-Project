@@ -4,6 +4,7 @@ session_start();
 
 
 include '../connection.php';
+include '../validation.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $name = $_POST['ad_name'];
