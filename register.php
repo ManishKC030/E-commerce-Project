@@ -15,22 +15,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $errors = validateInput($name, $email, $password, $phone);
     // Insert data into the database
-    $sql = "INSERT INTO users (username, email, password, phone) VALUES (?, ?, ?, ?)";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sssi", $name, $email, $password, $phone);
 
-    if ($stmt->execute()) {
-        // Get the last inserted user ID and store it in the session
-        $_SESSION['user_id'] = $conn->insert_id; // Store user ID in session
+    if (empty($errors)) {
 
 
-        header("Location: account.php");
+        $sql = "INSERT INTO users (username, email, password, phone) VALUES (?, ?, ?, ?)";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("sssi", $name, $email, $password, $phone);
+
+        if ($stmt->execute()) {
+            // Get the last inserted user ID and store it in the session
+            $_SESSION['user_id'] = $conn->insert_id; // Store user ID in session
+
+
+            header("Location: account.php");
+        } else {
+            echo "Error: " . $stmt->error;
+        }
+
+        $stmt->close();
+        $conn->close();
     } else {
-        echo "Error: " . $stmt->error;
+        foreach ($errors as $error) {
+            echo "<p style='color:red;'>$error</p>";
+        }
     }
-
-    $stmt->close();
-    $conn->close();
 }
 ?>
 
