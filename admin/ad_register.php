@@ -6,28 +6,39 @@ session_start();
 include '../connection.php';
 include '../validation.php';
 
+
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $name = $_POST['ad_name'];
   $email = $_POST['email'];
   $password = $_POST['password'];
   $phone = $_POST['phone'];
-  // Insert data into the database
-  $sql = "INSERT INTO admins (ad_name, email, password, phone) VALUES (?, ?, ?, ?)";
-  $stmt = $conn->prepare($sql);
-  $stmt->bind_param("sssi", $name, $email, $password, $phone);
 
-  if ($stmt->execute()) {
-    // Get the last inserted user ID and store it in the session
-    $_SESSION['admin_id'] = $conn->insert_id; // Store user ID in session
+  $errors = validateInput($name, $email, $password, $phone);
+
+  if (empty($errors)) {
+
+    // Insert data into the database
+    $sql = "INSERT INTO admins (ad_name, email, password, phone) VALUES (?, ?, ?, ?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("sssi", $name, $email, $password, $phone);
+
+    if ($stmt->execute()) {
+      // Get the last inserted user ID and store it in the session
+      $_SESSION['admin_id'] = $conn->insert_id; // Store user ID in session
 
 
-    header("Location: admin_shop.php");
+      header("Location: admin_shop.php");
+    } else {
+      echo "Error: " . $stmt->error;
+    }
+
+    $stmt->close();
+    $conn->close();
   } else {
-    echo "Error: " . $stmt->error;
+    $errorMessage = implode("\\n", $errors);
+    echo "<script>alert('$errorMessage');</script>";
   }
-
-  $stmt->close();
-  $conn->close();
 }
 
 ?>
