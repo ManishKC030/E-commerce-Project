@@ -37,7 +37,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $conn->close();
     } else {
         foreach ($errors as $error) {
-            echo "<p style='color:red;'>$error</p>";
+            echo "<script>
+            alert('$error')
+            </script>";
         }
     }
 }
