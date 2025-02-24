@@ -1,5 +1,5 @@
 <?php
-function validateInput($name, $email, $phone, $password) {
+function validateInput($name, $email, $password, $phone,) {
     $errors = [];
 
     // Validate Username
