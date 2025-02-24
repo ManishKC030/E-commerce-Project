@@ -12,6 +12,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $password = $_POST['password'];
     $phone = $_POST['phone'];
 
+
+    $errors = validateInput($name, $email, $password, $phone);
     // Insert data into the database
     $sql = "INSERT INTO users (username, email, password, phone) VALUES (?, ?, ?, ?)";
     $stmt = $conn->prepare($sql);
