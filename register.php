@@ -36,11 +36,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt->close();
         $conn->close();
     } else {
-        foreach ($errors as $error) {
-            echo "<script>
-            alert('$error')
-            </script>";
-        }
+        $errorMessage = implode("\\n", $errors);
+        echo "<script>alert('$errorMessage');</script>";
     }
 }
 ?>
