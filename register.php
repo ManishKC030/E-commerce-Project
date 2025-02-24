@@ -14,11 +14,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
     $errors = validateInput($name, $email, $password, $phone);
-    // Insert data into the database
-
+    
     if (empty($errors)) {
-
-
+        
+        
+        // Insert data into the database
         $sql = "INSERT INTO users (username, email, password, phone) VALUES (?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("sssi", $name, $email, $password, $phone);
