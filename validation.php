@@ -19,8 +19,10 @@ function validateInput($name, $email, $password, $phone) {
     // Validate Phone Number
     if (empty($phone)) {
         $errors[] = "Phone number is required.";
-    } elseif (!preg_match("/^[0-9]{10}$/", $phone)) {
+    } elseif (!preg_match("/^\d{10}$/", $phone)) { 
         $errors[] = "Phone number must be exactly 10 digits.";
+    } elseif (preg_match("/^(.)\\1{9}$/", $phone)) { 
+        $errors[] = "Phone number cannot have all digits the same.";
     }
 
     // Validate Password
