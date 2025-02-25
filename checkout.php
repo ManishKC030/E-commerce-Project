@@ -8,6 +8,13 @@ require 'vendor/autoload.php';
 
 $user_id = $_SESSION['user_id'];
 
+// Fetch user details
+$sql = "SELECT username, phone, email FROM users WHERE user_id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$user = $stmt->get_result()->fetch_assoc();
+$stmt->close();
 // Default to empty cart items
 $cart_items = [];
 $total_amount = 0;
