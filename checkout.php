@@ -215,20 +215,19 @@ if (isset($_GET['product_id']) && isset($_GET['quantity'])) {
             <form action="process_checkout.php" method="POST" id="payment-form">
                 <div class="input-group">
                     <label for="billing_name">Full Name</label>
-                    <input type="text" name="billing_name" id="billing_name" required>
+                    <input type="text" name="billing_name" id="billing_name" value="<?php echo htmlspecialchars($user['username']); ?>" required>
                 </div>
                 <div class="input-group">
                     <label for="billing_phone">Phone</label>
-                    <input type="text" name="billing_phone" id="billing_phone" required>
+                    <input type="text" name="billing_phone" id="billing_phone" value="<?php echo htmlspecialchars($user['phone']); ?>" required>
                 </div>
                 <div class="input-group">
                     <label for="billing_email">Email</label>
-                    <input type="email" name="billing_email" id="billing_email" required>
+                    <input type="email" name="billing_email" id="billing_email" value="<?php echo htmlspecialchars($user['email']); ?>" required>
                 </div>
                 <div class="input-group">
                     <label for="billing_country">Country</label>
                     <input type="text" name="billing_country" id="billing_country" value="Nepal" readonly>
-
                 </div>
                 <div class="input-group">
                     <label for="billing_city">City</label>
@@ -255,6 +254,7 @@ if (isset($_GET['product_id']) && isset($_GET['quantity'])) {
 
                 <button type="submit" id="submit-button" class="btn">Confirm Order</button>
             </form>
+
         </div>
 
         <!-- Order Summary Section -->
