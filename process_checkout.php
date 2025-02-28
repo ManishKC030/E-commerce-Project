@@ -13,6 +13,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $payment_method = $_POST['payment_method'];
     $user_id = $_SESSION['user_id'];
 
+
+
+    $_SESSION['billing_name'] = $_POST['billing_name'];
+    $_SESSION['billing_phone'] = $_POST['billing_phone'];
+    $_SESSION['billing_email'] = $_POST['billing_email'];
+    $_SESSION['billing_country'] = $_POST['billing_country'];
+    $_SESSION['billing_city'] = $_POST['billing_city'];
+    $_SESSION['billing_state'] = $_POST['billing_state'];
+    $_SESSION['billing_zip'] = $_POST['billing_zip'];
+
+
     // Fetch cart items and calculate the total
     $sql = "SELECT products.name, cart.quantity, products.price 
             FROM cart 
