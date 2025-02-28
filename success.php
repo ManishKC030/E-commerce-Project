@@ -73,6 +73,13 @@ if ($session->payment_status === 'paid') {
             $billing_zip
         );
         $stmt_insert_order->execute();
+
+        // **Decrease stock**
+        $sql_update_stock = "UPDATE products SET stock = stock - ? WHERE product_id = ? AND stock >= ?";
+        $stmt_update_stock = $conn->prepare($sql_update_stock);
+        $stmt_update_stock->bind_param("iii", $quantity, $product_id, $quantity);
+        $stmt_update_stock->execute();
+        $stmt_update_stock->close();
     }
 
     $stmt->close();

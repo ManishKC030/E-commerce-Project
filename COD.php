@@ -106,6 +106,13 @@ foreach ($line_items as $item) {
         $billing_zip
     );
     $stmt_order_items->execute();
+
+    // **Decrease stock**
+    $sql_update_stock = "UPDATE products SET stock = stock - ? WHERE product_id = ?";
+    $stmt_update_stock = $conn->prepare($sql_update_stock);
+    $stmt_update_stock->bind_param("ii", $quantity, $product_id);
+    $stmt_update_stock->execute();
+    $stmt_update_stock->close();
 }
 
 $stmt_order_items->close();
