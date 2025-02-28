@@ -5,6 +5,15 @@ session_start();
 // Fetch user ID from session
 $user_id = $_SESSION['user_id'];
 
+// Get Billing Details from Session
+$billing_name = $_SESSION['billing_name'];
+$billing_phone = $_SESSION['billing_phone'];
+$billing_email = $_SESSION['billing_email'];
+$billing_country = $_SESSION['billing_country'];
+$billing_city = $_SESSION['billing_city'];
+$billing_state = $_SESSION['billing_state'];
+$billing_zip = $_SESSION['billing_zip'];
+
 // Fetch cart items and calculate the total
 $sql = "SELECT cart.product_id, cart.quantity, products.price, products.name
         FROM cart 
@@ -67,8 +76,9 @@ if (empty($line_items)) {
 
 // Insert into orders table for COD payment
 
-$sql_order_items = "INSERT INTO orders ( user_id, product_id, quantity, price, total_price, status, created_at, admin_id)
-                    VALUES ( ?, ?, ?, ?, ?, 'pending', NOW(), ?)";
+$sql_order_items = "INSERT INTO orders (user_id, product_id, quantity, price, total_price, status, created_at, admin_id, 
+                     billing_name, billing_phone, billing_email, billing_country, billing_city, billing_state, billing_zip)
+                    VALUES (?, ?, ?, ?, ?, 'pending', NOW(), ?, ?, ?, ?, ?, ?, ?, ?)";
 $stmt_order_items = $conn->prepare($sql_order_items);
 
 foreach ($line_items as $item) {
@@ -79,7 +89,22 @@ foreach ($line_items as $item) {
     $admin_id = $item['admin_id'];
 
 
-    $stmt_order_items->bind_param("iiiiii",  $user_id, $product_id, $quantity, $price, $total_price, $admin_id);
+    $stmt_order_items->bind_param(
+        "idiiiisssssss",
+        $user_id,
+        $total_price,
+        $product_id,
+        $quantity,
+        $price,
+        $admin_id,
+        $billing_name,
+        $billing_phone,
+        $billing_email,
+        $billing_country,
+        $billing_city,
+        $billing_state,
+        $billing_zip
+    );
     $stmt_order_items->execute();
 }
 
