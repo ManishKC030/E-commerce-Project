@@ -224,3 +224,9 @@
   visibility: visible;
   opacity: 1;
 }
+.stock-info {
+  font-size: 14px;
+  font-weight: bold;
+  color: #000000; /* Green for available stock */
+  margin-top: 5px;
+}

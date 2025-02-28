@@ -193,8 +193,9 @@ session_start();
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
                     </div>
+                    <p class = "stock-info">Stock: ' . htmlspecialchars($product['stock']) . '</p>
                     <h4>$  ' . number_format($product['price'], 2) . '</h4>
-                </div>
+                    </div>
 
                 <a href="cart.php?add_to_cart=1&product_id=' . htmlspecialchars($product['product_id']) . '&quantity=1">
                     <div class="cart"><i class="fa fa-shopping-cart "></i></div>

@@ -14,7 +14,7 @@ session_start();
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
     <link rel="stylesheet" href="stylesheet/nav-footer.css">
     <link rel="stylesheet" href="stylesheet/kids.css">
-    
+
 </head>
 
 <body>
@@ -133,6 +133,7 @@ session_start();
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
                     </div>
+                    <p class = "stock-info">Stock: ' . htmlspecialchars($product['stock']) . '</p>
                     <h4>$  ' . number_format($product['price'], 2) . '</h4>
                     </div>
                      <a href="cart.php?add_to_cart=1&product_id=' . htmlspecialchars($product['product_id']) . '&quantity=1">

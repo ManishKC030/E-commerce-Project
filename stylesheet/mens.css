@@ -348,4 +348,9 @@
 .cart-button:hover {
   background-color: rgb(31, 30, 30);
 }
-
+.stock-info {
+  font-size: 14px;
+  font-weight: bold;
+  color: #000000; /* Green for available stock */
+  margin-top: 5px;
+}
