@@ -234,8 +234,8 @@ if (isset($_GET['product_id']) && isset($_GET['quantity'])) {
                     <input type="text" name="billing_city" id="billing_city" required>
                 </div>
                 <div class="input-group">
-                    <label for="billing_state">State</label>
-                    <input type="text" name="billing_state" id="billing_state" required>
+                    <label for="billing_street">Street</label>
+                    <input type="text" name="billing_street" id="billing_state" required>
                 </div>
                 <div class="input-group">
                     <label for="billing_zip">ZIP Code</label>

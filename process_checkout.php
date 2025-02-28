@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $_SESSION['billing_email'] = $_POST['billing_email'];
     $_SESSION['billing_country'] = $_POST['billing_country'];
     $_SESSION['billing_city'] = $_POST['billing_city'];
-    $_SESSION['billing_state'] = $_POST['billing_state'];
+    $_SESSION['billing_street'] = $_POST['billing_street'];
     $_SESSION['billing_zip'] = $_POST['billing_zip'];
 
 

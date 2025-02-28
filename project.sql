@@ -73,7 +73,7 @@ ADD billing_phone VARCHAR(15) NOT NULL,
 ADD billing_email VARCHAR(100) NOT NULL,
 ADD billing_country VARCHAR(100) NOT NULL DEFAULT 'Nepal',
 ADD billing_city VARCHAR(100) NOT NULL,
-ADD billing_state VARCHAR(100) NOT NULL,
+ADD billing_street VARCHAR(100) NOT NULL,
 ADD billing_zip VARCHAR(50) NOT NULL;
 
 

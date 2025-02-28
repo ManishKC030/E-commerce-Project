@@ -24,7 +24,7 @@ if ($session->payment_status === 'paid') {
     $billing_email = $_SESSION['billing_email'];
     $billing_country = $_SESSION['billing_country'];
     $billing_city = $_SESSION['billing_city'];
-    $billing_state = $_SESSION['billing_state'];
+    $billing_street = $_SESSION['billing_street'];
     $billing_zip = $_SESSION['billing_zip'];
 
 
@@ -43,7 +43,7 @@ if ($session->payment_status === 'paid') {
 
     // Insert each product as a row into the `orders` table
     $sql_insert_order = "INSERT INTO orders (user_id, total_price, status, product_id, quantity, price, created_at, admin_id, 
-                          billing_name, billing_phone, billing_email, billing_country, billing_city, billing_state, billing_zip)
+                          billing_name, billing_phone, billing_email, billing_country, billing_city, billing_street, billing_zip)
                          VALUES (?, ?, 'confirmed', ?, ?, ?, NOW(), ?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt_insert_order = $conn->prepare($sql_insert_order);
 
@@ -57,19 +57,19 @@ if ($session->payment_status === 'paid') {
         $total_order_amount += $total_price; // Accumulate total order amount
 
         $stmt_insert_order->bind_param(
-            "idiiiisssssss",
+            "iiiddissssssi", // Corrected format string
             $user_id,
-            $total_price,
             $product_id,
             $quantity,
             $price,
+            $total_price,
             $admin_id,
             $billing_name,
             $billing_phone,
             $billing_email,
             $billing_country,
             $billing_city,
-            $billing_state,
+            $billing_street,
             $billing_zip
         );
         $stmt_insert_order->execute();

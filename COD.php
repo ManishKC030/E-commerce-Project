@@ -11,7 +11,7 @@ $billing_phone = $_SESSION['billing_phone'];
 $billing_email = $_SESSION['billing_email'];
 $billing_country = $_SESSION['billing_country'];
 $billing_city = $_SESSION['billing_city'];
-$billing_state = $_SESSION['billing_state'];
+$billing_street = $_SESSION['billing_street'];
 $billing_zip = $_SESSION['billing_zip'];
 
 // Fetch cart items and calculate the total
@@ -77,7 +77,7 @@ if (empty($line_items)) {
 // Insert into orders table for COD payment
 
 $sql_order_items = "INSERT INTO orders (user_id, product_id, quantity, price, total_price, status, created_at, admin_id, 
-                     billing_name, billing_phone, billing_email, billing_country, billing_city, billing_state, billing_zip)
+                     billing_name, billing_phone, billing_email, billing_country, billing_city, billing_street, billing_zip)
                     VALUES (?, ?, ?, ?, ?, 'pending', NOW(), ?, ?, ?, ?, ?, ?, ?, ?)";
 $stmt_order_items = $conn->prepare($sql_order_items);
 
@@ -90,19 +90,19 @@ foreach ($line_items as $item) {
 
 
     $stmt_order_items->bind_param(
-        "idiiiisssssss",
+        "iiiddissssssi", // Corrected format string
         $user_id,
-        $total_price,
         $product_id,
         $quantity,
         $price,
+        $total_price,
         $admin_id,
         $billing_name,
         $billing_phone,
         $billing_email,
         $billing_country,
         $billing_city,
-        $billing_state,
+        $billing_street,
         $billing_zip
     );
     $stmt_order_items->execute();
