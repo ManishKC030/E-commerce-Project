@@ -19,6 +19,15 @@ if ($session->payment_status === 'paid') {
     // Get user ID from session
     $user_id = $_SESSION['user_id'];
 
+    $billing_name = $_SESSION['billing_name'];
+    $billing_phone = $_SESSION['billing_phone'];
+    $billing_email = $_SESSION['billing_email'];
+    $billing_country = $_SESSION['billing_country'];
+    $billing_city = $_SESSION['billing_city'];
+    $billing_state = $_SESSION['billing_state'];
+    $billing_zip = $_SESSION['billing_zip'];
+
+
     // Initialize the total order amount
     $total_order_amount = 0;
 
@@ -33,8 +42,9 @@ if ($session->payment_status === 'paid') {
     $result = $stmt->get_result();
 
     // Insert each product as a row into the `orders` table
-    $sql_insert_order = "INSERT INTO orders (user_id, total_price, status, product_id, quantity, price, created_at, admin_id)
-                         VALUES (?, ?, 'confirmed', ?, ?, ?, NOW(), ?)";
+    $sql_insert_order = "INSERT INTO orders (user_id, total_price, status, product_id, quantity, price, created_at, admin_id, 
+                          billing_name, billing_phone, billing_email, billing_country, billing_city, billing_state, billing_zip)
+                         VALUES (?, ?, 'confirmed', ?, ?, ?, NOW(), ?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt_insert_order = $conn->prepare($sql_insert_order);
 
     while ($row = $result->fetch_assoc()) {
@@ -46,7 +56,22 @@ if ($session->payment_status === 'paid') {
         $total_price = $price * $quantity;
         $total_order_amount += $total_price; // Accumulate total order amount
 
-        $stmt_insert_order->bind_param("idiiii", $user_id, $total_price, $product_id, $quantity, $price, $admin_id);
+        $stmt_insert_order->bind_param(
+            "idiiiisssssss",
+            $user_id,
+            $total_price,
+            $product_id,
+            $quantity,
+            $price,
+            $admin_id,
+            $billing_name,
+            $billing_phone,
+            $billing_email,
+            $billing_country,
+            $billing_city,
+            $billing_state,
+            $billing_zip
+        );
         $stmt_insert_order->execute();
     }
 
