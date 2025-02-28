@@ -25,6 +25,26 @@ if (isset($_GET['product_id'])) {
         echo "<script>alert('Product not found!'); window.location.href = 'view_products.php';</script>";
         exit;
     }
+
+    // Check if the form is submitted to add stock
+    if (isset($_POST['add_stock'])) {
+        $additional_stock = intval($_POST['additional_stock']);
+
+        if ($additional_stock > 0) {
+            // Update stock in the database
+            $update_sql = "UPDATE products SET stock = stock + ? WHERE product_id = ?";
+            $update_stmt = $conn->prepare($update_sql);
+            $update_stmt->bind_param("ii", $additional_stock, $product_id);
+            if ($update_stmt->execute()) {
+                echo "<script>alert('Stock updated successfully!'); window.location.href = 'ad_productDetail.php?product_id=$product_id';</script>";
+                exit;
+            } else {
+                echo "<script>alert('Failed to update stock. Please try again.');</script>";
+            }
+        } else {
+            echo "<script>alert('Please enter a valid stock quantity to add.');</script>";
+        }
+    }
 } else {
     echo "<script>alert('No product selected!'); window.location.href = 'view_products.php';</script>";
     exit;
@@ -92,6 +112,29 @@ if (isset($_GET['product_id'])) {
         .back-btn:hover {
             background-color: #0056b3;
         }
+
+        .add-stock-form {
+            margin-top: 30px;
+        }
+
+        .add-stock-form input {
+            padding: 10px;
+            margin-right: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        .add-stock-form button {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .add-stock-form button:hover {
+            background-color: #218838;
+        }
     </style>
 </head>
 
@@ -111,6 +154,16 @@ if (isset($_GET['product_id'])) {
             <p><strong>Stock:</strong> <?php echo $product['stock'] > 0 ? $product['stock'] : 'Out of Stock'; ?></p>
             <p><strong>Description:</strong> <?php echo htmlspecialchars($product['description']); ?></p>
         </div>
+
+        <!-- Add stock form -->
+        <div class="add-stock-form">
+            <h3>Add Stock</h3>
+            <form method="POST" action="">
+                <input type="number" name="additional_stock" min="1" placeholder="Enter quantity" required>
+                <button type="submit" name="add_stock">Add Stock</button>
+            </form>
+        </div>
+
         <a href="ad_proview.php" class="back-btn">Back to Products</a>
     </div>
 </body>
