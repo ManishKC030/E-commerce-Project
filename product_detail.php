@@ -87,6 +87,10 @@ if (isset($_GET['product_id'])) {
           <br>
           <span class="product-name"><?php echo htmlspecialchars($product['name']); ?></span>
           <span class="price">Price: $<?php echo number_format($product['price'], 2); ?></span>
+          <span class="Stock <?php echo ($product['stock'] > 0) ? 'in-stock' : 'out-of-stock'; ?>">
+            Stock: <?php echo number_format($product['stock']); ?>
+          </span>
+
           <div class="rating">
             Rating:
             <span><i class="fa-solid fa-star"></i></span>

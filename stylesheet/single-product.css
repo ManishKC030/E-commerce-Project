@@ -182,37 +182,32 @@ img {
   text-decoration: underline;
 }
 
-/* Related Products
-.related-products {
-  margin-top: 40px;
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 5px;
-}
-
-.related-products h2 {
-  font-size: 22px;
-  margin-bottom: 20px;
-}
-
-.related-product-item {
-  display: inline-block;
-  text-align: center;
-  width: 150px;
-  margin-right: 20px;
-}
-
-.related-product-item img {
-  width: 100%;
-  border-radius: 5px;
-  margin-bottom: 10px;
-}
-
-.related-product-item p {
-  margin: 5px 0;
-}
-
-.related-product-item .price {
+/* Stock section styles */
+.Stock {
+  font-size: 16px;
   font-weight: bold;
-  color: #e63946;
-} */
+  color: #333;
+  margin-top: 10px;
+}
+
+/* In-stock product style */
+.Stock.in-stock {
+  color: green;
+}
+
+/* Out of stock product style */
+.Stock.out-of-stock {
+  color: red;
+}
+
+/* Stock status indicator */
+.Stock span {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Hover effect for better user interaction */
+.Stock:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
