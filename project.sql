@@ -66,7 +66,6 @@ CREATE TABLE orders (
     FOREIGN KEY (product_id) REFERENCES products(product_id) ON DELETE CASCADE
 );
 
-
 -- adding billing address---
 ALTER TABLE orders 
 ADD billing_name VARCHAR(100) NOT NULL,

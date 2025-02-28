@@ -242,18 +242,7 @@ if (isset($_GET['product_id']) && isset($_GET['quantity'])) {
                     <input type="text" name="billing_zip" id="billing_zip" required>
                 </div>
 
-                <h2>Payment Method</h2>
-                <br>
-                <div class="radio-group">
-                    <input type="radio" name="payment_method" value="cash_on_delivery" id="cash_on_delivery" required>
-                    <label for="cash_on_delivery">Cash on Delivery</label>
 
-                    <input type="radio" name="payment_method" value="stripe" id="stripe" required>
-                    <label for="stripe">Stripe</label>
-                </div>
-
-                <button type="submit" id="submit-button" class="btn">Confirm Order</button>
-            </form>
 
         </div>
 
@@ -288,6 +277,21 @@ if (isset($_GET['product_id']) && isset($_GET['quantity'])) {
                         </tr>
                     </tfoot>
                 </table>
+                <br><br>
+
+                <h2>Payment Method</h2>
+                <br>
+                <div class="radio-group">
+                    <input type="radio" name="payment_method" value="cash_on_delivery" id="cash_on_delivery" required>
+                    <label for="cash_on_delivery">Cash on Delivery</label>
+
+                    <input type="radio" name="payment_method" value="stripe" id="stripe" required>
+                    <label for="stripe">Stripe</label>
+                </div>
+
+                <button type="submit" id="submit-button" class="btn">Confirm Order</button>
+                </form>
+
             <?php else: ?>
                 <p>Your cart is empty.</p>
             <?php endif; ?>
