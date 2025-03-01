@@ -4,7 +4,7 @@ include("connection.php");
 session_start();
 
 // Set Stripe API key
-\Stripe\Stripe::setApiKey('API Key'); // Replace with your Stripe secret key
+\Stripe\Stripe::setApiKey('sk_test_51Qk34BKyP8b492kmIYdPErjH5KlfzX51Q1ug2iebrvoVzSnV18tWp2pFpZTjmHy0nYuevNmwvaGWxR7gKpKMj53D00epvNPJMs'); // Replace with your Stripe secret key
 
 // Retrieve the session ID from the URL
 $session_id = $_GET['session_id'];
@@ -42,9 +42,10 @@ if ($session->payment_status === 'paid') {
     $result = $stmt->get_result();
 
     // Insert each product as a row into the `orders` table
-    $sql_insert_order = "INSERT INTO orders (user_id, total_price, status, product_id, quantity, price, created_at, admin_id, 
-                          billing_name, billing_phone, billing_email, billing_country, billing_city, billing_street, billing_zip)
-                         VALUES (?, ?, 'confirmed', ?, ?, ?, NOW(), ?, ?, ?, ?, ?, ?, ?, ?)";
+    $sql_insert_order = "INSERT INTO orders (user_id, product_id, quantity, price, total_price, status, created_at, admin_id, 
+                     billing_name, billing_phone, billing_email, billing_country, billing_city, billing_street, billing_zip)
+                    VALUES (?, ?, ?, ?, ?, 'confirmed', NOW(), ?, ?, ?, ?, ?, ?, ?, ?)";
+
     $stmt_insert_order = $conn->prepare($sql_insert_order);
 
     while ($row = $result->fetch_assoc()) {

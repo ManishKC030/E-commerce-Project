@@ -14,7 +14,7 @@ if (strpos($message, "Error") !== false) {
 }
 
 // Set Stripe API key
-\Stripe\Stripe::setApiKey('API Key'); // Replace with your Stripe secret key
+\Stripe\Stripe::setApiKey('sk_test_51Qk34BKyP8b492kmIYdPErjH5KlfzX51Q1ug2iebrvoVzSnV18tWp2pFpZTjmHy0nYuevNmwvaGWxR7gKpKMj53D00epvNPJMs'); // Replace with your Stripe secret key
 header('Content-Type: application/json');
 
 
