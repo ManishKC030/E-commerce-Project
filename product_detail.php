@@ -83,51 +83,54 @@ if (isset($_GET['product_id'])) {
 
         <!-- Product Right Section (Details) -->
         <div class="product-div-right">
-          <h1><?php echo htmlspecialchars($product['brand']); ?></h1>
-          <br>
-          <span class="product-name"><?php echo htmlspecialchars($product['name']); ?></span>
-          <span class="price">Price: $<?php echo number_format($product['price'], 2); ?></span>
-          <span class="Stock <?php echo ($product['stock'] > 0) ? 'in-stock' : 'out-of-stock'; ?>">
-            Stock: <?php echo number_format($product['stock']); ?>
-          </span>
+  <h1><?php echo htmlspecialchars($product['brand']); ?></h1>
+  <br>
+  <span class="product-name"><?php echo htmlspecialchars($product['name']); ?></span>
+  <span class="price">Price: $<?php echo number_format($product['price'], 2); ?></span>
+  <span class="Stock <?php echo ($product['stock'] > 0) ? 'in-stock' : 'out-of-stock'; ?>">
+    Stock: <?php echo ($product['stock'] > 0) ? number_format($product['stock']) : 'Out of Stock'; ?>
+  </span>
 
-          <div class="rating">
-            Rating:
-            <span><i class="fa-solid fa-star"></i></span>
-            <span><i class="fa-solid fa-star"></i></span>
-            <span><i class="fa-solid fa-star"></i></span>
-            <span><i class="fa-solid fa-star"></i></span>
-            <span><i class="fas fa-star-half-alt" style="color: rgb(243, 181, 25);"></i></span>
-          </div>
-          <br />
+  <div class="rating">
+    Rating:
+    <span><i class="fa-solid fa-star"></i></span>
+    <span><i class="fa-solid fa-star"></i></span>
+    <span><i class="fa-solid fa-star"></i></span>
+    <span><i class="fa-solid fa-star"></i></span>
+    <span><i class="fas fa-star-half-alt" style="color: rgb(243, 181, 25);"></i></span>
+  </div>
+  <br />
 
-          <!-- Size Selector -->
-          <label for="sizes">Choose Size:</label>
-          <select id="sizes">
-            <option>6</option>
-            <option>7</option>
-            <option>8</option>
-            <option>9</option>
-            <option>10</option>
-          </select>
-          <a href="#" class="size-chart-link">View Size Chart</a>
+  <!-- Size Selector -->
+  <label for="sizes">Choose Size:</label>
+  <select id="sizes" <?php echo ($product['stock'] > 0) ? '' : 'disabled'; ?>>
+    <option>6</option>
+    <option>7</option>
+    <option>8</option>
+    <option>9</option>
+    <option>10</option>
+  </select>
+  <a href="#" class="size-chart-link">View Size Chart</a>
 
-          <!-- Product Description -->
-          <p class="desc"><?php echo nl2br(htmlspecialchars($product['description'])); ?></p>
+  <!-- Product Description -->
+  <p class="desc"><?php echo nl2br(htmlspecialchars($product['description'])); ?></p>
 
-          <!-- Action Buttons -->
-          <div class="btn-groups">
-            <a href="cart.php?add_to_cart=1&product_id=<?= htmlspecialchars($product['product_id']) ?>&quantity=1">
+  <!-- Action Buttons -->
+  <div class="btn-groups">
+    <a href="cart.php?add_to_cart=1&product_id=<?= htmlspecialchars($product['product_id']) ?>&quantity=1">
+      <button type="button" class="add-cart" 
+        <?php echo ($product['stock'] > 0) ? '' : 'disabled style="cursor:not-allowed;"'; ?>>
+        <i class="fas fa-shopping-cart"></i> Add to cart
+      </button>
+    </a>
 
-              <button type="button" class="add-cart">
-                <i class="fas fa-shopping-cart"></i> Add to cart
-              </button>
-            </a>
-            <button type="button" class="buy-now" onclick="window.location.href='checkout.php?product_id=<?= $product['product_id'] ?>&quantity=1'">
-              <i class="fas fa-wallet"></i> Buy Now
-            </button>
-          </div>
-        </div>
+    <button type="button" class="buy-now"
+      onclick="window.location.href='checkout.php?product_id=<?= $product['product_id'] ?>&quantity=1'"
+      <?php echo ($product['stock'] > 0) ? '' : 'disabled style="cursor:not-allowed;"'; ?>>
+      <i class="fas fa-wallet"></i> Buy Now
+    </button>
+  </div>
+</div>
       </div>
     </div>
   </div>
