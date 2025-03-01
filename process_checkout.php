@@ -1,7 +1,17 @@
 <?php
 require 'vendor/autoload.php';
 include("connection.php");
+include("update_stock.php");
 session_start();
+
+// Assuming user_id is already set in session
+$user_id = $_SESSION['user_id'];
+
+// Update stock before proceeding
+$message = updateStock($conn, $user_id);
+if (strpos($message, "Error") !== false) {
+    die($message);
+}
 
 // Set Stripe API key
 \Stripe\Stripe::setApiKey('API Key'); // Replace with your Stripe secret key
